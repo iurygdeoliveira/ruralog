@@ -1,6 +1,6 @@
 # Proposta de Slides - Pré-Pitch 1 (RURALOG)
 
-Esta é a estrutura sugerida para a apresentação do Pré-pitch 1 (foco em Validação do Problema, Proposta de Solução, Protótipo e Modelo de Negócios). A apresentação tem 13 slides para garantir clareza, alinhamento com os critérios de avaliação e agilidade.
+Esta é a estrutura sugerida para a apresentação do Pré-pitch 1 (foco em Validação do Problema, Demanda Regulatória, Proposta de Solução, Protótipo e Modelo de Negócios). A apresentação tem 13 slides para garantir clareza, alinhamento com os critérios de avaliação e agilidade.
 
 ---
 
@@ -15,24 +15,25 @@ Esta é a estrutura sugerida para a apresentação do Pré-pitch 1 (foco em Vali
 ---
 
 ## Slide 2: O Problema Real
-- **Imagem Sugerida:** Uma foto de desperdício de alimentos no campo ou em um armazém mal organizado (ou um gráfico simples de pizza mostrando 30% em destaque).
+- **Imagem Sugerida:** Uma foto de desperdício de alimentos no campo ou em um armazém mal organizado, com uma trilha visual simples de "origem -> lote -> destino" quebrada.
 - **Texto:** 
-  - A cadeia de alimentos do Tocantins não possui rastreabilidade digital.
-  - Indústria sem previsibilidade de insumos.
-  - Perda de até **30%** da produção por falhas de logística e armazenamento.
+  - Muitos registros ainda ficam dispersos em papel, planilhas ou WhatsApp.
+  - Indústria com baixa previsibilidade de insumos, origem e qualidade.
+  - Falhas de logística e armazenamento podem gerar perda de até **30%** da produção.
 - **Foco do Pitch:** 
-  > *"Identificamos um problema crítico nas frentes de logística e desperdício do desafio: a falta de rastreabilidade. Hoje, a indústria não sabe de onde vem a matéria-prima e perde até 30% da produção na pós-colheita."*
+  > *"Identificamos um problema crítico nas frentes de logística, desperdício e conformidade: a cadeia ainda registra origem, lote e destino de forma fragmentada. Isso dificulta a previsibilidade da indústria e aumenta perdas na pós-colheita."*
 
 ---
 
-## Slide 3: O Impacto no Tocantins
-- **Imagem Sugerida:** Ícones representando a Indústria, o Campo e Cifrões.
+## Slide 3: Rastreabilidade Já é Demanda Regulatória
+- **Imagem Sugerida:** Selo "ANVISA + MAPA" ao lado de uma escada regulatória com três degraus: Vegetais Frescos, Alimentos Embalados e Recall Sanitário.
 - **Texto:** 
-  - 426 indústrias de alimentos (80% micro e pequenas).
-  - Sistemas atuais (SAP, Oracle) são caros e inacessíveis.
-  - Perda de competitividade na exportação e risco à segurança alimentar.
+  - **Vegetais frescos:** INC ANVISA-MAPA nº 02/2018 e INC nº 01/2019 exigem registros de produto, origem, destino, lote e documentos.
+  - **Alimentos embalados:** a RDC 727/2022 exige identificação de origem e lote na rotulagem.
+  - **Recall sanitário:** para recolher produtos com risco, a indústria precisa localizar lotes, distribuição e destino.
+  - **Fonte sugerida no rodapé:** INC 02/2018, INC 01/2019, RDC 727/2022 e normas Anvisa de recolhimento de alimentos.
 - **Foco do Pitch:** 
-  > *"Isso afeta diretamente as 426 indústrias de alimentos do nosso estado, a maioria pequenas, que não têm como pagar sistemas complexos. O resultado é perda de competitividade e risco de segurança alimentar."*
+  > *"A rastreabilidade não é apenas uma tendência. Em vegetais frescos, ela aparece como exigência direta da Anvisa e do MAPA. Em alimentos embalados e industrializados, a regulação exige lote, origem e capacidade de recolhimento em caso de risco sanitário. Ou seja: existe demanda regulatória real por soluções que organizem esses dados."*
 
 ---
 
@@ -40,10 +41,11 @@ Esta é a estrutura sugerida para a apresentação do Pré-pitch 1 (foco em Vali
 - **Imagem Sugerida:** Ícone de aperto de mãos (Conexão) entre um agricultor com celular e uma fábrica.
 - **Texto:** 
   - Conectar os elos fragmentados.
-  - Levar inclusão digital ao pequeno produtor (sem internet).
-  - Trazer previsibilidade para a indústria.
+  - Levar inclusão digital ao pequeno produtor, mesmo sem internet constante.
+  - Transformar requisitos de rastreabilidade, lote e recall em processo simples, auditável e acessível.
+  - Trazer previsibilidade e segurança para indústria, varejo e consumidor.
 - **Foco do Pitch:** 
-  > *"Nossa proposta de valor é clara: conectar toda essa cadeia, trazendo inclusão digital para o produtor e previsibilidade e segurança para a indústria."*
+  > *"Nossa proposta de valor é clara: conectar a cadeia, incluir o produtor e transformar uma dor regulatória e operacional em vantagem competitiva para a indústria."*
 
 ---
 
@@ -52,20 +54,22 @@ Esta é a estrutura sugerida para a apresentação do Pré-pitch 1 (foco em Vali
 - **Texto:** 
   - **RURALOG:** A plataforma que conecta a cadeia em 5 etapas.
   - App Agricultor → Transporte → Indústria → Varejo → Consumidor final.
+  - Registro digital de lote, origem, movimentação, documentos e histórico do produto.
 - **Foco do Pitch:** 
-  > *"Por isso criamos o RURALOG. Uma plataforma inteligente de rastreabilidade ponta a ponta, que atende as frentes de eficiência produtiva e logística do Desafio."*
+  > *"Por isso criamos o RURALOG: uma plataforma inteligente de rastreabilidade ponta a ponta, que apoia eficiência produtiva, logística, transparência e conformidade regulatória."*
 
 ---
 
 ## Slide 6: O Diferencial / Inovação
-- **Imagem Sugerida:** Ícones destacando "Modo Offline", "QR/Privacidade" e "Análise Preditiva".
+- **Imagem Sugerida:** Ícones destacando "Modo Offline", "Checklist Regulatório", "QR/Privacidade" e "Análise Preditiva".
 - **Texto:** 
   - **Inovação:**
     - App gratuito com modo offline demonstrável no campo.
+    - Checklist regulatório: produto, lote, origem, destino, documentos e histórico de movimentação.
     - QR Code com passaporte público e controle B2B/B2C de privacidade.
     - Inteligência preditiva simulada para evitar a falta de insumos.
 - **Foco do Pitch:** 
-  > *"Nosso diferencial competitivo é entender a nossa realidade regional: o campo precisa funcionar com pouca internet, e a indústria precisa antecipar risco antes da matéria-prima faltar."*
+  > *"Nosso diferencial competitivo é unir a realidade regional com a pressão regulatória: o campo precisa funcionar com pouca internet, e a indústria precisa gerar registros confiáveis sem depender de sistemas caros."*
 
 ---
 
@@ -73,19 +77,21 @@ Esta é a estrutura sugerida para a apresentação do Pré-pitch 1 (foco em Vali
 - **Imagem Sugerida:** Captura de tela (screenshot) real do protótipo no Figma/App mostrando o registro de uma colheita offline.
 - **Texto:** 
   - **O Protótipo: Cadastro Offline**
-  - Registro simples, sem depender de internet.
+  - Registro simples de produção, lote, data, insumos e comprador.
+  - Base para caderno de campo, rastreabilidade e histórico de origem.
 - **Foco do Pitch:** 
-  > *"Como vocês podem ver no nosso protótipo, o registro começa no campo, de forma muito simples para o agricultor, sem precisar de internet."*
+  > *"Como vocês podem ver no nosso protótipo, o registro começa no campo, de forma simples para o agricultor. Ele registra o lote e as informações essenciais mesmo sem internet, criando a base documental para rastreabilidade e controle de origem."*
 
 ---
 
 ## Slide 8: Demonstração do Protótipo (Visão da Indústria/Consumidor)
 - **Imagem Sugerida:** Screenshot do painel da indústria mostrando o lote chegando e um exemplo de QR Code no produto final.
 - **Texto:** 
-  - **Painel de Controle:** Monitoramento do lote e Controle de Qualidade (CQ).
+  - **Painel de Controle:** Entrada, expedição, lote, fornecedor/comprador e Controle de Qualidade (CQ).
+  - **Conformidade:** histórico do produto pronto para consulta interna, auditoria e apoio a recall.
   - **Consumidor:** Escaneia o QR Code e descobre a origem.
 - **Foco do Pitch:** 
-  > *"A indústria acompanha tudo em tempo real e emite um QR Code. O consumidor final no supermercado escaneia e vê a transparência de todo o processo."*
+  > *"A indústria acompanha o lote, registra entrada e expedição e mantém o histórico organizado. Isso ajuda na gestão, na transparência para o consumidor e em uma eventual necessidade de localizar rapidamente um lote no mercado."*
 
 ---
 
@@ -94,31 +100,34 @@ Esta é a estrutura sugerida para a apresentação do Pré-pitch 1 (foco em Vali
 - **Texto:** 
   - **Modelo Freemium Escalável.**
   - **Agricultor:** Acesso 100% Gratuito (Inclusão Digital).
-  - **Indústria:** Paga por licença/assinatura ou volume de QR Codes emitidos.
+  - **Indústria:** Paga por licença/assinatura, volume de lotes rastreados ou QR Codes emitidos.
+  - Receita ancorada em eficiência, transparência, recall e necessidade de conformidade.
 - **Foco do Pitch:** 
-  > *"Para viabilizar isso financeiramente, adotamos um modelo Freemium. O agricultor tem acesso gratuito, estimulando o uso. A receita vem da indústria, que paga pelo serviço e emissão dos QR Codes."*
+  > *"Para viabilizar isso financeiramente, adotamos um modelo Freemium. O agricultor entra gratuitamente, estimulando a adesão, e a receita vem da indústria, que ganha rastreabilidade, organização de registros, apoio a recall e transparência para o mercado."*
 
 ---
 
 ## Slide 10: Viabilidade e Aplicabilidade
-- **Imagem Sugerida:** Mapa do Tocantins e ícone de um celular.
+- **Imagem Sugerida:** Mapa do Tocantins, ícone de celular offline e checklist de fiscalização.
 - **Texto:** 
   - **Por que funciona aqui?** 
   - Projetado para a realidade sem conectividade do interior do TO.
-  - Alinhado às recomendações de rastreabilidade da FIETO, com IoT e blockchain como roadmap para escala.
+  - Útil para as 426 indústrias de alimentos do estado, em especial micro e pequenas empresas.
+  - Começa com registros simples, lote e QR Code; IoT e blockchain ficam como roadmap para escala.
 - **Foco do Pitch:** 
-  > *"É uma solução altamente viável porque foi desenhada para a nossa realidade. Começamos com QR Code e registros simples, e deixamos IoT e blockchain para a evolução quando a indústria estiver pronta para escalar."*
+  > *"É uma solução viável porque foi desenhada para a nossa realidade: pequenas indústrias, produtores com baixa conectividade e necessidade crescente de comprovar origem, lote, movimentação e distribuição. Começamos simples, com QR Code e registros digitais, e deixamos IoT e blockchain para a evolução."*
 
 ---
 
 ## Slide 11: Impacto Esperado
 - **Imagem Sugerida:** Três pilares (Econômico, Social, Ambiental).
 - **Texto:** 
-  - **Econômico:** Redução de perdas e ganho de valor no produto tocantinense.
+  - **Econômico:** Redução de perdas, organização de registros e ganho de valor no produto tocantinense.
   - **Social:** Inclusão digital do produtor familiar.
   - **Ambiental:** Menos desperdício de alimentos na cadeia.
+  - **Regulatório:** Apoio à manutenção de registros, lote, origem e localização de produtos.
 - **Foco do Pitch:** 
-  > *"Além de ser um bom negócio, geramos impacto triplo: reduzimos o desperdício, incluímos pequenos produtores tecnologicamente e valorizamos o produto regional."*
+  > *"Além de ser um bom negócio, geramos impacto econômico, social, ambiental e regulatório: reduzimos desperdício, incluímos pequenos produtores e ajudamos a cadeia a provar origem, lote e movimentação dos alimentos."*
 
 ---
 
