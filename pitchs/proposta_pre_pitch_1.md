@@ -19,9 +19,10 @@ Esta é a estrutura sugerida para a apresentação do Pré-pitch 1 (foco em Vali
 - **Texto:** 
   - Muitos registros ainda ficam dispersos em papel, planilhas ou WhatsApp.
   - Indústria com baixa previsibilidade de insumos, origem e qualidade.
+  - Pesquisa CNA citada em estudo de 2023: só **41,9%** sabiam o que é rastreabilidade e apenas **13%** realizavam as ações obrigatórias.
   - Falhas de logística e armazenamento podem gerar perda de até **30%** da produção.
 - **Foco do Pitch:** 
-  > *"Identificamos um problema crítico nas frentes de logística, desperdício e conformidade: a cadeia ainda registra origem, lote e destino de forma fragmentada. Isso dificulta a previsibilidade da indústria e aumenta perdas na pós-colheita."*
+  > *"Identificamos um problema crítico nas frentes de logística, desperdício e conformidade: a cadeia ainda registra origem, lote e destino de forma fragmentada. E isso não é só percepção: estudos recentes mostram que a adesão às ações obrigatórias de rastreabilidade ainda é muito baixa."*
 
 ---
 
@@ -29,11 +30,12 @@ Esta é a estrutura sugerida para a apresentação do Pré-pitch 1 (foco em Vali
 - **Imagem Sugerida:** Selo "ANVISA + MAPA" ao lado de uma escada regulatória com três degraus: Vegetais Frescos, Alimentos Embalados e Recall Sanitário.
 - **Texto:** 
   - **Vegetais frescos:** INC ANVISA-MAPA nº 02/2018 e INC nº 01/2019 exigem registros de produto, origem, destino, lote e documentos.
+  - A cadeia regulada vai da **produção ao consumo**, incluindo armazenagem, consolidação de lotes, embalagem, transporte, distribuição e comercialização.
   - **Alimentos embalados:** a RDC 727/2022 exige identificação de origem e lote na rotulagem.
   - **Recall sanitário:** para recolher produtos com risco, a indústria precisa localizar lotes, distribuição e destino.
-  - **Fonte sugerida no rodapé:** INC 02/2018, INC 01/2019, RDC 727/2022 e normas Anvisa de recolhimento de alimentos.
+  - **Fonte sugerida no rodapé:** INC 02/2018, INC 01/2019, RDC 727/2022, normas Anvisa de recolhimento e Pedroso et al. (2023).
 - **Foco do Pitch:** 
-  > *"A rastreabilidade não é apenas uma tendência. Em vegetais frescos, ela aparece como exigência direta da Anvisa e do MAPA. Em alimentos embalados e industrializados, a regulação exige lote, origem e capacidade de recolhimento em caso de risco sanitário. Ou seja: existe demanda regulatória real por soluções que organizem esses dados."*
+  > *"A rastreabilidade não é apenas uma tendência. Em vegetais frescos, ela aparece como exigência direta da Anvisa e do MAPA e alcança vários elos da cadeia, da produção à comercialização. Em alimentos embalados e industrializados, a regulação exige lote, origem e capacidade de recolhimento em caso de risco sanitário. Ou seja: existe demanda regulatória real por soluções que organizem esses dados."*
 
 ---
 
@@ -66,10 +68,10 @@ Esta é a estrutura sugerida para a apresentação do Pré-pitch 1 (foco em Vali
   - **Inovação:**
     - App gratuito com modo offline demonstrável no campo.
     - Checklist regulatório: produto, lote, origem, destino, documentos e histórico de movimentação.
-    - QR Code com passaporte público e controle B2B/B2C de privacidade.
+    - QR Code como identificação simples de lote e origem, alinhado às formas aceitas pela norma.
     - Inteligência preditiva simulada para evitar a falta de insumos.
 - **Foco do Pitch:** 
-  > *"Nosso diferencial competitivo é unir a realidade regional com a pressão regulatória: o campo precisa funcionar com pouca internet, e a indústria precisa gerar registros confiáveis sem depender de sistemas caros."*
+  > *"Nosso diferencial competitivo é unir a realidade regional com a pressão regulatória: o campo precisa funcionar com pouca internet, e a indústria precisa gerar registros confiáveis sem depender de sistemas caros. A própria norma permite identificação por etiqueta, código de barras, QR Code ou outro sistema que identifique produto e origem."*
 
 ---
 
@@ -113,9 +115,10 @@ Esta é a estrutura sugerida para a apresentação do Pré-pitch 1 (foco em Vali
   - **Por que funciona aqui?** 
   - Projetado para a realidade sem conectividade do interior do TO.
   - Útil para as 426 indústrias de alimentos do estado, em especial micro e pequenas empresas.
+  - Ataca uma barreira real: baixa capacidade gerencial e dificuldade de adesão entre pequenos produtores e canais comerciais fragilizados.
   - Começa com registros simples, lote e QR Code; IoT e blockchain ficam como roadmap para escala.
 - **Foco do Pitch:** 
-  > *"É uma solução viável porque foi desenhada para a nossa realidade: pequenas indústrias, produtores com baixa conectividade e necessidade crescente de comprovar origem, lote, movimentação e distribuição. Começamos simples, com QR Code e registros digitais, e deixamos IoT e blockchain para a evolução."*
+  > *"É uma solução viável porque foi desenhada para a nossa realidade: pequenas indústrias, produtores com baixa conectividade e necessidade crescente de comprovar origem, lote, movimentação e distribuição. A literatura mostra que os pequenos têm mais dificuldade de aderir, então começamos simples, com QR Code e registros digitais."*
 
 ---
 
