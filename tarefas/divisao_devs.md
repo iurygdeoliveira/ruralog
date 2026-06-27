@@ -40,6 +40,6 @@ Esta é a organização do trabalho para o desenvolvimento do protótipo simulad
 1.  **Tráfego de Dados (Sem Backend):** 
     Toda a persistência de dados para a simulação ocorrerá através de **IndexedDB** e **localStorage**. Isso permitirá que o `index.html` gere um lote de teste e o `industria.html` consiga visualizá-lo e aprová-lo diretamente no navegador.
 2.  **O QR Code Final:** 
-    O QR Code impresso e gerado na etapa do campo/indústria apontará para uma URL hospedada no **GitHub Pages** (ex: `https://[usuario].github.io/ruralog/consumidor.html?lote=123`). 
+    O QR Code impresso e gerado na etapa do campo/indústria apontará para uma URL hospedada no **GitHub Pages** com snapshot público do lote (ex: `https://[usuario].github.io/ruralog/consumidor.html?lote=TO-2026-001&demo=...`). Isso garante que o celular do jurado abra a landing completa mesmo sem ter o IndexedDB/localStorage do computador da equipe.
 3.  **Plano de Contingência:** 
-    Caso a rede no evento esteja instável durante o pitch, o QR Code e as páginas devem estar preparados para rodar em `localhost`.
+    Caso a rede no evento esteja instável durante o pitch, o QR Code e as páginas devem estar preparados para rodar em `localhost`. O app do Campo deve ter PWA mínimo para reabrir sem internet depois do primeiro carregamento.

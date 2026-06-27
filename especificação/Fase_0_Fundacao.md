@@ -6,9 +6,9 @@
 | Campo | Valor |
 |---|---|
 | **Dono** | Dev 3 (CSS/Design) + Dev 1 (camada de dados) — em par |
-| **Tempo estimado** | 4h (com margem) |
+| **Tempo estimado** | 5h (com margem) |
 | **Dependências** | Nenhuma (é o ponto de partida) |
-| **Entrega testável** | Uma página vazia que importa o CSS global e consegue criar/ler/resetar o lote-semente pelo console |
+| **Entrega testável** | Uma página vazia que importa o CSS global, consegue criar/ler/resetar o lote-semente pelo console, gera snapshot público e reabre o Campo sem internet após o primeiro carregamento |
 
 ---
 
@@ -17,6 +17,8 @@
 1. Definir o **contrato de dados** (schema do lote + API) que as 3 telas vão consumir, para que ninguém trave esperando o outro.
 2. Entregar a **identidade visual global** (tokens de cor, tipografia, componentes base) num único `style.css`.
 3. Entregar o **shell de navegação** (cabeçalho/menu comum) e o **dado-semente** + botão **Resetar Demo** (mitiga o risco RP-03).
+4. Entregar o **snapshot público do QR**, para que a landing do consumidor funcione em celulares que nunca abriram o projeto.
+5. Entregar o **PWA mínimo do Campo**, reforçando a promessa de uso em contexto rural com internet instável.
 
 ## 2. Funcionalidades a implementar
 
@@ -24,6 +26,8 @@
 - `RF-15` Reset da demo para o estado inicial.
 - `RNF-05` CSS global consistente.
 - `RNF-02` Persistência IndexedDB com fallback localStorage.
+- `RNF-08` PWA mínimo no Campo.
+- `RNF-09` QR entre dispositivos via snapshot público.
 
 ## 3. Componentes HTML/CSS/JS necessários
 
@@ -32,6 +36,8 @@
 ├── index.html         (placeholder — Dev 1 preenche na Fase 1)
 ├── industria.html     (placeholder — Dev 2 preenche na Fase 3)
 ├── consumidor.html    (placeholder — Dev 3 preenche na Fase 5)
+├── manifest.json      ← ENTREGA DESTA FASE (PWA mínimo)
+├── sw.js              ← ENTREGA DESTA FASE (cache offline dos assets essenciais)
 ├── css/
 │   └── style.css       ← ENTREGA DESTA FASE (tokens + componentes)
 ├── js/
@@ -59,6 +65,7 @@ const lote = {
   logistica: { expedicao_ts: null, recepcao_ts: null, status: "verde", limiteHoras: 12, checkpoints: [] },
   industria: {
     recepcao_ts: null,
+    expedicao_varejo_ts: null,
     cqRecepcao: { status: null, obs: "" },   // "aprovado"|"reprovado"|null
     cqFinal:    { status: null, obs: "" },
     producao:   { inicio: null, fim: null, unidades: 0 }
@@ -81,9 +88,39 @@ export async function addEvento(id, evento);                // empurra { etapa, 
 export async function addAlerta(id, alerta);                // empurra alerta (usado pelo Campo, lido pela Indústria)
 export async function resetDemo();                          // reescreve o seed e limpa o resto
 export async function listLotes();                          // → [lote] (para telas que listam)
+export function gerarSnapshotPublico(lote);                 // → objeto reduzido seguro p/ QR público
+export function codificarSnapshot(snapshot);                 // → string base64url p/ parâmetro ?demo=
+export function decodificarSnapshot(valor);                  // → objeto snapshot ou null
 ```
 
 > **Regra de integração:** ninguém manipula `localStorage`/IndexedDB direto. Tudo passa por `db.js`. Assim a Fase 6 (integração) não vira caça-fantasma.
+
+### 3.2.1 Snapshot público do QR
+
+O QR público **não pode depender** do IndexedDB/localStorage do computador da equipe, porque o jurado pode abrir a landing em outro celular. Por isso, a Fase 0 deve entregar funções puras para gerar um snapshot pequeno do lote e codificá-lo na URL.
+
+```js
+export function gerarSnapshotPublico(lote){
+  return {
+    id: lote.id,
+    cultura: lote.cultura,
+    agricultor: {
+      municipio: lote.agricultor?.municipio || "",
+      propriedade: lote.agricultor?.propriedade || ""
+    },
+    plantio: lote.plantio,
+    colheita: lote.colheita,
+    alertas: lote.alertas,
+    logistica: lote.logistica,
+    industria: lote.industria,
+    varejo: lote.varejo,
+    privacidade: lote.privacidade,
+    timeline: lote.timeline
+  };
+}
+```
+
+Regra de tamanho: manter o snapshot enxuto. Não colocar CPF, telefone, dados sensíveis, imagens ou histórico completo de debug.
 
 ### 3.3 Identidade visual — tokens em `css/style.css`
 
@@ -110,6 +147,15 @@ export function fmtData(ts);                    // formatação pt-BR
 export function botaoReset();                   // injeta botão "Resetar Demo" → chama db.resetDemo()
 ```
 
+### 3.5 PWA mínimo
+
+Arquivos obrigatórios:
+
+- `manifest.json`: nome, short_name, start_url `index.html`, display `standalone`, tema visual do RuraLog.
+- `sw.js`: cache dos assets essenciais (`index.html`, `industria.html`, `consumidor.html`, `css/style.css`, `js/*.js`, `vendor/qrcode.min.js`, `manifest.json`).
+
+O objetivo não é virar app comercial instalável; é demonstrar que o Campo pode reabrir sem internet depois do primeiro carregamento.
+
 ## 4. Instruções técnicas
 
 1. Crie a estrutura de pastas acima. Os 3 `*.html` ficam como placeholders mínimos importando `css/style.css` e `js/ui.js` (`<script type="module">`).
@@ -117,13 +163,17 @@ export function botaoReset();                   // injeta botão "Resetar Demo" 
 3. Implemente `seed.js` exportando o objeto-semente (lote `TO-2026-001` já com agricultor, cultura e plantio preenchidos, status `campo`, timeline com 1 evento). `resetDemo()` grava esse objeto.
 4. Vendorize uma lib de QR pequena em `vendor/qrcode.min.js` (ex.: `qrcode-generator` ou `qrcodejs`) — **arquivo local, sem CDN em runtime**. Apenas baixe e commite.
 5. Escreva o `style.css` com os tokens e os componentes. Garanta aparência idêntica nas 3 páginas.
-6. Sirva localmente com qualquer servidor estático (ex.: extensão Live Server do VS Code) — IndexedDB e `type="module"` exigem `http://`, não `file://`.
+6. Implemente `gerarSnapshotPublico`, `codificarSnapshot` e `decodificarSnapshot` em `db.js`. A codificação deve ser base64url de JSON UTF-8, com `try/catch` e fallback para `null`.
+7. Crie `manifest.json` e `sw.js`; registre o service worker em `index.html` quando disponível.
+8. Sirva localmente com qualquer servidor estático (ex.: extensão Live Server do VS Code) — IndexedDB, service worker e `type="module"` exigem `http://` ou `https://`, não `file://`.
 
 ## 5. Critérios de aceitação (Definition of Done)
 
 - [ ] `await db.getLote()` retorna o lote-semente; `await db.resetDemo()` restaura o estado inicial.
 - [ ] `addEvento` e `addAlerta` persistem e sobrevivem a um refresh.
+- [ ] `gerarSnapshotPublico` remove dados sensíveis e `decodificarSnapshot(codificarSnapshot(snapshot))` devolve o objeto esperado.
 - [ ] As 3 páginas placeholder carregam o mesmo header e o mesmo CSS, visualmente idênticas.
 - [ ] O botão "Resetar Demo" funciona em qualquer página.
+- [ ] `index.html` registra `sw.js` e reabre sem internet depois do primeiro carregamento.
 - [ ] Tudo roda em `http://localhost` sem internet.
 - [ ] Schema e assinaturas de `db.js` **congelados** e comunicados aos 3 devs (este é o handoff que destrava as Fases 1, 3 e 5).

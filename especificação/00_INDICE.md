@@ -55,20 +55,20 @@
 
 | Fase | Dono | Estimativa | Margem incluída |
 |---|---|---:|---|
-| Fase 0 — Fundação | Dev 3 (CSS) + Dev 1 (dados) | 4h | sim |
+| Fase 0 — Fundação | Dev 3 (CSS) + Dev 1 (dados) | 5h | sim |
 | Fase 1 — Campo | Dev 1 | 6h | sim |
 | Fase 2 — Logística | Dev 1 | 3h | sim |
 | Fase 3 — Indústria | Dev 2 | 6h | sim |
 | Fase 4 — Varejo | Dev 2 | 4h | sim |
 | Fase 5 — Consumidor | Dev 3 | 5h | sim |
 | Fase 6 — Integração + Pitch | Todos | 5h | sim |
-| **Total bruto (soma)** | | **33h** | |
+| **Total bruto (soma)** | | **34h** | |
 
 ### Carga por desenvolvedor (com paralelismo)
 
 | Dev | Fases | Horas | Folga no fim de semana¹ |
 |---|---|---:|---|
-| Dev 1 | 0 (dados) + 1 + 2 | ~11h | confortável |
+| Dev 1 | 0 (dados/PWA/snapshot) + 1 + 2 | ~12h | confortável |
 | Dev 2 | 3 + 4 | ~10h | confortável |
 | Dev 3 | 0 (CSS) + 5 | ~9h | confortável |
 | Todos | 6 (integração) | ~5h | crítico, deixar p/ domingo de manhã |
@@ -81,17 +81,19 @@
 
 Tudo que **não aparece na demo do golden path** (`TO-2026-001`) é **Could/Won't**. Em ordem de defesa:
 
-1. **Must (faz ou morre):** Campo → QR → Indústria(CQ) → Varejo(validade) → Consumidor(scan + origem). É a história inteira no palco.
-2. **Should (fortalece a nota):** alerta preditivo simulado (Inovação), semáforo logístico, painel de privacidade B2B/B2C.
+1. **Must (faz ou morre):** Campo → alerta preditivo → QR com snapshot público → Indústria(CQ) → Varejo(validade) → Consumidor(scan + origem). É a história inteira no palco.
+2. **Should (fortalece a nota):** semáforo logístico, checkpoint manual, painel de privacidade B2B/B2C e expedição indústria→varejo.
 3. **Could (se sobrar tempo):** pesquisa de opinião do consumidor voltando ao painel, múltiplos lotes, gráficos.
-4. **Won't (no MVP):** login/autenticação real, IoT real, rastreio GPS real, multiusuário, qualquer backend.
+4. **Won't (no MVP):** login/autenticação real, IoT real, rastreio GPS contínuo real, RFID, blockchain/hash, multiusuário, qualquer backend.
 
 ---
 
 ## Checklist de "pronto para o pitch"
 
 - [ ] Um lote percorre as 5 etapas sem recarregar dados manualmente.
-- [ ] O QR Code gerado no Campo abre a landing do Consumidor no celular.
+- [ ] O QR Code gerado no Campo abre a landing do Consumidor em um celular que nunca abriu o projeto antes.
+- [ ] A landing carrega dados pelo snapshot público do QR, não apenas pelo IndexedDB/localStorage local.
+- [ ] O Campo reabre sem internet depois do primeiro carregamento (PWA mínimo).
 - [ ] Tudo roda em `localhost` (plano de contingência sem internet).
 - [ ] Botão "Resetar Demo" recoloca o cenário no estado inicial em 1 clique.
 - [ ] Identidade visual idêntica nas 3 páginas (`index`, `industria`, `consumidor`).

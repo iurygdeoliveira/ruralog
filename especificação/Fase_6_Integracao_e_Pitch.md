@@ -7,7 +7,7 @@
 | **Dono** | Todos (Dev 1 + Dev 2 + Dev 3) |
 | **Tempo estimado** | 5h (com margem) — reservar para o **domingo de manhã** |
 | **Dependências** | Fases 1–5 entregues |
-| **Entrega testável** | Um lote percorre as 5 etapas sem intervenção manual nos dados, no ar via GitHub Pages e em localhost |
+| **Entrega testável** | Um lote percorre as 5 etapas sem intervenção manual nos dados, no ar via GitHub Pages e em localhost, com QR funcionando em celular sem dados prévios |
 
 ---
 
@@ -16,13 +16,15 @@
 1. Garantir o **golden path contínuo** do lote `TO-2026-001` (plantio → consumidor) sem "remendo" manual.
 2. **Blindar a demo** contra falhas de palco (sem internet, estado sujo, QR que não abre).
 3. **Publicar** e **ensaiar** o pitch de 5 minutos alinhado aos critérios da banca.
+4. Validar que a promessa de PWA/offline, alerta preditivo e QR público corresponde ao protótipo entregue.
 
 ## 2. Tarefas
 
 ### 2.1 Integração de dados (Dev 1 + Dev 2)
-- Rodar o fluxo inteiro numa aba só: Campo cria → Logística expede → Indústria recebe/CQ → Varejo valida/privacidade → Consumidor abre QR.
+- Rodar o fluxo inteiro numa aba só: Campo cria → Logística expede/checkpoint → Indústria recebe/CQ/processa/expede → Varejo valida/privacidade → Consumidor abre QR.
 - Conferir que **toda etapa escreve na `timeline`** e que o Consumidor lê tudo coerente.
 - Validar `resetDemo()` recolocando o cenário a partir do zero.
+- Gerar QR final com `?demo=` e confirmar que ele contém snapshot público suficiente para abrir a landing em outro navegador/celular.
 
 ### 2.2 Consistência visual (Dev 3)
 - Passar nas 3 páginas garantindo header, cores, tipografia e espaçamento idênticos.
@@ -32,11 +34,15 @@
 - [ ] Botão **"Resetar Demo"** visível e funcionando em todas as páginas.
 - [ ] **Acelerador de tempo** (Fases 2 e 4) testado para demonstrar amarelo/vermelho em segundos.
 - [ ] Estados vazios amigáveis (lote não encontrado, sem alertas) — nada de tela branca/erro.
+- [ ] QR testado em celular que nunca abriu o projeto antes.
+- [ ] Landing abre com dados completos pelo snapshot público, sem depender de IndexedDB/localStorage prévio.
+- [ ] PWA mínimo do Campo testado: abrir uma vez, desligar internet e recarregar `index.html`.
 - [ ] **Plano de contingência:** tudo roda em `http://localhost` sem internet (testar com Wi-Fi desligado).
 
 ### 2.4 Deploy (Dev 1)
 - Publicar o repositório no **GitHub Pages** (`https://<usuario>.github.io/ruralog/`).
 - Gerar o QR final apontando para a URL pública e **imprimir/colar** num produto-prop (embalagem de demonstração).
+- O QR final deve incluir o parâmetro `demo` com snapshot público. Não usar apenas `?lote=TO-2026-001`.
 - **Testar o QR impresso com 2 celulares diferentes** antes do pitch.
 - Manter cópia local pronta para servir em localhost como fallback.
 
@@ -49,9 +55,9 @@
 | Tempo | Cena | Critério que pontua |
 |---|---|---|
 | 0:00–0:40 | **Problema:** a cadeia de alimentos do TO perde por falta de informação conectada | Aderência ao desafio (25) |
-| 0:40–1:40 | **Campo:** Seu João registra plantio/manejo no celular; praga dispara alerta | Inovação (15) / Aderência |
-| 1:40–2:30 | **Logística + Indústria:** semáforo de trânsito, catraca digital, CQ, e o **alerta preditivo** chega à Marina | Eficiência/Viabilidade (20) |
-| 2:30–3:20 | **Varejo:** semáforo de validade evita desperdício; painel de privacidade B2B/B2C | Viabilidade (20) / Modelo de negócio (15) |
+| 0:40–1:40 | **Campo:** Seu João registra plantio/manejo no celular; praga dispara alerta com 8 semanas de antecedência | Inovação (15) / Aderência |
+| 1:40–2:30 | **Logística + Indústria:** checkpoint/semáforo de trânsito, catraca digital, CQ, insight simulado e expedição ao varejo | Eficiência/Viabilidade (20) |
+| 2:30–3:20 | **Varejo:** semáforo de validade evita desperdício; painel de privacidade B2B/B2C controla o QR | Viabilidade (20) / Modelo de negócio (15) |
 | 3:20–4:20 | **Clímax:** jurado escaneia o QR com o próprio celular e vê o passaporte do produto do TO | Protótipo (15) / Inovação (15) |
 | 4:20–5:00 | **Impacto + modelo:** quem paga (indústria/varejo B2B), ganho de eficiência e valorização regional | Modelo de negócio e impacto (15) |
 
@@ -60,8 +66,9 @@
 ## 4. Critérios de aceitação (a demo está "pronta para a banca")
 
 - [ ] Um lote vai de ponta a ponta sem editar dados na mão.
-- [ ] O QR público abre a landing num celular qualquer.
+- [ ] O QR público com snapshot abre a landing num celular qualquer, inclusive sem storage prévio.
 - [ ] Tudo roda offline em localhost (contingência validada).
+- [ ] O Campo reabre sem internet após primeiro carregamento (PWA mínimo validado).
 - [ ] "Resetar Demo" devolve o cenário inicial em 1 clique, na frente do júri se preciso.
 - [ ] As 3 páginas são visualmente uma coisa só.
 - [ ] Pitch de 5 min ensaiado e dentro do tempo.
@@ -70,3 +77,4 @@
 
 - **RP-03 (demo quebra):** ensaiar com o ambiente exato do palco; ter o fallback localhost aberto numa aba.
 - **Tempo:** se algo da Fase 4/5 (Could) não fechar, **corte sem dó** — o golden path Must já conta a história.
+- **Promessa desalinhada:** não afirmar GPS real contínuo, RFID, IoT real, blockchain/hash ou IA real. No MVP, tudo isso é roadmap; o que está implementado é PWA mínimo, QR com snapshot e IA simulada por regra.

@@ -41,7 +41,7 @@
 
 ### 6. "E a questão de privacidade dos dados do agricultor? LGPD?"
 
-> *"O Ruralog foi pensado com privacidade desde o início. Na Etapa 4 do sistema, a indústria define exatamente o que o QR Code mostra para o consumidor — ela controla quais dados são públicos e quais são internos. Os dados do agricultor são anônimos para o consumidor final. E o escaneamento público registra localização de forma anônima, sem identificar o consumidor."*
+> *"O Ruralog foi pensado com privacidade desde o início. Na Etapa 4 do sistema, a indústria define exatamente o que o QR Code mostra para o consumidor — ela controla quais dados são públicos e quais são internos. Os dados do agricultor são minimizados no QR público. E o escaneamento público registra apenas dados anônimos, como horário e local aproximado, sem identificar o consumidor."*
 
 ---
 
@@ -55,7 +55,7 @@
 
 ### 8. "Como vocês garantem que os dados inseridos pelo agricultor são verdadeiros?"
 
-> *"O sistema usa GPS e timestamp automáticos no momento da colheita — o agricultor não digita a localização, o celular captura. Isso cria uma certificação de origem que não pode ser falsificada. Para os dados de manejo, implementamos validações cruzadas: se alguém registra colheita sem ter registrado plantio, o sistema alerta. Não é infalível, mas é infinitamente melhor que zero controle."*
+> *"O sistema usa timestamp e, quando disponível, captura GPS no momento da colheita; se não houver sinal, registra uma localização simulada/assistida para a demo. Isso aumenta a confiabilidade da origem. Para os dados de manejo, usamos validações cruzadas: se alguém registra colheita sem ter registrado plantio, o sistema alerta. Não é infalível, mas é infinitamente melhor que zero controle."*
 
 ---
 

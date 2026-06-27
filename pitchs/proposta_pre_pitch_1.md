@@ -58,14 +58,14 @@ Esta é a estrutura sugerida para a apresentação do Pré-pitch 1 (foco em Vali
 ---
 
 ## Slide 6: O Diferencial / Inovação
-- **Imagem Sugerida:** Ícones destacando "Modo Offline", "Cadeia de Hashes (Segurança)" e "Análise Preditiva".
+- **Imagem Sugerida:** Ícones destacando "Modo Offline", "QR/Privacidade" e "Análise Preditiva".
 - **Texto:** 
   - **Inovação:**
-    - App gratuito e que funciona **offline** no campo.
-    - Segurança de dados com cadeia de hashes.
-    - Inteligência preditiva para evitar a falta de insumos.
+    - App gratuito com modo offline demonstrável no campo.
+    - QR Code com passaporte público e controle B2B/B2C de privacidade.
+    - Inteligência preditiva simulada para evitar a falta de insumos.
 - **Foco do Pitch:** 
-  > *"Nosso diferencial competitivo é entender a nossa realidade regional: nosso app funciona 100% offline no campo. E usamos hashes imutáveis para garantir a segurança dos dados."*
+  > *"Nosso diferencial competitivo é entender a nossa realidade regional: o campo precisa funcionar com pouca internet, e a indústria precisa antecipar risco antes da matéria-prima faltar."*
 
 ---
 
@@ -105,9 +105,9 @@ Esta é a estrutura sugerida para a apresentação do Pré-pitch 1 (foco em Vali
 - **Texto:** 
   - **Por que funciona aqui?** 
   - Projetado para a realidade sem conectividade do interior do TO.
-  - Alinhado às recomendações de rastreabilidade da FIETO.
+  - Alinhado às recomendações de rastreabilidade da FIETO, com IoT e blockchain como roadmap para escala.
 - **Foco do Pitch:** 
-  > *"É uma solução altamente viável porque foi desenhada para a nossa realidade. A própria FIETO já alertou para a necessidade de uso de IoT e Rastreabilidade, e estamos entregando isso."*
+  > *"É uma solução altamente viável porque foi desenhada para a nossa realidade. Começamos com QR Code e registros simples, e deixamos IoT e blockchain para a evolução quando a indústria estiver pronta para escalar."*
 
 ---
 
