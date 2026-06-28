@@ -45,9 +45,6 @@
       <!-- Análises & B2B -->
       <div class="nav-group">
         <div class="nav-group-title">Análises & B2B</div>
-        <a href="index.html#relatorios" class="nav-link">
-          <i data-lucide="bar-chart-3" style="width: 18px;"></i> Relatórios
-        </a>
         <a href="exportacao.html" class="nav-link active">
           <i data-lucide="qr-code" style="width: 18px;"></i> Exportação B2B
         </a>
@@ -99,50 +96,7 @@
         <!-- Coluna Esquerda: Controles -->
         <div class="ds-panel-glass">
           <h3 style="font-family:'Archivo'; font-weight:700; font-size:18px; margin-bottom: 24px;">Configuração de Rastreabilidade</h3>
-          
-          <div class="ds-toggle-item" style="display:flex; justify-content:space-between; align-items:flex-start; padding: 16px 0; border-bottom: 1px solid var(--line-d);">
-            <div>
-              <div style="font-family:'Archivo'; font-weight: 700; font-size: 16px; color: #fff;">Origem Certificada (Selo Sustentável)</div>
-              <div style="font-size: 14px; color: var(--muted-d); margin-top: 6px; line-height: 1.4;">Compartilha o município produtor e certifica que o açaí provém de cooperativas de extrativismo sustentável.</div>
-            </div>
-            <label class="switch">
-              <input type="checkbox" checked onchange="updatePreview()">
-              <span class="slider round"></span>
-            </label>
-          </div>
-
-          <div class="ds-toggle-item" style="display:flex; justify-content:space-between; align-items:flex-start; padding: 16px 0; border-bottom: 1px solid var(--line-d);">
-            <div>
-              <div style="font-family:'Archivo'; font-weight: 700; font-size: 16px; color: #fff;">Laudo de Trânsito Frio (< 6h)</div>
-              <div style="font-size: 14px; color: var(--muted-d); margin-top: 6px; line-height: 1.4;">Prova de frescor. Garante que o lote reteve 100% dos antioxidantes e evita acidez. Justifica prêmio de preço.</div>
-            </div>
-            <label class="switch">
-              <input type="checkbox" checked onchange="updatePreview()">
-              <span class="slider round"></span>
-            </label>
-          </div>
-
-          <div class="ds-toggle-item" style="display:flex; justify-content:space-between; align-items:flex-start; padding: 16px 0; border-bottom: 1px solid var(--line-d);">
-            <div>
-              <div style="font-family:'Archivo'; font-weight: 700; font-size: 16px; color: #fff;">Certificado de Branqueamento</div>
-              <div style="font-size: 14px; color: var(--muted-d); margin-top: 6px; line-height: 1.4;">Validação de segurança alimentar (Choque térmico > 80ºC). Essencial para grandes redes de supermercado.</div>
-            </div>
-            <label class="switch">
-              <input type="checkbox" checked onchange="updatePreview()">
-              <span class="slider round"></span>
-            </label>
-          </div>
-
-          <div class="ds-toggle-item" style="display:flex; justify-content:space-between; align-items:flex-start; padding: 16px 0;">
-            <div>
-              <div style="font-family:'Archivo'; font-weight: 700; font-size: 16px; color: #fff;">Classificação MAPA</div>
-              <div style="font-size: 14px; color: var(--muted-d); margin-top: 6px; line-height: 1.4;">Exibir teor de sólidos totais (Polpa Especial - Tipo A, Média ou Fina) de acordo com a legislação vigente.</div>
-            </div>
-            <label class="switch">
-              <input type="checkbox" checked onchange="updatePreview()">
-              <span class="slider round"></span>
-            </label>
-          </div>
+          <div id="config-toggles" style="max-height: 550px; overflow-y: auto; padding-right: 12px;"></div>
         </div>
 
         <!-- Coluna Direita: Preview e Ação -->
@@ -154,11 +108,7 @@
               <!-- QR Code será renderizado aqui -->
             </div>
             
-            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--muted-d); margin-bottom: 24px; padding: 16px; background: var(--ink); border: 1px solid var(--line-d); border-radius: 8px; text-align: left; line-height: 1.6;" id="payload-preview">
-              <span class="text-green">✔</span> Origem Certificada<br>
-              <span class="text-green">✔</span> Trânsito < 6h<br>
-              <span class="text-green">✔</span> Branqueamento OK<br>
-              <span class="text-green">✔</span> Classificação MAPA
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--muted-d); margin-bottom: 24px; padding: 16px; background: var(--ink); border: 1px solid var(--line-d); border-radius: 8px; text-align: left; line-height: 1.6; max-height: 180px; overflow-y: auto;" id="payload-preview">
             </div>
 
             <button class="ds-btn-primary" style="width: 100%; justify-content:center;" onclick="gerarLote()">
@@ -249,11 +199,68 @@
     
     let qrcode = null;
 
-    function initQR() {
+    const optionsData = [
+      { id: 'origem', label: 'Origem, local de produção' },
+      { id: 'cq', label: 'Controle de qualidade' },
+      { id: 'tempo', label: 'Tempo de produção' },
+      { id: 'nutricional', label: 'Informação nutricional' },
+      { id: 'esg', label: 'Especificações ESG' },
+      { id: 'ph', label: 'PH' },
+      { id: 'pasteurizacao', label: 'Processo de pasteurização' },
+      { id: 'tipo', label: 'Tipo de açaí' },
+      { id: 'especie', label: 'Espécie' },
+      { id: 'variedade', label: 'Variedade do açaí' },
+      { id: 'lote', label: 'Lote da tag' }
+    ];
+
+    function renderToggles() {
+      const container = document.getElementById('config-toggles');
+      let html = '';
+      optionsData.forEach((opt) => {
+        html += `
+          <div class="ds-toggle-item" style="display:flex; justify-content:space-between; align-items:center; padding: 12px 0; border-bottom: 1px solid var(--line-d);">
+            <div>
+              <div style="font-family:'Archivo'; font-weight: 700; font-size: 15px; color: #fff;">${opt.label}</div>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="chk-${opt.id}" data-id="${opt.id}" data-label="${opt.label}" checked onchange="updatePreview()">
+              <span class="slider round"></span>
+            </label>
+          </div>
+        `;
+      });
+      container.innerHTML = html;
+    }
+
+    function updatePreview() {
+      const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+      const payload = document.getElementById('payload-preview');
+      
+      let text = '';
+      let urlParams = new URLSearchParams();
+      
+      checkboxes.forEach((cb) => {
+        const label = cb.getAttribute('data-label');
+        const id = cb.getAttribute('data-id');
+        
+        if(cb.checked) {
+          text += `<span class="text-green">✔</span> ${label}<br>`;
+          urlParams.append(id, '1');
+        } else {
+          text += `<span style="color:var(--wine);">✖</span> <span style="text-decoration:line-through; color:var(--gray);">${label}</span><br>`;
+          urlParams.append(id, '0');
+        }
+      });
+      
+      payload.innerHTML = text;
+      
+      const qrUrl = window.location.origin + "/qr-lote.html?" + urlParams.toString();
+      
       const container = document.getElementById('qr-container');
+      container.innerHTML = '';
       if (typeof QRCode !== 'undefined') {
         qrcode = new QRCode(container, {
-          text: "https://ruralog.industria/lote/ACAI-B2B-001",
+          text: qrUrl,
           width: 180,
           height: 180,
           colorDark : "#0b1410",
@@ -261,41 +268,18 @@
           correctLevel : QRCode.CorrectLevel.H
         });
       } else {
-        // Fallback mockup
-        container.innerHTML = '<img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=ruralog" alt="QR Code">';
+        container.innerHTML = '<img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=' + encodeURIComponent(qrUrl) + '" alt="QR Code">';
       }
-    }
-
-    function updatePreview() {
-      const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-      const payload = document.getElementById('payload-preview');
       
-      const labels = [
-        "Origem Certificada",
-        "Trânsito &lt; 6h",
-        "Branqueamento OK",
-        "Classificação MAPA"
-      ];
+      container.style.opacity = '0.5';
+      container.style.transform = 'scale(0.98)';
+      container.style.boxShadow = '0 0 0 4px var(--green)';
       
-      let text = '';
-      checkboxes.forEach((cb, index) => {
-        if(cb.checked) {
-          text += `<span class="text-green">✔</span> ${labels[index]}<br>`;
-        } else {
-          text += `<span style="color:var(--wine);">✖</span> <span style="text-decoration:line-through; color:var(--gray);">${labels[index]}</span><br>`;
-        }
-      });
-      
-      payload.innerHTML = text;
-      
-      // Animação de pulso no QR para mostrar atualização
-      const qrCont = document.getElementById('qr-container');
-      qrCont.style.opacity = '0.5';
-      qrCont.style.transform = 'scale(0.98)';
       setTimeout(() => {
-        qrCont.style.opacity = '1';
-        qrCont.style.transform = 'scale(1)';
-        qrCont.style.transition = 'all 0.2s';
+        container.style.opacity = '1';
+        container.style.transform = 'scale(1)';
+        container.style.boxShadow = '0 8px 32px rgba(0,0,0,0.4)';
+        container.style.transition = 'all 0.2s';
       }, 150);
     }
 
@@ -303,8 +287,8 @@
       alert("Lote configurado com sucesso! Etiqueta enviada para a impressora do chão de fábrica.");
     }
 
-    // Inicializa
-    initQR();
+    renderToggles();
+    updatePreview();
   </script>
 </body>
 </html>
