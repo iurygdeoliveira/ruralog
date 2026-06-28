@@ -8,17 +8,17 @@
 | **Dono** | Dev 3 (CSS/Design) + Dev 1 (camada de dados) — em par |
 | **Tempo estimado** | 5h (com margem) |
 | **Dependências** | Nenhuma (é o ponto de partida) |
-| **Entrega testável** | Uma página vazia que importa o CSS global, consegue criar/ler/resetar o lote-semente pelo console, gera snapshot público e reabre o Campo sem internet após o primeiro carregamento |
+| **Entrega testável** | Uma página vazia que importa o CSS global, consegue criar/ler/resetar o lote-semente de açaí pelo console, gera snapshot público e reabre o Campo sem internet após o primeiro carregamento |
 
 ---
 
 ## 1. Objetivos
 
-1. Definir o **contrato de dados** (schema do lote + API) que as 3 telas vão consumir, para que ninguém trave esperando o outro.
+1. Definir o **contrato de dados** (schema do lote de açaí + API) que as 3 telas vão consumir, para que ninguém trave esperando o outro.
 2. Entregar a **identidade visual global** (tokens de cor, tipografia, componentes base) num único `style.css`.
 3. Entregar o **shell de navegação** (cabeçalho/menu comum) e o **dado-semente** + botão **Resetar Demo** (mitiga o risco RP-03).
 4. Entregar o **snapshot público do QR**, para que a landing do consumidor funcione em celulares que nunca abriram o projeto.
-5. Entregar o **PWA mínimo do Campo**, reforçando a promessa de uso em contexto rural com internet instável.
+5. Entregar o **PWA mínimo do Campo**, reforçando a promessa de uso em contexto extrativista com internet instável (região do Bico do Papagaio).
 
 ## 2. Funcionalidades a implementar
 
@@ -53,25 +53,54 @@
 ```js
 // O objeto que TODAS as telas leem/escrevem. Não mude as chaves sem avisar o time.
 const lote = {
-  id: "TO-2026-001",
-  cultura: "Abacaxi",                 // matéria-prima regional do TO
+  id: "ACAI-TO-2026-001",
+  cultura: "Açaí",                     // matéria-prima — açaí do Tocantins
+  tipoAcaizal: "nativo",              // "nativo" (extrativismo) | "cultivado"
   status: "campo",                    // campo|transito|industria|varejo|consumidor|reprovado
-  agricultor: { nome: "", municipio: "", propriedade: "", geo: { lat: 0, lng: 0 } },
-  plantio:   { data: null, cultura: "" },
-  manejo:    [],                      // [{ data, tipo, agroquimico, praga }]
-  alertas:   [],                      // [{ origem, severidade, mensagem, ts }]
-  colheita:  { data: null, geo: { lat: 0, lng: 0 }, quantidade: 0 },
+  produtor: {
+    nome: "",
+    municipio: "Araguatins",          // Bico do Papagaio, extremo-norte do TO
+    propriedade: "",
+    geo: { lat: -5.6472, lng: -48.1247 }  // coordenadas de Araguatins
+  },
+  manejo:    [],                      // [{ data, tipo, descricao }]
+                                      //   tipo: "roçagem" | "desbaste" | "monitoramento" | "aplicação"
+  alertas:   [],                      // [{ origem, severidade, praga, mensagem, ts }]
+  colheita:  {
+    data: null,
+    debulha_ts: null,                 // timestamp da debulha — inicia relógio de perecibilidade
+    geo: { lat: 0, lng: 0 },
+    quantidade_kg: 0
+  },
   qrUrl:     "",
-  logistica: { expedicao_ts: null, recepcao_ts: null, status: "verde", limiteHoras: 12, checkpoints: [] },
+  logistica: {
+    expedicao_ts: null,
+    recepcao_ts: null,
+    status: "verde",
+    limiteHoras: 6,                   // perecibilidade extrema do açaí fruto
+    checkpoints: []
+  },
   industria: {
     recepcao_ts: null,
+    peso_kg: 0,                       // pesagem definitiva na recepção
     expedicao_varejo_ts: null,
-    cqRecepcao: { status: null, obs: "" },   // "aprovado"|"reprovado"|null
-    cqFinal:    { status: null, obs: "" },
-    producao:   { inicio: null, fim: null, unidades: 0 }
+    cqRecepcao: { status: null, obs: "" },     // "aprovado"|"reprovado"|null
+    cqFinal:    { status: null, obs: "", classificacao: null },  // classificacao: "A"|"B"|"C"|null
+    branqueamento: { validado: false, temperatura: null },       // campo obrigatório ≥80°C
+    producao:   { inicio: null, fim: null, unidades_kg: 0 },
+    produtoFinal: "Polpa de Açaí Congelada"
   },
-  varejo:    { recepcao_ts: null, validade: null, status: "verde" },
-  privacidade: { mostrarOrigem: true, mostrarLaudos: false, mostrarLogistica: false, mostrarPrateleira: false },
+  varejo:    {
+    recepcao_ts: null,
+    validade: null,                   // polpa congelada: 6-12 meses
+    status: "verde"
+  },
+  privacidade: {
+    mostrarOrigem: true,
+    mostrarLaudos: false,
+    mostrarLogistica: false,
+    mostrarPrateleira: false
+  },
   consumidor: { scans: [], opinioes: [] },
   timeline:  []                        // [{ etapa, ts, descricao, icone }] ← espinha do golden path
 };
@@ -81,11 +110,11 @@ const lote = {
 
 ```js
 // Promessas simples. Implementar com IndexedDB; se indisponível, cair para localStorage.
-export async function getLote(id = "TO-2026-001");          // → objeto lote (ou null)
+export async function getLote(id = "ACAI-TO-2026-001");          // → objeto lote (ou null)
 export async function saveLote(lote);                       // grava o objeto inteiro
 export async function patchLote(id, partial);               // merge raso + retorna lote atualizado
 export async function addEvento(id, evento);                // empurra { etapa, ts, descricao, icone } na timeline
-export async function addAlerta(id, alerta);                // empurra alerta (usado pelo Campo, lido pela Indústria)
+export async function addAlerta(id, alerta);                // empurra alerta (usado pelo Campo, lido pela Agroindústria)
 export async function resetDemo();                          // reescreve o seed e limpa o resto
 export async function listLotes();                          // → [lote] (para telas que listam)
 export function gerarSnapshotPublico(lote);                 // → objeto reduzido seguro p/ QR público
@@ -104,11 +133,11 @@ export function gerarSnapshotPublico(lote){
   return {
     id: lote.id,
     cultura: lote.cultura,
-    agricultor: {
-      municipio: lote.agricultor?.municipio || "",
-      propriedade: lote.agricultor?.propriedade || ""
+    tipoAcaizal: lote.tipoAcaizal,
+    produtor: {
+      municipio: lote.produtor?.municipio || "",
+      propriedade: lote.produtor?.propriedade || ""
     },
-    plantio: lote.plantio,
     colheita: lote.colheita,
     alertas: lote.alertas,
     logistica: lote.logistica,
@@ -151,7 +180,7 @@ export function botaoReset();                   // injeta botão "Resetar Demo" 
 
 Arquivos obrigatórios:
 
-- `manifest.json`: nome, short_name, start_url `index.html`, display `standalone`, tema visual do RuraLog.
+- `manifest.json`: nome "RuraLog — Açaí do Tocantins", short_name "RuraLog", start_url `index.html`, display `standalone`, tema visual do RuraLog.
 - `sw.js`: cache dos assets essenciais (`index.html`, `industria.html`, `consumidor.html`, `css/style.css`, `js/*.js`, `vendor/qrcode.min.js`, `manifest.json`).
 
 O objetivo não é virar app comercial instalável; é demonstrar que o Campo pode reabrir sem internet depois do primeiro carregamento.
@@ -160,7 +189,7 @@ O objetivo não é virar app comercial instalável; é demonstrar que o Campo po
 
 1. Crie a estrutura de pastas acima. Os 3 `*.html` ficam como placeholders mínimos importando `css/style.css` e `js/ui.js` (`<script type="module">`).
 2. Implemente `db.js` com IndexedDB (1 store `lotes`, keyPath `id`). Faça um `try/catch`: se IndexedDB falhar, use `localStorage` com a mesma interface. **Teste os dois caminhos.**
-3. Implemente `seed.js` exportando o objeto-semente (lote `TO-2026-001` já com agricultor, cultura e plantio preenchidos, status `campo`, timeline com 1 evento). `resetDemo()` grava esse objeto.
+3. Implemente `seed.js` exportando o objeto-semente (lote `ACAI-TO-2026-001` já com produtor de Araguatins, açaizal nativo, cultura Açaí e manejo preenchidos, status `campo`, timeline com 1 evento). `resetDemo()` grava esse objeto.
 4. Vendorize uma lib de QR pequena em `vendor/qrcode.min.js` (ex.: `qrcode-generator` ou `qrcodejs`) — **arquivo local, sem CDN em runtime**. Apenas baixe e commite.
 5. Escreva o `style.css` com os tokens e os componentes. Garanta aparência idêntica nas 3 páginas.
 6. Implemente `gerarSnapshotPublico`, `codificarSnapshot` e `decodificarSnapshot` em `db.js`. A codificação deve ser base64url de JSON UTF-8, com `try/catch` e fallback para `null`.
@@ -169,7 +198,7 @@ O objetivo não é virar app comercial instalável; é demonstrar que o Campo po
 
 ## 5. Critérios de aceitação (Definition of Done)
 
-- [ ] `await db.getLote()` retorna o lote-semente; `await db.resetDemo()` restaura o estado inicial.
+- [ ] `await db.getLote()` retorna o lote-semente de açaí; `await db.resetDemo()` restaura o estado inicial.
 - [ ] `addEvento` e `addAlerta` persistem e sobrevivem a um refresh.
 - [ ] `gerarSnapshotPublico` remove dados sensíveis e `decodificarSnapshot(codificarSnapshot(snapshot))` devolve o objeto esperado.
 - [ ] As 3 páginas placeholder carregam o mesmo header e o mesmo CSS, visualmente idênticas.

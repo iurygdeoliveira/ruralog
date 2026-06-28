@@ -1,0 +1,190 @@
+# **Relatório Técnico Abrangente: Adaptação e Escalabilidade do Sistema RuraLog para a Cadeia de Valor do Açaí no Tocantins**
+
+## **1\. Contextualização Macroecômica e Estratégica**
+
+A reestruturação arquitetural e negocial do projeto RuraLog — migrando de um modelo conceitual genérico baseado na cultura do abacaxi para um sistema hiper-especializado na cadeia produtiva do açaí (*Euterpe oleracea* e *Euterpe precatoria*) — representa um avanço estratégico fundamental. A cultura do açaí possui idiossincrasias botânicas, logísticas e regulatórias que inviabilizam a adoção de sistemas genéricos de rastreabilidade.  
+Historicamente dominada pelo estado do Pará, a produção de açaí tem testemunhado uma expansão vertiginosa e descentralizada. Dados do Instituto Brasileiro de Geografia e Estatística (IBGE), através da Produção Agrícola Municipal (PAM), indicam que o estado do Tocantins emergiu como o sexto maior produtor nacional e o quarto em valor de produção1. Em um curto espaço de tempo, a safra tocantinense registrou um salto exponencial de 739%, passando de 100 toneladas para 839 toneladas, enquanto o valor de produção saltou de R$ 243 mil para mais de R$ 6,2 milhões, refletindo uma expansão de 2.469%1. Esse crescimento insere-se em um contexto estadual mais amplo, onde o Tocantins apresentou um aumento de 250% no valor bruto da sua produção agrícola entre 2018 e 20233.  
+Ao adaptar o RuraLog para certificar a origem do "Açaí do Tocantins", o sistema não apenas digitaliza uma cadeia de suprimentos, mas atua como um vetor de diferenciação mercadológica (selo regional). Para que a plataforma reflita a realidade empírica com precisão, é imperativo que ela acomode a dualidade produtiva existente no estado, que se divide em dois polos com características socioeconômicas e agronômicas diametralmente opostas.
+
+### **1.1. A Dualidade Produtiva do Açaí no Tocantins**
+
+O banco de dados, o *onboarding* de usuários e o lote-semente (Seed) do RuraLog devem refletir dois cenários operacionais distintos, respondendo diretamente às premissas de arquitetura do sistema:
+
+| Polo Produtivo | Região Geográfica | Modelo de Produção | Características e Impacto no Sistema RuraLog |
+| :---- | :---- | :---- | :---- |
+| **Polo 1: Extrativismo e Agricultura Familiar** | Extremo-Norte (Bico do Papagaio) | Agroextrativismo de açaizais nativos em áreas de várzea. | Concentrado em municípios como Araguatins, Esperantina e Axixá do Tocantins4. Caracteriza-se por associações e cooperativas (ex: Casa de Polpa Fruta Nova). Exige rastreabilidade focada em sociobiodiversidade, comércio justo e logística mista (fluvial/rodoviária)6. |
+| **Polo 2: Agronegócio Tecnificado e Irrigado** | Sudoeste (Vale do Araguaia) | Cultivo comercial adensado de ciclo contínuo. | Concentrado em Lagoa da Confusão. Fazendas de larga escala (ex: BioAçaí, com 134,2 hectares e 220.000 plantas) utilizando sub-irrigação e processamento industrial ultrarrápido (menos de 4 horas)8. Exige rastreabilidade focada em alta eficiência hídrica, volume e controle estrito de Sólidos Totais. |
+
+A decisão arquitetural é fixar o **Polo 1 (Bico do Papagaio \- Araguatins)** como o cenário principal para o lote-semente primário (Seed 1), uma vez que a narrativa de impacto social, superação de gargalos logísticos e preservação ambiental é o vetor perfeito para demonstrar o valor de um sistema de rastreabilidade. Contudo, a flexibilidade estrutural do RuraLog deve permitir o cadastro de fazendas verticalizadas, como as do Polo 2\.
+
+## **2\. Aspectos Agronômicos: A Dinâmica da Fase de Campo**
+
+A etapa inicial do sistema (Fase 1 \- Campo) demanda a substituição total de métricas lineares (plantio, adubação basal, colheita convencional) por um fluxo de manejo florestal e extrativista.
+
+### **2.1. O Manejo do Açaizal e a Colheita**
+
+O açaizeiro é uma palmeira perfilhadora, o que significa que o manejo consiste primariamente no desbaste (remoção de estipes/troncos excedentes para otimizar a incidência solar) e na roçagem do sub-bosque10. A interface do aplicativo do produtor (Persona: Seu João) deve oferecer essas opções de manejo em vez de "preparo de solo".  
+A colheita do açaí é um processo arcaico, extenuante e manual. É realizada pelos "peconheiros" — trabalhadores tradicionais que escalam as palmeiras utilizando uma "peconha" (tira de fibra que prende os pés) para alcançar a copa e realizar o corte do cacho maduro7.  
+Após o corte, ocorre a **debulha**, que é a separação mecânica ou manual dos frutos do cacho7. Do ponto de vista de arquitetura de dados do RuraLog, o exato momento da debulha é o gatilho ("trigger") que inicia o relógio crítico de perecibilidade do sistema.
+
+### **2.2. Unidades de Medida Tradicionais vs. Padronização Sistêmica**
+
+Um dos maiores desafios de design de interface em soluções de *AgriTech* é conciliar o jargão regional com a precisão exigida pelo banco de dados. No extrativismo do açaí, o fruto debulhado não é comercializado ou pesado no campo em quilogramas (kg), mas sim em unidades de volume não padronizadas, sendo a principal delas a **rasa** (um cesto feito de tala de timbuí) ou a **lata** (recipiente de 18 litros)12.  
+Uma rasa ou lata de açaí comporta, em média, entre 14 e 15 quilogramas de frutos13. Outras medidas regionais incluem a *basqueta* (equivalente a 2 latas ou 30 kg) e a *saca de fibra* (4 latas ou 60 kg)7. Forçar o extrativista a inserir dados em quilogramas no momento da colheita geraria enorme fricção no uso da plataforma.  
+**Resolução Arquitetural:** O *front-end* do aplicativo de campo deve apresentar seletores visuais utilizando a terminologia culturalmente aceita: *"Quantas rasas foram colhidas?"*. Simultaneamente, o *back-end* do RuraLog aplicará um algoritmo de conversão (ex: ![][image1]) para padronizar o schema do lote em quilogramas. Quando o lote chegar à balança da agroindústria, o sistema fará a aferição final do peso real, registrando eventuais perdas no transporte.
+
+### **2.3. Monitoramento Fitossanitário e Alertas de Quebra de Safra**
+
+As pragas e doenças que acometem o açaizeiro têm capacidade de dizimar a produção, impactando diretamente o volume esperado pela agroindústria. O módulo de alertas do RuraLog deve ser recalibrado para monitorar as seguintes ameaças específicas, parametrizando reduções algorítmicas no volume estimado do lote:
+
+| Agente Causador | Nome Científico | Mecanismo de Dano | Impacto Sistêmico no RuraLog (Regra de Negócio) |
+| :---- | :---- | :---- | :---- |
+| **Pulgão-preto-do-coqueiro** | *Cerataphis brasiliensis* | Inseto sugador que ataca as inflorescências, causando retorcimento dos cachos e abortamento severo de frutos15. | A detecção reportada no app do produtor deve acionar um "Alerta Amarelo" de produtividade, reduzindo a estimativa do lote em 15%. |
+| **Broca-do-estipe / Bicudo** | *Rhinostomus barbirostris* / *Dynamis borassi* | Larvas perfuram o tecido do tronco (estipe), destruindo o sistema vascular. Causa o amarelecimento das folhas e a morte da planta adulta10. | Alerta crítico. Redução severa da expectativa de colheita. Gera notificação automática para o corpo técnico da agroindústria avaliar a área. |
+| **Lagarta-desfolhadora** | *Herminodes sp.* | Consome vorazmente os folíolos do açaizeiro, reduzindo drasticamente a área fotossintética e comprometendo o enchimento dos frutos19. | Alerta laranja. Demanda registro obrigatório de aplicação de defensivo biológico no caderno de campo. |
+| **Antracnose / Podridão-do-cacho** | *Colletotrichum gloeosporioides* | Fungo que causa necrose foliar severa e podridão nos cachos, especialmente em condições de alta umidade20. | A identificação da Podridão-do-cacho no momento da colheita descarta imediatamente os frutos afetados. O sistema deve deduzir compulsoriamente 20% a 30% da entrega de polpa associada àquele registro específico. |
+
+## **3\. Fisiologia Pós-Colheita: A Crise de Perecibilidade e a Variável limiteHoras**
+
+A adaptação mais dramática do sistema RuraLog ocorre na Fase 2 (Logística). Ao contrário do abacaxi ou outras frutas convencionais que possuem janelas de transporte medidas em dias ou semanas, o fruto do açaí in natura é fisiologicamente concebido para se deteriorar em questão de horas.  
+Assim que o fruto é separado do cacho (debulha), inicia-se uma violenta reação de escurecimento enzimático, orquestrada por enzimas como a peroxidase11. A partir da primeira hora pós-colheita, a oxidação já é detectável e compromete severamente a aceitação comercial23. A literatura técnica e as práticas de mercado revelam um quadro crítico:
+
+* Após 14 horas, o fruto entra em estágio irreversível de apodrecimento lento11.  
+* Em 36 horas, tempo médio de processamento em cadeias informais e desestruturadas, o açaí já perdeu aproximadamente 70% de seus antioxidantes primários (antocianinas), minerais e vitaminas, sofrendo processo de fermentação11.  
+* Por outro lado, agroindústrias verticalizadas de vanguarda no Tocantins, como as instaladas em Lagoa da Confusão, estabelecem a janela máxima de processamento em **menos de 4 horas** após a colheita, garantindo a retenção integral das características nutracêuticas e da coloração púrpura8.
+
+**Ajuste Sistêmico:** O parâmetro de rastreabilidade limiteHoras — que na versão original do RuraLog era de confortáveis 12 a 24 horas — deve ser agressivamente reduzido. A regra de negócio principal fixará o limiteHoras em **6 horas**. O semáforo logístico do aplicativo que guia a Persona Marina (Gestora da Agroindústria) será programado da seguinte forma:
+
+* **Sinal Verde (Qualidade Premium):** 0 a 3 horas de trânsito.  
+* **Sinal Amarelo (Início de Oxidação):** 3 a 5 horas. O sistema dispara alerta para priorização na fila de despolpamento.  
+* **Sinal Vermelho (Risco de Fermentação):** Acima de 6 horas. O lote é rebaixado na classificação de qualidade e deve ser imediatamente inspecionado pela garantia da qualidade (CQ).
+
+Adicionalmente, considerando a realidade do Bico do Papagaio, onde o transporte inicial ocorre frequentemente através de pequenos barcos em malhas fluviais (sem cobertura de celular), o aplicativo do produtor deve arquitetar um mecanismo de *timestamp offline* criptografado. O horário da debulha é gravado localmente e a sincronização com os servidores ocorre no momento em que o transportador atinge uma área com sinal rodoviário7.
+
+## **4\. O Processamento Industrial: Despolpamento e Padrões de Identidade e Qualidade (PIQ)**
+
+A Fase 3 (Indústria) não pode ser tratada como um mero "processamento". A cadeia do açaí é regida por normas estritas do Ministério da Agricultura e Pecuária (MAPA), especificamente no tocante aos Padrões de Identidade e Qualidade (PIQ) aplicáveis a polpas de frutas.  
+A Persona Marina, gestora da agroindústria de polpa, utilizará o RuraLog para mapear o fluxo de maquinário. O sistema deve refletir, obrigatoriamente, os seguintes estágios sequenciais, registrando *logs* de tempo e temperatura:
+
+1. **Recepção, Pesagem e Lavagem:** Onde a conversão de "rasas" para "quilogramas" é definitivamente auditada. Lavagem por turbilhonamento para remoção de sujidades grosseiras24.  
+2. **Branqueamento / Amolecimento:** Esta é a fase mais crítica da rastreabilidade industrial e de segurança alimentar. O fruto é imerso em água aquecida a um mínimo de 80°C por, no mínimo, 10 segundos25. Esta etapa cumpre dupla função: amolece o mesocarpo para facilitar a extração, inativa as enzimas de oxidação (peroxidase) e elimina patógenos mortais, notadamente o *Trypanosoma cruzi* (agente etiológico da Doença de Chagas). **Regra no RuraLog:** O sistema deve ter um campo booleano obrigatório de validação de temperatura do branqueamento.  
+3. **Despolpamento Mecânico:** Extração da parte comestível mediante a adição técnica de água potável26.  
+4. **Pasteurização e Túneis de Congelamento:** O produto processado deve ser submetido a resfriamento rápido, tipicamente armazenado em prateleiras dentro de túneis de congelamento ou câmaras frias com temperaturas variando entre \-18°C e \-25°C, por 24 a 36 horas para congelamento total28.
+
+### **4.1. Classificação do Produto Final**
+
+O módulo de Controle de Qualidade (CQ) do sistema RuraLog deve registrar a cor (nível de antocianinas), acidez, e o dado mais importante para precificação: a concentração de Sólidos Totais (°Brix) da polpa processada. O MAPA classifica o produto final, exigindo que essas nomenclaturas componham a rotulagem e, por consequência, a interface do banco de dados25:
+
+| Classificação MAPA | Concentração de Sólidos Totais | Características Operacionais |
+| :---- | :---- | :---- |
+| **Açaí Grosso ou Especial (Tipo A)** | Acima de 14% | Alta densidade, adição mínima de água durante o despolpamento26. |
+| **Açaí Médio ou Regular (Tipo B)** | Entre 11% e 14% | Densidade intermediária. Representa o padrão amplamente exportado e consumido nacionalmente26. |
+| **Açaí Fino ou Popular (Tipo C)** | Entre 8% e 11% | Aparência pouco densa. Utilizado para alto rendimento de volume26. |
+
+O painel industrial do RuraLog gerará *insights* automáticos: *"Lote ACAI-TO-2026-001 recebido com 5.2 horas de trânsito. Alto risco de perda de antocianinas. Priorizar despolpamento imediato na Linha 1 para salvaguardar classificação como Açaí Especial Tipo A."*
+
+## **5\. Arcabouço Regulatório da Rastreabilidade: INC 02/2018 (MAPA/ANVISA)**
+
+O alicerce legal que justifica o investimento na arquitetura RuraLog é a Instrução Normativa Conjunta (INC) nº 02, de 07 de fevereiro de 2018, editada pelo MAPA e pela ANVISA. Esta norma instituiu a obrigatoriedade da rastreabilidade ao longo de toda a cadeia produtiva de produtos vegetais frescos destinados à alimentação humana29.  
+A adaptação do Schema do lote na **Fase 0 (Fundação)** do RuraLog não é apenas uma escolha de design, mas uma obrigação legal. Para evitar sanções rigorosas, que variam de multas à interdição de agroindústrias31, a arquitetura do banco de dados deve obedecer às seguintes diretrizes estipuladas pela INC 02/2018:
+
+1. **Identidade Inequívoca do Lote:** A norma exige um sistema que permita identificar o produto de forma única, seja por código alfanumérico, código de barras ou QR Code29.  
+2. **Informações do Ente Anterior (Fornecedor):** O sistema deve registrar e guardar o Nome ou Razão Social, o CPF/CNPJ (ou Inscrição Estadual / CGC MAPA), e o endereço completo do local de produção. Em propriedades de extrativismo rural sem endereço formal, a lei exige o registro da Coordenada Geográfica ou número do CCIR (Certificado de Cadastro de Imóvel Rural)30. O onboarding do aplicativo móvel deve capturar o GPS do loteamento.  
+3. **Registro de Insumos e Caderno de Campo:** É mandatório o registro de todos os insumos agrícolas e tratamentos fitossanitários aplicados na roça de açaí, vinculando as datas de aplicação aos receituários agronômicos assinados por profissionais competentes31.  
+4. **Tempo de Retenção de Dados:** O sistema em nuvem do RuraLog deve garantir o arquivamento inviolável de todas essas informações por um período mínimo de **18 meses** após a data de validade ou expedição do produto final30.
+
+O descumprimento destas cláusulas compromete a certificação sanitária da cadeia inteira, reforçando o valor intrínseco do software RuraLog para cooperativas e gestores de agroindústrias.
+
+## **6\. Mapeamento Exhaustivo da Adaptação de Arquivos e Código**
+
+Para que a equipe de engenharia e produto execute a transição perfeitamente, os 11 arquivos núcleo da especificação do RuraLog devem sofrer as seguintes mutações arquiteturais e narrativas:
+
+### **6.1. Arquivos Estruturais e de Especificação**
+
+* **projeto\_ruralog.md (Projeto Original \- 5 Etapas):** A estrutura descritiva será reescrita. A Etapa 1 abandona o "plantio linear" e passa a descrever o ciclo de "Manejo do Açaizal (roçagem e desbaste), Safra, Colheita por peconheiros e Debulha". A Etapa 2 reduz drasticamente os tempos de trânsito, focando na prevenção da oxidação rápida. A Etapa 3 detalha as subfases da indústria: "Recepção, Lavagem, Branqueamento, Despolpamento, Pasteurização e Congelamento". A Etapa 4 (Varejo) atualiza a validade do produto processado de 7 dias (in natura genérico) para 6 a 12 meses (Polpa Congelada). A Etapa 5 (Consumidor) substitui a ideia de "alimentos do Tocantins" pelo selo específico de valorização do "Açaí do Tocantins".  
+* **projeto.md (Especificação Núcleo e Personas):** O Sumário Executivo passa a tratar da superação dos gargalos na cadeia do açaí. As *Personas* sofrem *re-skin* sociológico:  
+  * *Seu João:* Agora um produtor/extrativista de Araguatins (Bico do Papagaio), lutando para escoar sua colheita em poucas horas por vias fluviais, temendo ataques da Broca-do-estipe.  
+  * *Marina:* Gestora de uma agroindústria comunitária de polpas, que precisa equilibrar a chegada caótica de pequenos lotes de açaí fresco com a capacidade instalada de suas despolpadeiras e túneis de congelamento.  
+  * *Carlos:* Gerente logístico de varejo, focado em monitorar sensores IoT que garantem que a cadeia de frio (-18°C) não foi rompida.  
+  * *Ana:* A consumidora final em centros urbanos, que escaneia o QR Code buscando evidências de que o açaí que consome não é diluído, não financia trabalho infantil e fomenta a bioeconomia do Cerrado/Amazônia. As regras de negócio são alteradas para comportar o limiteHoras reduzido e o Schema recebe a cultura "Açaí". O Glossário é expandido com termos como *Peconheiro, Rasa, Branqueamento, Antocianinas e INC 02/2018*.  
+* **00\_INDICE.md:** Todo o título e as âncoras de navegação são re-contextualizadas para a Cultura do Açaí.
+
+### **6.2. Adaptação dos Arquivos de Fases (Fase 0 a Fase 6\)**
+
+* **Fase\_0\_Fundacao.md:** O Schema do Lote em JSON é reescrito. A chave cultura recebe "Açaí". A chave regional passa a ser "Açaí do Tocantins". O limiteHoras é cravado em 6\. Os campos de array de manejo perdem atributos como "aração" e ganham "roçagem", "desbaste", "monitoramento de praga". O Seed é atualizado para refletir dados georreferenciados de Araguatins.  
+* **Fase\_1\_Campo.md:** A UX do Onboarding é simplificada para permitir o cadastro rápido de açaizais nativos (áreas poligonais irregulares) ou cultivados. O sistema de colheita implementa a captura de dados em "rasas" com conversão *under-the-hood* para quilogramas. A injeção de alertas fitossanitários específicos (ex: Podridão-do-cacho) é integrada à lógica de redução de *yield*.  
+* **Fase\_2\_Logistica.md:** A ênfase arquitetural é alocada no *timestamp* de debulha versus recepção industrial. A narrativa explica a precariedade da logística na região de transição e o funcionamento das cores de alerta (Verde, Amarelo, Vermelho) esgotando-se em poucas horas, não dias.  
+* **Fase\_3\_Industria.md:** O módulo de "Processamento" é rebatizado para "Despolpamento e Conformidade". Os formulários de Controle de Qualidade (CQ) ganham validação obrigatória para Cor, Acidez e Sólidos Totais, classificando o produto nas categorias do MAPA (Tipos A, B ou C). O *output* de inventário passa a ser lotes de "Polpa de Açaí Congelada".  
+* **Fase\_4\_Varejo.md:** A variável de prateleira é reprogramada. Como a polpa é estocada congelada, o tempo de vida útil salta para 6 a 12 meses28. O alerta de validade é ajustado para disparar notificações mensais aos gerentes de supermercado, garantindo o método FIFO (First In, First Out).  
+* **Fase\_5\_Consumidor.md:** A jornada da interface do cliente final (via QR Code) sofre *redesign* completo. O conteúdo da tela conta a saga de origem, enaltecendo o selo regional para rivalizar com a produção paraense. A paleta de cores é trocada. O consumidor tem acesso aos laudos de frescor ("Processado em menos de 5h").  
+* **Fase\_6\_Integracao\_e\_Pitch.md:** O roteiro de vendas é recalibrado. A frase-âncora passa a ser: *"RuraLog: O tempo é o inimigo do Açaí. Nós congelamos o relógio."* O *Golden Path* da apresentação ao vivo mostra a jornada da palmeira no Tocantins até a tigela do consumidor, demonstrando a robustez logística e ética.  
+* **REVISAO\_ESPECIFICACAO.md:** Limpeza final de resquícios sintáticos relacionados a abacaxi ou hortaliças genéricas no repositório.
+
+## **7\. Resolução Executiva das Decisões de Design e UX/UI**
+
+As pendências técnicas e abertas apontadas pela análise preliminar requerem direcionamentos estritos para padronizar o trabalho da equipe de desenvolvimento.
+
+### **7.1. Paleta Visual (Design Tokens)**
+
+A transição da identidade visual genérica baseada em tons de verde e terra para a incorporação ostensiva do **roxo/violeta** é mandatória. A coloração púrpura do açaí, resultante da alta concentração de antocianinas, é o maior marcador psicológico de qualidade e pureza para produtores, indústria e consumidores25. O verde escuro florestal deve ser mantido estritamente como cor de suporte tipográfico e botões de *affordance* (sucesso, confirmação), enquanto o roxo assume os papéis de *brand color*, *headers* e infográficos de preenchimento.
+
+### **7.2. Nomenclatura do ID do Lote-Semente**
+
+O ID do lote-semente que percorrerá toda a documentação será formalizado como **ACAI-TO-2026-001**. Manter uma sigla genérica (TO-2026-001) cria fragilidades em ambientes de escala industrial. A conformidade com a INC 02/2018 exige que os rótulos de rastreabilidade sejam inequívocos, mesmo para operadores não treinados manipulando sacarias29. Ao prefaciar a cultura (ACAI), o código alfanumérico torna-se autodescritivo, evitando gargalos em centros de distribuição que possam estocar, futuramente, polpas de cupuaçu ou cajá.
+
+### **7.3. Parametrização da Unidade de Medida no Campo**
+
+A decisão, já detalhada nos aspectos agronômicos, é hibridizar a interface. O design de interação (*front-end*) exibirá **Rasas** para respeitar a cognição do usuário rural, enquanto o modelo de dados (*back-end*) realizará o *parsing* e armazenará os valores em **Quilogramas (kg)**, assumindo provisoriamente a conversão de aproximadamente 14 kg por unidade até a pesagem industrial final12.
+
+### **7.4. Resolução das Regiões Específicas e Tipo de Açaizal (Open Questions)**
+
+Para o *onboarding* e o *Seed* primário, a localização geográfica será o município de **Araguatins**, situado na região do Bico do Papagaio (extremo-norte do Tocantins). Esta escolha fundamenta-se no pioneirismo da região em organizar o agroextrativismo familiar de açaizais nativos, simbolizado pela recente certificação no MAPA (Fevereiro de 2024\) da Casa de Polpa Fruta Nova, operada por assentados com apoio do Fundo Amazônia e ISPN4. O tipo de açaizal do *Seed* será, portanto, o **Açaizal Nativo (Extrativismo)**, pois este modelo ilustra a mais complexa matriz de dores (logística fluvial lenta, cooperativismo, risco de exploração e perda sociobiodiversa), provando cabalmente o impacto transformador da rastreabilidade oferecida pelo RuraLog.
+
+## **8\. Considerações Finais**
+
+A escalabilidade da cadeia do açaí repousa no frágil equilíbrio entre a extração tradicional e o imperativo logístico do tempo. O fruto do açaizeiro é um ecossistema perecível cuja janela biológica de aproveitamento encerra-se antes que o sol complete seu ciclo.  
+O Tocantins, abrigando simultaneamente o extrativismo comunitário no Bico do Papagaio e o cultivo hiper-tecnificado em Lagoa da Confusão, é o laboratório definitivo para este modelo. A adaptação da arquitetura do RuraLog, cristalizada por um banco de dados ágil que rastreia do desbaste fitossanitário às diretrizes rigorosas da INC 02/2018, e por uma interface que entende a pressa da agroindústria em preservar as antocianinas, transforma o software em mais do que um painel de monitoramento. Ele se estabelece como a infraestrutura crítica de validação de qualidade e ética, permitindo que a cadeia de valor do "Açaí do Tocantins" penetre em mercados premium globais com incontestável segurança alimentar e narrativa irretocável.
+
+#### **Referências citadas**
+
+1. Safra de açaí tem crescimento de 739% e se destaca na produção agrícola do TO, aponta IBGE | G1, [https://g1.globo.com/to/tocantins/noticia/2020/10/04/safra-do-acai-tem-crescimento-de-739percent-e-se-destaca-na-producao-agricola-do-to-aponta-ibge.ghtml](https://g1.globo.com/to/tocantins/noticia/2020/10/04/safra-do-acai-tem-crescimento-de-739percent-e-se-destaca-na-producao-agricola-do-to-aponta-ibge.ghtml)  
+2. Tocantins continua sendo o 3º maior produtor de arroz do país; cultivo do açaí cresce 739%, [https://clebertoledo.com.br/negocios/tocantins-continua-sendo-o-3o-maior-produtor-de-arroz-do-pais-cultivo-do-acai-cresce-739/](https://clebertoledo.com.br/negocios/tocantins-continua-sendo-o-3o-maior-produtor-de-arroz-do-pais-cultivo-do-acai-cresce-739/)  
+3. Tocantins é o 3º estado com maior crescimento da produção agrícola entre 2018 e 2023, [https://www.to.gov.br/secom/noticias/tocantins-e-o-3o-estado-com-maior-crescimento-da-producao-agricola-entre-2018-e-2023/4jrladw24f1h](https://www.to.gov.br/secom/noticias/tocantins-e-o-3o-estado-com-maior-crescimento-da-producao-agricola-entre-2018-e-2023/4jrladw24f1h)  
+4. Com apoio do Governo do Tocantins, Feiras Ecosol geram renda para centenas de famílias no Bico do Papagaio \- SECOM-TO, [https://www.to.gov.br/secom/noticias/com-apoio-do-governo-do-tocantins-feiras-ecosol-geram-renda-para-centenas-de-familias-no-bico-do-papagaio/1sx4qs1lwvdt](https://www.to.gov.br/secom/noticias/com-apoio-do-governo-do-tocantins-feiras-ecosol-geram-renda-para-centenas-de-familias-no-bico-do-papagaio/1sx4qs1lwvdt)  
+5. As agroflorestas e a produção de polpas com frutos nativos no Bico do Papagaio, [https://agroecologia.org.br/2013/11/12/as-agroflorestas-e-a-producao-de-polpas-com-frutos-nativos-no-bico-do-papagaio/](https://agroecologia.org.br/2013/11/12/as-agroflorestas-e-a-producao-de-polpas-com-frutos-nativos-no-bico-do-papagaio/)  
+6. Agroindústria de polpa da agricultura familiar recebe registro pelo Ministério da Agricultura em Araguatins \- Voz do Bico, [https://www.vozdobico.com.br/destaques/agroindustria-de-polpa-da-agricultura-familiar-recebe-registro-pelo-ministerio-da-agricultura-em-araguatins/](https://www.vozdobico.com.br/destaques/agroindustria-de-polpa-da-agricultura-familiar-recebe-registro-pelo-ministerio-da-agricultura-em-araguatins/)  
+7. UNIVERSIDADE FEDERAL RURAL DA AMAZÔNIA BACHARELADO EM ADMINISTRAÇÃO CAMPUS CAPANEMA MICKELY SILVA DA SILVA SAMILY DA SILVA RE \- Biblioteca Digital de Trabalhos Acadêmicos, [https://bdta.ufra.edu.br/jspui/bitstream/123456789/3548/1/SamilyReis\_MickelySilva\_TCC\_Vers%C3%A3o%20Final.pdf](https://bdta.ufra.edu.br/jspui/bitstream/123456789/3548/1/SamilyReis_MickelySilva_TCC_Vers%C3%A3o%20Final.pdf)  
+8. Sobre Nós \- BioAçaí, [https://www.bioacai.online/sobre-nos/](https://www.bioacai.online/sobre-nos/)  
+9. Governo do Tocantins reforça compromisso com setor produtivo e uso sustentável dos recursos hídricos na região da Lagoa da Confusão \- SECOM-TO, [https://www.to.gov.br/secom/governo-do-tocantins-reforca-compromisso-com-setor-produtivo-e-uso-sustentavel-dos-recursos-hidricos-na-regiao-da-lagoa-da-confusao/6zaool8epvei](https://www.to.gov.br/secom/governo-do-tocantins-reforca-compromisso-com-setor-produtivo-e-uso-sustentavel-dos-recursos-hidricos-na-regiao-da-lagoa-da-confusao/6zaool8epvei)  
+10. MIP DO AÇAÍ | PDF \- Slideshare, [https://pt.slideshare.net/slideshow/mip-do-aa/234287660](https://pt.slideshare.net/slideshow/mip-do-aa/234287660)  
+11. Açaí commodity \- MAÇAIX, [https://macaix.com/pages/acai-commodity](https://macaix.com/pages/acai-commodity)  
+12. ETNOMATEMÁTICA NA PRODUÇÃO E COMERCIALIZAÇÃO DO AÇAÍ: propostas de atividades contextualizadas. \- EduCAPES, [https://educapes.capes.gov.br/bitstream/capes/984101/2/Produto%20Educacional%20PPGECMT\_Caroline%20dos%20Santos%20Ferreira.pdf](https://educapes.capes.gov.br/bitstream/capes/984101/2/Produto%20Educacional%20PPGECMT_Caroline%20dos%20Santos%20Ferreira.pdf)  
+13. Quantas latas de açaí é possível tirar de UM HECTARE? Tem vídeo completo aqui no canal\! \- YouTube, [https://www.youtube.com/shorts/fanyRlsijCI](https://www.youtube.com/shorts/fanyRlsijCI)  
+14. Lata, saca e basqueta: medidas não padronizadas utilizadas na extração e comercialização de açaí em \- Revistas PUC-SP, [https://revistas.pucsp.br/index.php/emd/article/download/53578/43352/204165](https://revistas.pucsp.br/index.php/emd/article/download/53578/43352/204165)  
+15. Insetos Pragas em Acessos de Açaizeiro em Viveiro \- Infoteca-e, [https://www.infoteca.cnptia.embrapa.br/bitstream/doc/404866/1/com.tec.75.pdf](https://www.infoteca.cnptia.embrapa.br/bitstream/doc/404866/1/com.tec.75.pdf)  
+16. Pragas do açaí e métodos de controle – Revista Campo & Negócios \- Sem Complicar, [https://semcomplicar.com.br/campoenegocios/pragas-do-acai-e-metodos-de-controle/](https://semcomplicar.com.br/campoenegocios/pragas-do-acai-e-metodos-de-controle/)  
+17. Essas são as piores PRAGAS do plantio de AÇAÍ \- YouTube, [https://www.youtube.com/watch?v=GxWXiQkCIEs](https://www.youtube.com/watch?v=GxWXiQkCIEs)  
+18. Capítulo 13 – Manejo de pragas \- Infoteca-e \- Embrapa, [https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1182037/1/CultivoAcaizeiroTerraFirme-cap13.pdf](https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1182037/1/CultivoAcaizeiroTerraFirme-cap13.pdf)  
+19. PRIMEIROS REGISTROS DE Herminodes sp. (LEPIDOPTERA: NOCTUIDAE) EM AÇAIZEIROS NOS ESTADOS DO AMAPÁ E AMAZONAS, BRASIL \- Portal Gov.br, [https://www.gov.br/agricultura/pt-br/assuntos/ceplac/publicacoes/revista-agrotropica/artigos/2024/7\_\_\_r-\_s-\_santos.pdf](https://www.gov.br/agricultura/pt-br/assuntos/ceplac/publicacoes/revista-agrotropica/artigos/2024/7___r-_s-_santos.pdf)  
+20. XVII SICOOPES VIII FECITIS \- Even3, [https://static.even3.com/anais/877969.pdf?v=639008631242699781](https://static.even3.com/anais/877969.pdf?v=639008631242699781)  
+21. 0 SouthAmerican Journal of Basic Education, Technical and Technological, V.6, Supl.N.6, ANO 2019 \- Ufac, [https://periodicos.ufac.br/index.php/SAJEBTT/issue/download/150/I%20Simp%C3%B3sio%20CITA](https://periodicos.ufac.br/index.php/SAJEBTT/issue/download/150/I%20Simp%C3%B3sio%20CITA)  
+22. Sistemas de Produção \- Infoteca-e, [https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1101575/1/SistemadeproducaoAcai2018.pdf](https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1101575/1/SistemadeproducaoAcai2018.pdf)  
+23. Série boas práticas de manejo para o extrativismo sustentável orgânico Açaí-de-touceira (Euterpe oleracea Mart.) \- Portal Gov.br, [https://www.gov.br/agricultura/pt-br/assuntos/sustentabilidade/organicos/arquivos-publicacoes-organicos/boas\_praticas\_de\_manejo\_para\_o\_extrativismo\_sustentavel\_organico\_do\_acai.pdf/@@download/file](https://www.gov.br/agricultura/pt-br/assuntos/sustentabilidade/organicos/arquivos-publicacoes-organicos/boas_praticas_de_manejo_para_o_extrativismo_sustentavel_organico_do_acai.pdf/@@download/file)  
+24. Instrução Normativa Nº 005/2022 \- Prefeitura Municipal de São Miguel do Guamá, [https://saomigueldoguama.pa.gov.br/wp-content/uploads/2021/06/Normativa-005.pdf](https://saomigueldoguama.pa.gov.br/wp-content/uploads/2021/06/Normativa-005.pdf)  
+25. REGULAMENTO TÉCNICO PARA FIXAÇÃO DOS PADRÕES DE IDENTIDADE E QUALIDADE PARA AÇAÍ \- ABIAC, [http://www.abiac.com.br/content/8-Regulamento-tecnico-para-fixacao-dos-padroes-de-identidade-e-qualidade-para-acai](http://www.abiac.com.br/content/8-Regulamento-tecnico-para-fixacao-dos-padroes-de-identidade-e-qualidade-para-acai)  
+26. 2 1 Ministério da Agricultura, Pecuária e Abastecimento \- Portal Gov.br, [https://www.gov.br/agricultura/pt-br/acesso-a-informacao/participacao-social/consultas-publicas/documentos/01\_09-secao-1-portaria-58.pdf](https://www.gov.br/agricultura/pt-br/acesso-a-informacao/participacao-social/consultas-publicas/documentos/01_09-secao-1-portaria-58.pdf)  
+27. REGULAMENTO TÉCNICO PARA FIXAÇÃO DOS PADRÕES DE IDENTIDADE E QUALIDADE PARA POLPA DE AÇAÍ \- ABIAC, [http://www.abiac.com.br/content/7-regulamento-tecnico-para-fixacao-dos-padroes-de-identidade-e-qualidade-para-polpa-de-acai](http://www.abiac.com.br/content/7-regulamento-tecnico-para-fixacao-dos-padroes-de-identidade-e-qualidade-para-polpa-de-acai)  
+28. Açaí Congelado \- Infoteca-e, [https://www.infoteca.cnptia.embrapa.br/bitstream/doc/122739/1/00081300.pdf](https://www.infoteca.cnptia.embrapa.br/bitstream/doc/122739/1/00081300.pdf)  
+29. Anvisa aprova Instrução Normativa sobre rastreabilidade de vegetais in natura | CRN \- 01, [https://novoportal.crn1.org.br/anvisa-aprova-instrucao-normativa-para-rastreabilidade-de-vegetais-in-natura/](https://novoportal.crn1.org.br/anvisa-aprova-instrucao-normativa-para-rastreabilidade-de-vegetais-in-natura/)  
+30. Instrução Normativa Conjunta ANVISA-MAPA nº 02 de 07/02/2018 \- Portal Gov.br, [https://www.gov.br/agricultura/pt-br/assuntos/camaras-setoriais-tematicas/documentos/camaras-setoriais/hortalicas/2019/56deg-ro-hortalicas/inc-02-2018-e-01-2019-rastreabilidade.pdf](https://www.gov.br/agricultura/pt-br/assuntos/camaras-setoriais-tematicas/documentos/camaras-setoriais/hortalicas/2019/56deg-ro-hortalicas/inc-02-2018-e-01-2019-rastreabilidade.pdf)  
+31. Instrução Normativa Conjunta ANVISA/SDA Nº 2 DE 07/02/2018 \- Federal \- LegisWeb, [https://www.legisweb.com.br/legislacao/?id=356508](https://www.legisweb.com.br/legislacao/?id=356508)  
+32. Rastreabilidade de Alimentos: Saiba como Fazer e os Processos\!, [https://www.nutrimixassessoria.com.br/rastreabilidade-de-alimentos-processos-fluxos/](https://www.nutrimixassessoria.com.br/rastreabilidade-de-alimentos-processos-fluxos/)  
+33. rastreabilidade \- fetag-rs, [https://www.fetagrs.org.br/wp-content/uploads/2020/12/Cartilha-Rastreabilidade.pdf](https://www.fetagrs.org.br/wp-content/uploads/2020/12/Cartilha-Rastreabilidade.pdf)  
+34. Rastreabilidade de Alimentos: INC 02/2018 | PDF | Culinária, [https://pt.scribd.com/document/519593810/inc-02-2018-e-01-2019-rastreabilidade](https://pt.scribd.com/document/519593810/inc-02-2018-e-01-2019-rastreabilidade)  
+35. Memorando-Circular 9 (5076169) SEI 21000.026479/2018-11 / pg. 1 \- AGAS, [https://www.agas.com.br/ArtigosNoticias/Arquivos/memorando%20circular%20cgqv(1).pdf](https://www.agas.com.br/ArtigosNoticias/Arquivos/memorando%20circular%20cgqv\(1\).pdf)  
+36. Instrução Normativa Conjunta ANVISA-MAPA nº 02 de 07/02/2018 \- Portal Gov.br, [https://www.gov.br/agricultura/pt-br/assuntos/camaras-setoriais-tematicas/documentos/camaras-setoriais/fruticultura/2018/56a-ro/apresentacao-mapa-rastreabilidade.pdf](https://www.gov.br/agricultura/pt-br/assuntos/camaras-setoriais-tematicas/documentos/camaras-setoriais/fruticultura/2018/56a-ro/apresentacao-mapa-rastreabilidade.pdf)  
+37. ESTUDO DA ESTABILIDADE DO PÓ DE AÇAÍ (EUTERPE OLERACEA) OBTIDO PELOS PROCESSOS DE LIOFILIZAÇÃO E ATOMIZAÇÃO Luiza de Andr \- Instituto Mauá de Tecnologia, [https://maua.br/files/122020/estudo-estabilidade-do-po-acai-(euterpe-oleracea)-obtido-pelos-processos-liofilizacao-atomizacao-151535.pdf](https://maua.br/files/122020/estudo-estabilidade-do-po-acai-\(euterpe-oleracea\)-obtido-pelos-processos-liofilizacao-atomizacao-151535.pdf)  
+38. Informe Técnico \- Faesp Senar, [https://faespsenar.com.br/painel-de-dados/wp-content/uploads/2023/09/Informe-Tecnico-n%C2%A7-02-Rastreabilidade-de-Produtos-Vegetais.pdf](https://faespsenar.com.br/painel-de-dados/wp-content/uploads/2023/09/Informe-Tecnico-n%C2%A7-02-Rastreabilidade-de-Produtos-Vegetais.pdf)  
+39. Primeira agroindústria comunitária do Bico do Papagaio conquista registro no MAPA, [https://fundoecos.org.br/historias/primeira-agroindustria-comunitaria-do-bico-do-papagaio-conquista-registro-no-mapa/](https://fundoecos.org.br/historias/primeira-agroindustria-comunitaria-do-bico-do-papagaio-conquista-registro-no-mapa/)
+
+[image1]: <data:image/png;base64,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>

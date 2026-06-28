@@ -1,6 +1,6 @@
 # Proposta de Slides - Pré-Pitch 1 (RURALOG)
 
-Esta é a estrutura sugerida para a apresentação do Pré-pitch 1 (foco em Validação do Problema, Demanda Regulatória, Proposta de Solução, Protótipo e Modelo de Negócios). A apresentação tem 13 slides para garantir clareza, alinhamento com os critérios de avaliação e agilidade.
+Esta é a estrutura sugerida para a apresentação do Pré-pitch 1 (foco em Validação do Problema, Demanda Regulatória, Proposta de Solução, Protótipo e Modelo de Negócios). A apresentação tem 11 slides para garantir clareza, alinhamento com os critérios de avaliação e agilidade.
 
 ---
 
@@ -26,7 +26,7 @@ Esta é a estrutura sugerida para a apresentação do Pré-pitch 1 (foco em Vali
 
 ---
 
-## Slide 3: Rastreabilidade Já é Demanda Regulatória
+## Slide 3: Demanda Regulatória
 - **Imagem Sugerida:** Selo "ANVISA + MAPA" ao lado de uma escada regulatória com três degraus: Vegetais Frescos, Alimentos Embalados e Recall Sanitário.
 - **Texto:** 
   - **Vegetais frescos:** INC ANVISA-MAPA nº 02/2018 e INC nº 01/2019 exigem registros de produto, origem, destino, lote e documentos.
@@ -39,7 +39,7 @@ Esta é a estrutura sugerida para a apresentação do Pré-pitch 1 (foco em Vali
 
 ---
 
-## Slide 4: A Nossa Proposta de Valor
+## Slide 4: Proposta de Valor
 - **Imagem Sugerida:** Ícone de aperto de mãos (Conexão) entre um agricultor com celular e uma fábrica.
 - **Texto:** 
   - Conectar os elos fragmentados.
@@ -51,7 +51,7 @@ Esta é a estrutura sugerida para a apresentação do Pré-pitch 1 (foco em Vali
 
 ---
 
-## Slide 5: A Solução (Apresentando o Ruralog)
+## Slide 5: A Solução
 - **Imagem Sugerida:** Mockup (imagem de um celular) exibindo a tela inicial do Ruralog ao lado da logo novamente.
 - **Texto:** 
   - **RURALOG:** A plataforma que conecta a cadeia em 5 etapas.
@@ -62,7 +62,7 @@ Esta é a estrutura sugerida para a apresentação do Pré-pitch 1 (foco em Vali
 
 ---
 
-## Slide 6: O Diferencial / Inovação
+## Slide 6: Diferencial/Inovação
 - **Imagem Sugerida:** Ícones destacando "Modo Offline", "Checklist Regulatório", "QR/Privacidade" e "Análise Preditiva".
 - **Texto:** 
   - **Inovação:**
@@ -75,29 +75,18 @@ Esta é a estrutura sugerida para a apresentação do Pré-pitch 1 (foco em Vali
 
 ---
 
-## Slide 7: Demonstração do Protótipo (Visão do Campo)
-- **Imagem Sugerida:** Captura de tela (screenshot) real do protótipo no Figma/App mostrando o registro de uma colheita offline.
+## Slide 7: Protótipo
+- **Imagem Sugerida:** Captura de tela do app offline no campo + painel da indústria mostrando o lote chegando e um QR Code no produto final.
 - **Texto:** 
-  - **O Protótipo: Cadastro Offline**
-  - Registro simples de produção, lote, data, insumos e comprador.
-  - Base para caderno de campo, rastreabilidade e histórico de origem.
-- **Foco do Pitch:** 
-  > *"Como vocês podem ver no nosso protótipo, o registro começa no campo, de forma simples para o agricultor. Ele registra o lote e as informações essenciais mesmo sem internet, criando a base documental para rastreabilidade e controle de origem."*
-
----
-
-## Slide 8: Demonstração do Protótipo (Visão da Indústria/Consumidor)
-- **Imagem Sugerida:** Screenshot do painel da indústria mostrando o lote chegando e um exemplo de QR Code no produto final.
-- **Texto:** 
-  - **Painel de Controle:** Entrada, expedição, lote, fornecedor/comprador e Controle de Qualidade (CQ).
-  - **Conformidade:** histórico do produto pronto para consulta interna, auditoria e apoio a recall.
+  - **Visão do Campo:** Cadastro offline de produção, lote, insumos e comprador.
+  - **Visão da Indústria:** Painel de controle de entrada, expedição, CQ e histórico pronto para auditoria.
   - **Consumidor:** Escaneia o QR Code e descobre a origem.
 - **Foco do Pitch:** 
-  > *"A indústria acompanha o lote, registra entrada e expedição e mantém o histórico organizado. Isso ajuda na gestão, na transparência para o consumidor e em uma eventual necessidade de localizar rapidamente um lote no mercado."*
+  > *"No protótipo, o agricultor registra a colheita offline no campo, criando a base documental. A indústria acompanha a entrada do lote, gerencia a expedição e emite o QR Code. O consumidor final escaneia o produto e tem acesso a todo o histórico."*
 
 ---
 
-## Slide 9: Modelo de Negócio
+## Slide 8: Modelo de Negócio
 - **Imagem Sugerida:** Gráfico simples ou diagrama (Freemium: Agricultor = $0 | Indústria = Pay per Use/Mensalidade).
 - **Texto:** 
   - **Modelo Freemium Escalável.**
@@ -109,7 +98,7 @@ Esta é a estrutura sugerida para a apresentação do Pré-pitch 1 (foco em Vali
 
 ---
 
-## Slide 10: Viabilidade e Aplicabilidade
+## Slide 9: Viabilidade
 - **Imagem Sugerida:** Mapa do Tocantins, ícone de celular offline e checklist de fiscalização.
 - **Texto:** 
   - **Por que funciona aqui?** 
@@ -122,7 +111,7 @@ Esta é a estrutura sugerida para a apresentação do Pré-pitch 1 (foco em Vali
 
 ---
 
-## Slide 11: Impacto Esperado
+## Slide 10: Impacto Esperado
 - **Imagem Sugerida:** Três pilares (Econômico, Social, Ambiental).
 - **Texto:** 
   - **Econômico:** Redução de perdas, organização de registros e ganho de valor no produto tocantinense.
@@ -134,24 +123,11 @@ Esta é a estrutura sugerida para a apresentação do Pré-pitch 1 (foco em Vali
 
 ---
 
-## Slide 12: A Equipe RURALOG
-- **Imagem Sugerida:** Fotos dos 5 membros da equipe, organizados de forma harmoniosa, com seus respectivos nomes e papéis (Hebert, Marília, Iury, Rennzo, Nycollas).
-- **Texto:** 
-  - Hebert - Negócios
-  - Marília - Design / UX UI
-  - Iury - Tecnologia
-  - Rennzo - Técnico (Engenharia / Processos)
-  - Nycollas - Técnico (Processos)
-- **Foco do Pitch:** 
-  > *"Ninguém faz isso sozinho. Nossa equipe tem talentos multidisciplinares em negócios, design, tecnologia e processos industriais para tirar o Ruralog do papel."*
-
----
-
-## Slide 13: Fechamento
-- **Imagem Sugerida:** Logo do Ruralog em tamanho grande, um QR Code verdadeiro para acessar o protótipo e os contatos.
+## Slide 11: Fechamento
+- **Imagem Sugerida:** Logo do Ruralog em tamanho grande e os contatos.
 - **Texto:** 
   - RURALOG - Rastreabilidade Inteligente
-  - Acesse nosso protótipo! (QR Code)
+  - Acesse nosso protótipo!
   - Muito obrigado.
 - **Foco do Pitch:** 
-  > *"Convido a todos da banca a escanear este QR Code e ver nossa solução em funcionamento. Ruralog — do campo à mesa, com inteligência. Muito obrigado."*
+  > *"Ruralog — do campo à mesa, com inteligência. Muito obrigado."*
