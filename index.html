@@ -135,7 +135,6 @@
       <a href="#publico-alvo" class="ds-navlink" style="color:inherit;text-decoration:none;">Público-alvo</a>
       <a href="#solucao" class="ds-navlink" style="color:inherit;text-decoration:none;">Solução</a>
       <a href="#inovacao" class="ds-navlink" style="color:inherit;text-decoration:none;">Inovação</a>
-      <a href="#viabilidade" class="ds-navlink" style="color:inherit;text-decoration:none;">Viabilidade</a>
       <a href="#custo-beneficio" class="ds-navlink" style="color:inherit;text-decoration:none;">Custo-Benefício</a>
       <a href="#impacto" class="ds-navlink" style="color:inherit;text-decoration:none;">Impacto</a>
       <a href="#prototipo" class="ds-navlink" style="color:inherit;text-decoration:none;">Protótipo</a>
@@ -512,43 +511,6 @@
     </div>
   </section>
 
-  <!-- ============================================================= -->
-  <!-- 6) VIABILIDADE                                                 -->
-  <!-- ============================================================= -->
-  <section id="viabilidade" style="padding:clamp(72px,9vw,118px) clamp(18px,5vw,56px);background:var(--cream);">
-    <div style="max-width:1200px;margin:0 auto;">
-      <h2
-        style="font-family:'Archivo';font-weight:800;font-size:clamp(30px,4.2vw,52px);line-height:1.05;letter-spacing:-.02em;margin:0 0 44px;color:#0b1410;">
-        Viabilidade de Implantação
-      </h2>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
-        <div
-          style="background:var(--card);border:1px solid var(--line);border-radius:24px;padding:48px 40px;display:flex;flex-direction:column;">
-          <div
-            style="font-family:'Archivo';font-weight:800;font-size:42px;color:var(--green-deep);line-height:1;margin-bottom:20px;">
-            Sem Novos Hardwares</div>
-          <div style="font-family:'Archivo';font-size:24px;color:#0b1410;font-weight:600;line-height:1.3;">A indústria
-            utiliza smartphones padrão para ler as tags NFC nos checkpoints.</div>
-        </div>
-        <div
-          style="background:var(--card);border:1px solid var(--line);border-radius:24px;padding:48px 40px;display:flex;flex-direction:column;">
-          <div
-            style="font-family:'Archivo';font-weight:800;font-size:42px;color:var(--green-deep);line-height:1;margin-bottom:20px;">
-            Operação Offline</div>
-          <div style="font-family:'Archivo';font-size:24px;color:#0b1410;font-weight:600;line-height:1.3;">O aplicativo
-            do extrativista funciona 100% sem internet, sincronizando os dados na cidade.</div>
-        </div>
-        <div
-          style="background:var(--card);border:1px solid var(--line);border-radius:24px;padding:48px 40px;display:flex;flex-direction:column;">
-          <div
-            style="font-family:'Archivo';font-weight:800;font-size:42px;color:var(--green-deep);line-height:1;margin-bottom:20px;">
-            Adesão Imediata</div>
-          <div style="font-family:'Archivo';font-size:24px;color:#0b1410;font-weight:600;line-height:1.3;">Custo zero
-            para o produtor rural garante adoção rápida em toda a base fornecedora.</div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- ============================================================= -->
   <!-- 6) CUSTO-BENEFÍCIO                                             -->
@@ -559,31 +521,38 @@
         style="font-family:'Archivo';font-weight:800;font-size:clamp(30px,4.2vw,52px);line-height:1.05;letter-spacing:-.02em;margin:0 0 44px;color:#0b1410;">
         Custo-Benefício: Esforço vs. Valor
       </h2>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
-        <div
-          style="background:var(--ink);border:1px solid var(--line);border-radius:24px;padding:56px 48px;color:#F4F7F1;">
-          <div
-            style="font-family:'IBM Plex Mono';font-size:16px;color:var(--yellow);letter-spacing:.1em;margin-bottom:20px;text-transform:uppercase;">
-            Esforço de Implantação</div>
-          <div
-            style="font-family:'Archivo';font-weight:900;font-size:64px;line-height:1;margin-bottom:24px;color:#fff;">
-            Rápido e<br>Sem Atrito</div>
-          <div style="font-family:'Archivo';font-size:26px;color:#B9CCBF;font-weight:500;line-height:1.3;">Nenhum
-            investimento pesado em infraestrutura. Implementação ágil usando os smartphones que sua equipe já possui e
-            tags NFC de baixo custo.</div>
-        </div>
-        <div
-          style="background:var(--green);border:1px solid var(--green-d);border-radius:24px;padding:56px 48px;color:#0b1410;">
-          <div
-            style="font-family:'IBM Plex Mono';font-size:16px;color:var(--ink2);letter-spacing:.1em;margin-bottom:20px;text-transform:uppercase;">
-            Valor Entregue</div>
-          <div
-            style="font-family:'Archivo';font-weight:900;font-size:64px;line-height:1;margin-bottom:24px;color:#0b1410;">
-            Proteção<br>de Margem</div>
-          <div style="font-family:'Archivo';font-size:26px;color:#11201a;font-weight:600;line-height:1.3;">A plataforma
-            se paga nos primeiros meses, eliminando o descarte de lotes por perda de validade térmica e reduzindo
-            ineficiências manuais.</div>
-        </div>
+      <div style="overflow-x:auto; background:var(--card); border:1px solid var(--line); border-radius:24px; padding:32px; box-shadow:0 8px 24px rgba(0,0,0,.03);">
+        <table style="width:100%; border-collapse:collapse; text-align:left; font-size:18px; min-width:600px;">
+          <thead>
+            <tr style="border-bottom:2px solid var(--line);">
+              <th style="padding:16px 24px; font-family:'Archivo'; font-weight:800; font-size:20px; color:var(--ink);">Fator de Comparação</th>
+              <th style="padding:16px 24px; font-family:'Archivo'; font-weight:800; font-size:20px; color:var(--green-deep); background:rgba(95,189,0,0.06); border-radius:12px 12px 0 0;">Nosso Protótipo (RuraLog)</th>
+              <th style="padding:16px 24px; font-family:'Archivo'; font-weight:800; font-size:20px; color:var(--gray);">Hardware Tradicional de Mercado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--line);">
+              <td style="padding:20px 24px; font-weight:600; color:var(--ink);">O que custa (Investimento)</td>
+              <td style="padding:20px 24px; background:rgba(95,189,0,0.06); color:var(--green-deep); font-weight:600;">Baixíssimo custo (Tags NFC baratas + celulares comuns do produtor e motorista)</td>
+              <td style="padding:20px 24px; color:#52605a;">Altíssimo custo (Sensores de temperatura caros, scanners industriais proprietários)</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--line);">
+              <td style="padding:20px 24px; font-weight:600; color:var(--ink);">O que entrega (Benefício/Valor)</td>
+              <td style="padding:20px 24px; background:rgba(95,189,0,0.06); color:var(--green-deep); font-weight:600;">Segurança imutável na origem, operação offline, previsibilidade de perdas e auto compliance (MAPA)</td>
+              <td style="padding:20px 24px; color:#52605a;">Monitoramento básico de rota sem validação imutável na origem; dependência de internet ativa</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--line);">
+              <td style="padding:20px 24px; font-weight:600; color:var(--ink);">Custo para o Produtor</td>
+              <td style="padding:20px 24px; background:rgba(95,189,0,0.06); color:var(--green-deep); font-weight:600;">Custo Zero para o produtor rural (Garante adesão imediata de 100% da cadeia)</td>
+              <td style="padding:20px 24px; color:#52605a;">Inviável (Exige que o produtor rural compre ou alugue leitores específicos)</td>
+            </tr>
+            <tr>
+              <td style="padding:20px 24px; font-weight:600; color:var(--ink); border-radius:0 0 0 12px;">Retorno sobre Investimento (ROI)</td>
+              <td style="padding:20px 24px; background:rgba(95,189,0,0.06); color:var(--green-deep); font-weight:700; border-radius:0 0 12px 12px;">Imediato (Se paga nos primeiros lotes salvos de oxidação/descarte)</td>
+              <td style="padding:20px 24px; color:#52605a; border-radius:0 0 12px 0;">Lento e incerto (Altos custos recorrentes de manutenção e calibração)</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </section>
@@ -599,27 +568,47 @@
         style="font-family:'Archivo';font-weight:800;font-size:clamp(30px,4.2vw,52px);line-height:1.05;letter-spacing:-.02em;margin:0 0 44px;color:#0b1410;">
         Impacto: O que muda na prática?
       </h2>
-      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px;">
-        <div style="background:var(--card);border:1px solid var(--line);border-radius:24px;padding:56px 48px;">
-          <div
-            style="font-family:'IBM Plex Mono';font-size:16px;color:var(--gray);letter-spacing:.1em;margin-bottom:20px;text-transform:uppercase;">
-            Na Operação Diária</div>
-          <div
-            style="font-family:'Archivo';font-weight:800;font-size:48px;color:var(--blue);line-height:1;margin-bottom:24px;">
-            Do Papel para o Tempo Real</div>
-          <div style="font-family:'Archivo';font-size:26px;color:#0b1410;font-weight:600;line-height:1.3;">Fim das
-            anotações em papel e falta de visibilidade. Você passa a monitorar cada lote e sua temperatura antes mesmo
-            de chegar à fábrica.</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));gap:24px;">
+        <!-- Card E & S -->
+        <div style="background:var(--card);border:1px solid var(--line);border-radius:24px;padding:48px 40px;display:flex;flex-direction:column;justify-content:space-between;">
+          <div>
+            <div
+              style="font-family:'IBM Plex Mono';font-size:15px;color:var(--green-deep);letter-spacing:.1em;margin-bottom:20px;text-transform:uppercase;font-weight:600;">
+              Meio Ambiente e Social (ESG)</div>
+            <div
+              style="font-family:'Archivo';font-weight:800;font-size:36px;color:var(--green-deep);line-height:1.1;margin-bottom:20px;">
+              Sustentabilidade e Inclusão</div>
+            <div style="font-family:'Archivo';font-size:20px;color:#0b1410;font-weight:500;line-height:1.45;">
+              Redução do desperdício de alimentos na rota de transporte e empoderamento econômico do extrativista local através de uma ferramenta totalmente gratuita.
+            </div>
+          </div>
         </div>
-        <div style="background:var(--card);border:1px solid var(--line);border-radius:24px;padding:56px 48px;">
-          <div
-            style="font-family:'IBM Plex Mono';font-size:16px;color:var(--gray);letter-spacing:.1em;margin-bottom:20px;text-transform:uppercase;">
-            No Mercado e Compliance</div>
-          <div
-            style="font-family:'Archivo';font-weight:800;font-size:48px;color:var(--wine);line-height:1;margin-bottom:24px;">
-            Qualidade Comprovada</div>
-          <div style="font-family:'Archivo';font-size:26px;color:#0b1410;font-weight:600;line-height:1.3;">Passaporte
-            digital que valoriza o produto e automatiza o envio de dados para órgãos reguladores como o MAPA (SIPEAGRO).
+        <!-- Card G -->
+        <div style="background:var(--card);border:1px solid var(--line);border-radius:24px;padding:48px 40px;display:flex;flex-direction:column;justify-content:space-between;">
+          <div>
+            <div
+              style="font-family:'IBM Plex Mono';font-size:15px;color:var(--blue);letter-spacing:.1em;margin-bottom:20px;text-transform:uppercase;font-weight:600;">
+              Governança (ESG)</div>
+            <div
+              style="font-family:'Archivo';font-weight:800;font-size:36px;color:var(--blue);line-height:1.1;margin-bottom:20px;">
+              Transparência e Conformidade</div>
+            <div style="font-family:'Archivo';font-size:20px;color:#0b1410;font-weight:500;line-height:1.45;">
+              Cadeia de custódia transparente, segura e imutável de ponta a ponta, facilitando auditorias e gerando laudos de conformidade automáticos para órgãos reguladores.
+            </div>
+          </div>
+        </div>
+        <!-- Card Quality -->
+        <div style="background:var(--ink);border:1px solid rgba(255,255,255,0.1);border-radius:24px;padding:48px 40px;color:#F4F7F1;display:flex;flex-direction:column;justify-content:space-between;">
+          <div>
+            <div
+              style="font-family:'IBM Plex Mono';font-size:15px;color:var(--yellow);letter-spacing:.1em;margin-bottom:20px;text-transform:uppercase;font-weight:600;">
+              Resultado Final</div>
+            <div
+              style="font-family:'Archivo';font-weight:800;font-size:36px;color:#fff;line-height:1.1;margin-bottom:20px;">
+              Maior Qualidade dos Produtos</div>
+            <div style="font-family:'Archivo';font-size:20px;color:#B9CCBF;font-weight:500;line-height:1.45;">
+              Garantia de que apenas frutos frescos e colhidos no tempo ideal entrem na fábrica, preservando as propriedades nutricionais e elevando o padrão do produto final.
+            </div>
           </div>
         </div>
       </div>

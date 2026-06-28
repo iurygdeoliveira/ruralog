@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RuraLog - Monetização B2B</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Usando o QRCode vendor existente -->
+  <script src="vendor/qrcode.min.js"></script>
+</head>
+<body>
+  <div class="app-wrapper">
+    
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <a href="index.html" class="brand">
+        <span class="text-green">Rura</span><span class="text-blue">Log</span>
+      </a>
+
+      <!-- Visão Geral -->
+      <div class="nav-group">
+        <a href="index.html#overview" class="nav-link">
+          <i data-lucide="layout-grid" style="width: 18px;"></i> Centro de Controle
+        </a>
+      </div>
+
+      <!-- Logística & Fábrica -->
+      <div class="nav-group">
+        <div class="nav-group-title">Logística & Fábrica</div>
+        <a href="index.html#recepcao" class="nav-link">
+          <i data-lucide="truck" style="width: 18px;"></i> Recepção
+        </a>
+        <a href="index.html#chao-de-fabrica" class="nav-link">
+          <i data-lucide="factory" style="width: 18px;"></i> Chão de Fábrica
+        </a>
+        <a href="index.html#laudos-cq" class="nav-link">
+          <i data-lucide="clipboard-check" style="width: 18px;"></i> Laudos CQ
+        </a>
+        <a href="index.html#fornecedores" class="nav-link">
+          <i data-lucide="users" style="width: 18px;"></i> Fornecedores
+        </a>
+      </div>
+
+      <!-- Análises & B2B -->
+      <div class="nav-group">
+        <div class="nav-group-title">Análises & B2B</div>
+        <a href="index.html#relatorios" class="nav-link">
+          <i data-lucide="bar-chart-3" style="width: 18px;"></i> Relatórios
+        </a>
+        <a href="exportacao.html" class="nav-link active">
+          <i data-lucide="qr-code" style="width: 18px;"></i> Exportação B2B
+        </a>
+      </div>
+
+      <!-- Sync Status Pill (DS Chip) -->
+      <a href="#" class="sync-status">
+        <span class="sync-dot"></span>
+        <div>
+          <div class="sync-meta">DADOS · 0h02</div>
+          <div class="sync-title">Sincronização · Ao Vivo</div>
+        </div>
+      </a>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content" style="gap: 40px;">
+      
+      <!-- Topbar -->
+      <header class="topbar">
+        <div>
+          <h1 class="page-title">Exportação B2B</h1>
+        </div>
+        <div class="topbar-right">
+          <div class="user-profile">
+            <div style="text-align: right; line-height: 1.2;">
+              <div style="font-family:'Archivo'; font-weight: 700; color:#fff;">Julio Cesar</div>
+              <div style="font-family:'IBM Plex Mono'; font-size: 11px; color: var(--muted-d);">INDUSTRIAL</div>
+            </div>
+            <img src="https://ui-avatars.com/api/?name=Julio+Cesar&background=0b1410&color=5FBD00&bold=true" alt="User">
+          </div>
+        </div>
+      </header>
+
+      <!-- Subheader / Descrição -->
+      <div style="margin-bottom: 24px;">
+        <div class="ds-eyebrow" style="color: var(--blue); margin-bottom: 16px;">
+          <span class="ds-line-green" style="background: var(--blue);"></span>Monetização de Dados
+        </div>
+        <h2 style="font-family:'Archivo'; font-weight:800; font-size:32px; margin-bottom: 16px;">Passaporte de Qualidade</h2>
+        <p style="font-size: 16px; color: var(--muted-d); max-width: 600px; margin: 0; line-height: 1.6;">
+          Transforme o histórico de rastreabilidade em argumento de venda. Configure os dados que serão exibidos no QR Code do lote expedido para o varejo e atacadistas.
+        </p>
+      </div>
+
+      <!-- Layout Split (Bento Grid Style) -->
+      <div class="asymmetric-grid" style="grid-template-columns: 1fr .7fr;">
+        
+        <!-- Coluna Esquerda: Controles -->
+        <div class="ds-panel-glass">
+          <h3 style="font-family:'Archivo'; font-weight:700; font-size:18px; margin-bottom: 24px;">Configuração de Rastreabilidade</h3>
+          
+          <div class="ds-toggle-item" style="display:flex; justify-content:space-between; align-items:flex-start; padding: 16px 0; border-bottom: 1px solid var(--line-d);">
+            <div>
+              <div style="font-family:'Archivo'; font-weight: 700; font-size: 16px; color: #fff;">Origem Certificada (Selo Sustentável)</div>
+              <div style="font-size: 14px; color: var(--muted-d); margin-top: 6px; line-height: 1.4;">Compartilha o município produtor e certifica que o açaí provém de cooperativas de extrativismo sustentável.</div>
+            </div>
+            <label class="switch">
+              <input type="checkbox" checked onchange="updatePreview()">
+              <span class="slider round"></span>
+            </label>
+          </div>
+
+          <div class="ds-toggle-item" style="display:flex; justify-content:space-between; align-items:flex-start; padding: 16px 0; border-bottom: 1px solid var(--line-d);">
+            <div>
+              <div style="font-family:'Archivo'; font-weight: 700; font-size: 16px; color: #fff;">Laudo de Trânsito Frio (< 6h)</div>
+              <div style="font-size: 14px; color: var(--muted-d); margin-top: 6px; line-height: 1.4;">Prova de frescor. Garante que o lote reteve 100% dos antioxidantes e evita acidez. Justifica prêmio de preço.</div>
+            </div>
+            <label class="switch">
+              <input type="checkbox" checked onchange="updatePreview()">
+              <span class="slider round"></span>
+            </label>
+          </div>
+
+          <div class="ds-toggle-item" style="display:flex; justify-content:space-between; align-items:flex-start; padding: 16px 0; border-bottom: 1px solid var(--line-d);">
+            <div>
+              <div style="font-family:'Archivo'; font-weight: 700; font-size: 16px; color: #fff;">Certificado de Branqueamento</div>
+              <div style="font-size: 14px; color: var(--muted-d); margin-top: 6px; line-height: 1.4;">Validação de segurança alimentar (Choque térmico > 80ºC). Essencial para grandes redes de supermercado.</div>
+            </div>
+            <label class="switch">
+              <input type="checkbox" checked onchange="updatePreview()">
+              <span class="slider round"></span>
+            </label>
+          </div>
+
+          <div class="ds-toggle-item" style="display:flex; justify-content:space-between; align-items:flex-start; padding: 16px 0;">
+            <div>
+              <div style="font-family:'Archivo'; font-weight: 700; font-size: 16px; color: #fff;">Classificação MAPA</div>
+              <div style="font-size: 14px; color: var(--muted-d); margin-top: 6px; line-height: 1.4;">Exibir teor de sólidos totais (Polpa Especial - Tipo A, Média ou Fina) de acordo com a legislação vigente.</div>
+            </div>
+            <label class="switch">
+              <input type="checkbox" checked onchange="updatePreview()">
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Coluna Direita: Preview e Ação -->
+        <div style="display: flex; flex-direction: column; gap: 24px; position: sticky; top: 32px; height: fit-content;">
+          <div class="ds-panel-glass" style="text-align: center;">
+            <h3 style="font-family:'Archivo'; font-weight:700; font-size:18px; margin-bottom: 24px;">Lote Comercial: ACAI-B2B-001</h3>
+            
+            <div style="background: #fff; padding: 24px; border-radius: 16px; display: inline-block; margin-bottom: 24px; box-shadow: 0 8px 32px rgba(0,0,0,0.4);" id="qr-container">
+              <!-- QR Code será renderizado aqui -->
+            </div>
+            
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--muted-d); margin-bottom: 24px; padding: 16px; background: var(--ink); border: 1px solid var(--line-d); border-radius: 8px; text-align: left; line-height: 1.6;" id="payload-preview">
+              <span class="text-green">✔</span> Origem Certificada<br>
+              <span class="text-green">✔</span> Trânsito < 6h<br>
+              <span class="text-green">✔</span> Branqueamento OK<br>
+              <span class="text-green">✔</span> Classificação MAPA
+            </div>
+
+            <button class="ds-btn-primary" style="width: 100%; justify-content:center;" onclick="gerarLote()">
+              <i data-lucide="printer" style="width: 18px;"></i> Imprimir Etiqueta B2B
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <style>
+    /* CSS specifically for the toggle switch */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 28px;
+      flex-shrink: 0;
+      margin-left: 16px;
+      margin-top: 4px;
+    }
+    .switch input { 
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(255,255,255,0.08);
+      transition: .2s;
+      border: 1px solid var(--line-d);
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 20px;
+      width: 20px;
+      left: 3px;
+      bottom: 3px;
+      background-color: var(--gray);
+      transition: .2s;
+    }
+    input:checked + .slider {
+      background-color: var(--green);
+      border-color: var(--green);
+    }
+    input:checked + .slider:before {
+      transform: translateX(22px);
+      background-color: #0b1410;
+    }
+    .slider.round {
+      border-radius: 34px;
+    }
+    .slider.round:before {
+      border-radius: 50%;
+    }
+    
+    .ds-btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--green);
+      color: #0b1410;
+      font-weight: 700;
+      font-family: 'Archivo', sans-serif;
+      font-size: 15px;
+      padding: 14px 26px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .ds-btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(95, 189, 0, 0.3);
+    }
+  </style>
+
+  <script>
+    lucide.createIcons();
+    
+    let qrcode = null;
+
+    function initQR() {
+      const container = document.getElementById('qr-container');
+      if (typeof QRCode !== 'undefined') {
+        qrcode = new QRCode(container, {
+          text: "https://ruralog.industria/lote/ACAI-B2B-001",
+          width: 180,
+          height: 180,
+          colorDark : "#0b1410",
+          colorLight : "#ffffff",
+          correctLevel : QRCode.CorrectLevel.H
+        });
+      } else {
+        // Fallback mockup
+        container.innerHTML = '<img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=ruralog" alt="QR Code">';
+      }
+    }
+
+    function updatePreview() {
+      const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+      const payload = document.getElementById('payload-preview');
+      
+      const labels = [
+        "Origem Certificada",
+        "Trânsito &lt; 6h",
+        "Branqueamento OK",
+        "Classificação MAPA"
+      ];
+      
+      let text = '';
+      checkboxes.forEach((cb, index) => {
+        if(cb.checked) {
+          text += `<span class="text-green">✔</span> ${labels[index]}<br>`;
+        } else {
+          text += `<span style="color:var(--wine);">✖</span> <span style="text-decoration:line-through; color:var(--gray);">${labels[index]}</span><br>`;
+        }
+      });
+      
+      payload.innerHTML = text;
+      
+      // Animação de pulso no QR para mostrar atualização
+      const qrCont = document.getElementById('qr-container');
+      qrCont.style.opacity = '0.5';
+      qrCont.style.transform = 'scale(0.98)';
+      setTimeout(() => {
+        qrCont.style.opacity = '1';
+        qrCont.style.transform = 'scale(1)';
+        qrCont.style.transition = 'all 0.2s';
+      }, 150);
+    }
+
+    function gerarLote() {
+      alert("Lote configurado com sucesso! Etiqueta enviada para a impressora do chão de fábrica.");
+    }
+
+    // Inicializa
+    initQR();
+  </script>
+</body>
+</html>

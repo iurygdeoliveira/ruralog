@@ -3,168 +3,431 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RuraLog - O Campo</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
-  <link rel="manifest" href="manifest.json">
+  <title>RuraLog - Industrial Dashboard</title>
   <link rel="stylesheet" href="css/style.css">
-  
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
-  <!-- Header global apenas para navegação/reset -->
-  <div id="header-root"></div>
+  <div class="app-wrapper">
+    
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <a href="index.html" class="brand">
+        <span class="text-green">Rura</span><span class="text-blue">Log</span>
+      </a>
 
-  <main class="rl-mobile-wrapper">
-    <div class="rl-mobile-frame">
-      <div class="rl-mobile-header">
-        O Campo <i data-lucide="sprout" class="inline-block align-middle ml-1" style="width: 20px; height: 20px;"></i>
+      <!-- Visão Geral -->
+      <div class="nav-group">
+        <a href="#overview" class="nav-link active">
+          <i data-lucide="layout-grid" style="width: 18px;"></i> Centro de Controle
+        </a>
       </div>
-      <div class="rl-mobile-content">
-        
-        <!-- Passo 1: Onboarding -->
-        <div id="passo-1" class="rl-mobile-step active rl-card">
-          <h2 class="font-bold mb-4">Cadastro do Açaizal</h2>
-          <form id="form-onboarding">
-            <div class="rl-form-group">
-              <label class="rl-form-label">Nome do Produtor/Extrativista</label>
-              <input type="text" id="prod-nome" class="rl-input" required placeholder="Ex: João da Silva">
-            </div>
-            <div class="rl-form-group">
-              <label class="rl-form-label">Nº CAF (Obrigatório)</label>
-              <input type="text" id="prod-caf" class="rl-input" required placeholder="000.000.000-00" oninput="this.value = this.value.replace(/[^0-9.-]/g, '')">
-            </div>
-            <div class="rl-form-group">
-              <label class="rl-form-label">Município</label>
-              <select id="prod-municipio" class="rl-input" required>
-                <option value="Araguatins">Araguatins</option>
-                <option value="Esperantina">Esperantina</option>
-                <option value="Axixá do Tocantins">Axixá do Tocantins</option>
-                <option value="Augustinópolis">Augustinópolis</option>
-                <option value="Tocantinópolis">Tocantinópolis</option>
-                <option value="Palmas">Palmas</option>
-              </select>
-            </div>
-            <div class="rl-form-group">
-              <label class="rl-form-label">Nome da Propriedade/Açaizal</label>
-              <input type="text" id="prod-prop" class="rl-input" required placeholder="Sítio Boa Esperança">
-            </div>
-            <div class="rl-form-group">
-              <label class="rl-form-label">Tipo de Açaizal</label>
-              <select id="prod-tipo" class="rl-input" required>
-                <option value="nativo">Nativo (Extrativismo)</option>
-                <option value="cultivado">Cultivado</option>
-              </select>
-            </div>
-            <div class="rl-form-group">
-              <label class="rl-form-label">Geolocalização</label>
-              <button type="button" id="btn-gps" class="rl-btn rl-btn--outline" style="width: 100%">
-                <i data-lucide="map-pin"></i> Capturar localização
-              </button>
-              <div id="gps-status" style="display: none;"></div>
-            </div>
-            <button type="submit" class="rl-btn rl-btn--primario mt-4" style="width: 100%">Salvar e Avançar →</button>
-          </form>
-        </div>
 
-        <!-- Passo 2: Manejo -->
-        <div id="passo-2" class="rl-mobile-step rl-card">
-          <h2 class="font-bold mb-4">Registro de Manejo</h2>
-          <form id="form-manejo">
-            <div class="rl-form-group">
-              <label class="rl-form-label">Atividade de Manejo</label>
-              <select id="man-tipo" class="rl-input" required>
-                <option value="roçagem">Roçagem</option>
-                <option value="desbaste">Desbaste de Estipes</option>
-                <option value="monitoramento">Monitoramento</option>
-                <option value="aplicação">Aplicação</option>
-              </select>
-            </div>
-            <div class="rl-form-group">
-              <label class="rl-form-label">Descrição (Opcional)</label>
-              <input type="text" id="man-desc" class="rl-input" placeholder="Detalhes da atividade...">
-            </div>
-            <button type="submit" class="rl-btn rl-btn--primario mt-4" style="width: 100%">Registrar Manejo →</button>
-            <button type="button" class="rl-btn rl-btn--outline mt-2 btn-pular" data-target="3" style="width: 100%">Pular (Sem manejo agora)</button>
-          </form>
-        </div>
+      <!-- Logística & Fábrica -->
+      <div class="nav-group">
+        <div class="nav-group-title">Logística & Fábrica</div>
+        <a href="#recepcao" class="nav-link">
+          <i data-lucide="truck" style="width: 18px;"></i> Recepção
+        </a>
+        <a href="#chao-de-fabrica" class="nav-link">
+          <i data-lucide="factory" style="width: 18px;"></i> Chão de Fábrica
+        </a>
+        <a href="#laudos-cq" class="nav-link">
+          <i data-lucide="clipboard-check" style="width: 18px;"></i> Laudos CQ
+        </a>
+        <a href="#fornecedores" class="nav-link">
+          <i data-lucide="users" style="width: 18px;"></i> Fornecedores
+        </a>
+      </div>
 
-        <!-- Passo 3: Fitossanitário -->
-        <div id="passo-3" class="rl-mobile-step rl-card">
-          <h2 class="font-bold mb-4">Diário Fitossanitário</h2>
-          <p class="text-gray-400 mb-4" style="font-size: 13px;">Relate a ocorrência de pragas para acionar o seguro ou a agroindústria com antecedência.</p>
-          <form id="form-fito">
-            <div class="rl-form-group">
-              <label class="rl-form-label">Praga Identificada</label>
-              <select id="fito-praga" class="rl-input" required>
-                <option value="" disabled selected>Selecione uma praga...</option>
-                <option value="Podridão-do-cacho">Podridão-do-cacho</option>
-                <option value="Broca-do-estipe">Broca-do-estipe</option>
-                <option value="Pulgão-preto">Pulgão-preto</option>
-                <option value="Lagarta-desfolhadora">Lagarta-desfolhadora</option>
-              </select>
-            </div>
-            <button type="submit" class="rl-btn rl-btn--primario mt-4" style="width: 100%; background: var(--wine); color: #fff;">Emitir Alerta</button>
-            <button type="button" class="rl-btn rl-btn--outline mt-2 btn-pular" data-target="4" style="width: 100%">Tudo limpo, pular →</button>
-          </form>
-        </div>
+      <!-- Análises & B2B -->
+      <div class="nav-group">
+        <div class="nav-group-title">Análises & B2B</div>
+        <a href="#relatorios" class="nav-link">
+          <i data-lucide="bar-chart-3" style="width: 18px;"></i> Relatórios
+        </a>
+        <a href="exportacao.html" class="nav-link">
+          <i data-lucide="qr-code" style="width: 18px;"></i> Exportação B2B
+        </a>
+      </div>
 
-        <!-- Passo 4: Colheita -->
-        <div id="passo-4" class="rl-mobile-step rl-card">
-          <h2 class="font-bold mb-4">Debulha & Colheita</h2>
-          <p class="text-gray-400 mb-4" style="font-size: 13px;">O açaí debulhado estraga rápido. Ao registrar, inicia-se o relógio de perecibilidade logística.</p>
-          <form id="form-colheita">
-            <div class="rl-form-group">
-              <label class="rl-form-label">Quantidade Colhida (KG)</label>
-              <input type="number" id="col-kg" class="rl-input" required min="1" placeholder="Ex: 150">
-            </div>
-            <button type="submit" class="rl-btn rl-btn--primario mt-4" style="width: 100%">Finalizar Lote →</button>
-          </form>
+      <!-- Sync Status Pill (DS Chip) -->
+      <a href="#" class="sync-status">
+        <span class="sync-dot"></span>
+        <div>
+          <div class="sync-meta">DADOS · 0h02</div>
+          <div class="sync-title">Sincronização · Ao Vivo</div>
         </div>
+      </a>
+    </aside>
 
-        <!-- Passo 5: QR Code -->
-        <div id="passo-5" class="rl-mobile-step rl-card" style="text-align: center;">
-          <h2 class="font-bold mb-2">Lote Certificado!</h2>
-          <p class="text-mono-label" id="lote-id-display">ACAI-TO-2026-001</p>
-          <div style="margin: 20px auto; padding: 16px; background: #fff; display: inline-block; border-radius: 12px;" id="qr-container">
-            <!-- QR code goes here -->
+    <!-- MAIN CONTENT -->
+    <main class="main-content" style="gap: 80px;">
+      
+      <!-- Topbar -->
+      <header class="topbar" id="overview">
+        <div>
+          <h1 class="page-title">Centro de Controle</h1>
+        </div>
+        <div class="topbar-right">
+          <div class="search-bar">
+            <i data-lucide="search" style="width: 16px; color: var(--gray);"></i>
+            <input type="text" placeholder="Buscar lote (e.g. ACAI-TO)...">
           </div>
-          <p class="text-gray-400 mb-4" style="font-size: 13px;">Aponte a câmera para rastrear a origem e a linha do tempo completa do açaí.</p>
-          
-          <button type="button" id="btn-copiar" class="rl-btn rl-btn--outline mb-2" style="width: 100%">
-            <i data-lucide="copy"></i> Copiar link
-          </button>
-          <a href="index.html" class="rl-btn rl-btn--primario" style="width: 100%">Novo Lote</a>
+          <div class="user-profile">
+            <div style="text-align: right; line-height: 1.2;">
+              <div style="font-family:'Archivo'; font-weight: 700; color:#fff;">Julio Cesar</div>
+              <div style="font-family:'IBM Plex Mono'; font-size: 11px; color: var(--muted-d);">INDUSTRIAL</div>
+            </div>
+            <img src="https://ui-avatars.com/api/?name=Julio+Cesar&background=0b1410&color=5FBD00&bold=true" alt="User">
+          </div>
+        </div>
+      </header>
+
+      <!-- SECTION: Visão Geral (Existing Top Stats & Chart) -->
+      <section style="display: flex; flex-direction: column; gap: clamp(40px, 6vw, 64px);">
+        <!-- Stats Strip (Top KPIs) -->
+        <div class="stats-strip">
+          <div class="stat-box">
+            <div class="stat-value text-green">45.4t</div>
+            <div class="stat-desc">Volume Safra Recebido. <strong>+12.4%</strong> vs meta semanal.</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value" style="color: #fff;">18</div>
+            <div class="stat-desc">Lotes em Trânsito. <strong class="text-wine">2 Críticos (>6h)</strong>.</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value text-blue">92%</div>
+            <div class="stat-desc">Qualidade Média (Premium). Tendência de <strong>+4.5%</strong>.</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value text-yellow">2.4h</div>
+            <div class="stat-desc">Tempo Médio Trânsito. <strong>-15%</strong> de melhoria na cadeia.</div>
+          </div>
         </div>
 
-      </div>
-    </div>
-  </main>
+        <div class="asymmetric-grid">
+          <!-- Chart Panel -->
+          <div class="ds-panel-glass">
+            <div class="ds-eyebrow" style="color: var(--green); margin-bottom: 12px;">
+              <span class="ds-line-green"></span>Previsibilidade
+            </div>
+            <h2 style="font-family:'Archivo'; font-weight:800; font-size:24px; margin-bottom: 8px;">Volume Recebido vs. Esperado</h2>
+            <p style="font-size: 14.5px; color: var(--muted-d); margin:0;">Consistência alta nos últimos 7 dias baseada no modelo sazonal.</p>
+            
+            <div class="chart-container">
+              <svg viewBox="0 0 800 250" preserveAspectRatio="none" style="width: 100%; height: 100%; overflow: visible;">
+                <defs>
+                  <linearGradient id="greenGradient" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="var(--green)" stop-opacity="0.6"/>
+                    <stop offset="100%" stop-color="var(--green)" stop-opacity="0"/>
+                  </linearGradient>
+                  <pattern id="grid" width="100" height="50" patternUnits="userSpaceOnUse">
+                    <path d="M 100 0 L 0 0 0 50" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+                  </pattern>
+                </defs>
+                <rect width="800" height="250" fill="url(#grid)" />
+                <path class="chart-area" d="M0,150 C100,160 200,80 300,100 C400,120 500,70 600,40 C700,10 800,100 800,100 L800,250 L0,250 Z" />
+                <path class="chart-line" d="M0,150 C100,160 200,80 300,100 C400,120 500,70 600,40 C700,10 800,100 800,100" />
+                <g class="chart-points">
+                  <circle cx="200" cy="80" r="6" />
+                  <circle cx="500" cy="70" r="6" />
+                  <circle cx="600" cy="40" r="6" />
+                </g>
+                <text x="0" y="270" fill="var(--gray)" font-size="12" font-family="'IBM Plex Mono'">Seg</text>
+                <text x="130" y="270" fill="var(--gray)" font-size="12" font-family="'IBM Plex Mono'">Ter</text>
+                <text x="260" y="270" fill="var(--gray)" font-size="12" font-family="'IBM Plex Mono'">Qua</text>
+                <text x="390" y="270" fill="var(--gray)" font-size="12" font-family="'IBM Plex Mono'">Qui</text>
+                <text x="520" y="270" fill="var(--gray)" font-size="12" font-family="'IBM Plex Mono'">Sex</text>
+                <text x="650" y="270" fill="var(--gray)" font-size="12" font-family="'IBM Plex Mono'">Sáb</text>
+                <text x="780" y="270" fill="var(--gray)" font-size="12" font-family="'IBM Plex Mono'">Dom</text>
+              </svg>
+            </div>
+          </div>
+          
+          <!-- Semáforo Alert DS -->
+          <div class="ds-panel-alert" style="height: fit-content;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+              <span style="width:14px;height:14px;border-radius:50%;background:var(--wine);box-shadow:0 0 14px var(--wine);animation:rl-pulse 1.6s infinite;"></span>
+              <span style="font-family:'IBM Plex Mono';font-size:13px;color:#ff6db0;font-weight:600;">ALERTA REGIONAL</span>
+            </div>
+            <div style="font-family:'Archivo';font-weight:700;font-size:22px;margin-bottom:12px;">Detecção de Podridão-do-Cacho!</div>
+            <p style="font-size:14.5px;color:#E2B9CE;margin:0 0 16px;">Os diários de campo indicam foco em 3 propriedades fornecedoras primárias nesta semana. Prepare a linha de produção para quebra de safra de <strong>15 a 20%</strong>.</p>
+            <a href="#" style="color:#ff6db0; font-family:'IBM Plex Mono'; font-size:13px; font-weight:600; text-decoration:none;">Ler Relatório do CQ →</a>
+          </div>
+        </div>
+      </section>
 
-  <script type="module">
-    import { montarHeader, botaoReset, updateIcons } from './js/ui.js';
+      <!-- SECTION: Recepção -->
+      <section id="recepcao" style="scroll-margin-top: 40px;">
+        <div class="ds-eyebrow" style="color: var(--blue); margin-bottom: 16px;">
+          <span class="ds-line-green" style="background: var(--blue);"></span>01 · Recepção e Pátio
+        </div>
+        <h2 style="font-family:'Archivo'; font-weight:800; font-size:32px; margin-bottom: 32px;">Fluxo de Entrada</h2>
+        
+        <div class="asymmetric-grid" style="grid-template-columns: 1fr 1fr;">
+          <!-- Queue List -->
+          <div class="ds-panel-glass">
+             <h3 style="font-family:'Archivo'; font-weight:700; font-size:18px; margin-bottom: 16px;">Fila de Caminhões</h3>
+             <div class="list-item">
+               <div class="list-item-icon"><i data-lucide="truck" style="width: 20px;"></i></div>
+               <div class="list-item-content">
+                 <div class="list-item-title">Placa MXT-9082</div>
+                 <div class="list-item-subtitle">Carga: 4.2t (Açaí BRS Pai d'Égua)</div>
+               </div>
+               <div class="status-tag safe"><span class="status-pulse-dot"></span>Descarregando</div>
+             </div>
+             <div class="list-item">
+               <div class="list-item-icon" style="color: var(--yellow);"><i data-lucide="truck" style="width: 20px;"></i></div>
+               <div class="list-item-content">
+                 <div class="list-item-title">Placa KJA-1122</div>
+                 <div class="list-item-subtitle">Carga: 2.1t (Mistura)</div>
+               </div>
+               <div class="status-tag warning"><span class="status-pulse-dot"></span>Aguardando 45m</div>
+             </div>
+             <div class="list-item">
+               <div class="list-item-icon" style="color: #ff6db0;"><i data-lucide="truck" style="width: 20px;"></i></div>
+               <div class="list-item-content">
+                 <div class="list-item-title" style="color: #fff;">Placa QPR-3044</div>
+                 <div class="list-item-subtitle">Carga: 5t (Cooperativa Central)</div>
+               </div>
+               <div class="status-tag danger"><span class="status-pulse-dot"></span>Atraso > 2h</div>
+             </div>
+          </div>
+          
+          <!-- Metrics -->
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <div class="ds-panel-glass" style="padding: 24px;">
+               <div class="stat-desc">Tempo Médio de Espera</div>
+               <div class="stat-value text-blue" style="margin-top: 8px;">22 min</div>
+            </div>
+            <div class="ds-panel-glass" style="padding: 24px;">
+               <div class="stat-desc">Carga Total no Pátio</div>
+               <div class="stat-value text-green" style="margin-top: 8px;">11.3 t</div>
+            </div>
+            <div class="ds-panel-glass" style="padding: 24px;">
+               <div class="stat-desc">Capacidade de Pátio</div>
+               <div class="stat-value" style="color: #fff; margin-top: 8px;">68% <span style="font-size:16px; font-weight:500; color:var(--muted-d);">Ocupada</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: Chão de Fábrica -->
+      <section id="chao-de-fabrica" style="scroll-margin-top: 40px;">
+        <div class="ds-eyebrow" style="color: var(--yellow); margin-bottom: 16px;">
+          <span class="ds-line-green" style="background: var(--yellow);"></span>02 · Chão de Fábrica
+        </div>
+        <h2 style="font-family:'Archivo'; font-weight:800; font-size:32px; margin-bottom: 32px;">Produção & OEE</h2>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-bottom: 24px;">
+          <!-- Machine 1 -->
+          <div class="ds-panel-glass" style="border-top: 4px solid var(--green);">
+             <h3 style="font-family:'Archivo'; font-weight:700; font-size:18px; margin-bottom: 4px;">Linha Principal</h3>
+             <p style="font-size: 13px; color: var(--muted-d); margin-bottom: 16px;">Lavador & Despolpadeira · Lote ACAI-402</p>
+             <div class="stat-value text-green">8.5 t/h</div>
+             <div style="margin-top: 16px; display:flex; gap: 8px;">
+               <div class="status-tag safe"><span class="status-pulse-dot"></span>Operando</div>
+             </div>
+          </div>
+          <!-- Machine 2 -->
+          <div class="ds-panel-glass" style="border-top: 4px solid var(--yellow);">
+             <h3 style="font-family:'Archivo'; font-weight:700; font-size:18px; margin-bottom: 4px;">Pasteurizador A</h3>
+             <p style="font-size: 13px; color: var(--muted-d); margin-bottom: 16px;">Lote Misto - Temp: 85°C</p>
+             <div class="stat-value text-yellow">72% <span style="font-size:14px; font-weight:600; font-family:'IBM Plex Mono';">OEE</span></div>
+             <div style="margin-top: 16px; display:flex; gap: 8px;">
+               <div class="status-tag warning"><span class="status-pulse-dot"></span>Manutenção em 2h</div>
+             </div>
+          </div>
+          <!-- Machine 3 -->
+          <div class="ds-panel-glass" style="border-top: 4px solid #fff;">
+             <h3 style="font-family:'Archivo'; font-weight:700; font-size:18px; margin-bottom: 4px;">Envase & Túnel Cong.</h3>
+             <p style="font-size: 13px; color: var(--muted-d); margin-bottom: 16px;">Polpa Média - Tambor 200L</p>
+             <div class="stat-value" style="color: #fff;">120 <span style="font-size:14px; font-weight:600; font-family:'IBM Plex Mono';">tb/h</span></div>
+             <div style="margin-top: 16px; display:flex; gap: 8px;">
+               <div class="status-tag safe"><span class="status-pulse-dot"></span>Operacional</div>
+             </div>
+          </div>
+        </div>
+
+        <div class="ds-panel-glass" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap: 24px;">
+           <div>
+             <h3 style="font-family:'Archivo'; font-weight:700; font-size:18px;">Rendimento do Turno (Polpa vs Fruto)</h3>
+             <p style="font-size: 14.5px; color: var(--muted-d); margin:0;">Acima da meta histórica de 65% para açaí médio.</p>
+           </div>
+           <div class="stat-value text-green" style="font-size: 48px;">68.2%</div>
+        </div>
+      </section>
+
+      <!-- SECTION: Laudos CQ -->
+      <section id="laudos-cq" style="scroll-margin-top: 40px;">
+        <div class="ds-eyebrow" style="color: var(--wine); margin-bottom: 16px;">
+          <span class="ds-line-wine"></span>03 · Controle de Qualidade
+        </div>
+        <h2 style="font-family:'Archivo'; font-weight:800; font-size:32px; margin-bottom: 32px;">Análises Físico-Químicas</h2>
+        
+        <div class="asymmetric-grid">
+           <div class="ds-panel-glass">
+              <h3 style="font-family:'Archivo'; font-weight:700; font-size:18px; margin-bottom: 16px;">Últimos Laudos Emitidos</h3>
+              <div class="list-item">
+               <div class="list-item-icon"><i data-lucide="check-circle" style="width: 20px;"></i></div>
+               <div class="list-item-content">
+                 <div class="list-item-title">Lote: ACAI-TO-400</div>
+                 <div class="list-item-subtitle">Sólidos Totais: 12% (Polpa Média) | Ph: 4.8</div>
+               </div>
+               <div class="status-tag safe">Aprovado</div>
+             </div>
+             <div class="list-item">
+               <div class="list-item-icon" style="color: var(--yellow);"><i data-lucide="alert-circle" style="width: 20px;"></i></div>
+               <div class="list-item-content">
+                 <div class="list-item-title">Lote: ACAI-TO-401</div>
+                 <div class="list-item-subtitle">Sólidos Totais: 9% (Abaixo do padrão) | Ph: 5.1</div>
+               </div>
+               <div class="status-tag warning">Rebaixado</div>
+             </div>
+             <div class="list-item">
+               <div class="list-item-icon" style="color: #ff6db0;"><i data-lucide="x-circle" style="width: 20px;"></i></div>
+               <div class="list-item-content">
+                 <div class="list-item-title" style="color:#fff;">Lote: ACAI-PA-992</div>
+                 <div class="list-item-subtitle">Fermentação (> 6h exposição)</div>
+               </div>
+               <div class="status-tag danger">Rejeitado</div>
+             </div>
+           </div>
+
+           <!-- Donut Panel -->
+          <div class="ds-panel-glass" style="text-align: center;">
+            <h3 style="font-family:'Archivo'; font-weight:700; font-size:18px; margin-bottom: 8px;">Taxa de Aprovação</h3>
+            <div class="donut-container" style="margin: 32px 0;">
+              <!-- Pure CSS donut for 92% -->
+              <div class="donut-chart" style="background: conic-gradient(var(--green) 0% 92%, rgba(255,255,255,0.05) 92% 100%);">
+                <div class="donut-value">92%</div>
+              </div>
+            </div>
+            <p style="font-size: 13.5px; color: var(--muted-d); margin:0;">
+              Lotes classificados como Premium ou Médio.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: Fornecedores -->
+      <section id="fornecedores" style="scroll-margin-top: 40px;">
+        <div class="ds-eyebrow" style="color: var(--green); margin-bottom: 16px;">
+          <span class="ds-line-green"></span>04 · Gestão de Origem
+        </div>
+        <h2 style="font-family:'Archivo'; font-weight:800; font-size:32px; margin-bottom: 32px;">Fornecedores e Cooperativas</h2>
+
+        <div class="asymmetric-grid" style="grid-template-columns: 1fr 1fr;">
+          <!-- Top Suppliers -->
+          <div class="ds-panel-glass">
+            <h3 style="font-family:'Archivo'; font-weight:700; font-size:18px; margin-bottom: 16px;">Top 3 Qualidade (Semana)</h3>
+            <div class="list-item">
+               <img src="https://ui-avatars.com/api/?name=Cooperativa+Norte&background=0b1410&color=5FBD00&bold=true" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line-d);" alt="Avatar">
+               <div class="list-item-content">
+                 <div class="list-item-title">Cooperativa Norte Agro</div>
+                 <div class="list-item-subtitle">18t entregues · 100% Retenção Frio</div>
+               </div>
+               <div class="list-item-value text-green" style="font-size: 16px;">98/100</div>
+            </div>
+            <div class="list-item">
+               <img src="https://ui-avatars.com/api/?name=Seu+Joao&background=0b1410&color=0085FF&bold=true" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line-d);" alt="Avatar">
+               <div class="list-item-content">
+                 <div class="list-item-title">Faz. São João (Extrativismo)</div>
+                 <div class="list-item-subtitle">5t entregues · App Offline OK</div>
+               </div>
+               <div class="list-item-value text-green" style="font-size: 16px;">95/100</div>
+            </div>
+            <div class="list-item">
+               <img src="https://ui-avatars.com/api/?name=Rib.+Tocantins&background=0b1410&color=FFCB00&bold=true" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line-d);" alt="Avatar">
+               <div class="list-item-content">
+                 <div class="list-item-title">Assoc. Ribeirinhos Tocantins</div>
+                 <div class="list-item-subtitle">12t entregues · 1 alerta de tempo</div>
+               </div>
+               <div class="list-item-value text-green" style="font-size: 16px;">89/100</div>
+            </div>
+          </div>
+
+          <!-- Alert/Metrics -->
+          <div style="display: flex; flex-direction: column; gap: 24px;">
+            <div class="stats-strip" style="grid-template-columns: 1fr;">
+              <div class="stat-box">
+                <div class="stat-value" style="color: #fff;">88%</div>
+                <div class="stat-desc">Entregas no prazo acordado de colheita.</div>
+              </div>
+            </div>
+            
+            <div class="ds-panel-alert" style="border-color: rgba(255,203,0,.5); background: rgba(255,203,0,.05);">
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+                <i data-lucide="alert-triangle" style="width:16px; color:var(--yellow);"></i>
+                <span style="font-family:'IBM Plex Mono';font-size:13px;color:var(--yellow);font-weight:600;">AVISO LOGÍSTICO</span>
+              </div>
+              <h3 style="font-family:'Archivo'; font-weight:700; font-size:18px; margin-bottom: 8px; color:#fff;">Rota Fluvial Rio Guamá</h3>
+              <p style="font-size:14px; color:var(--muted-d); margin:0;">Balsas da Associação Guamá relatam atrasos devido a nível do rio. Previsão estendida em 4h.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: Relatórios -->
+      <section id="relatorios" style="scroll-margin-top: 40px; margin-bottom: 64px;">
+        <div class="ds-eyebrow" style="color: #fff; margin-bottom: 16px;">
+          <span class="ds-line-green" style="background: #fff;"></span>05 · Exportação & Relatórios
+        </div>
+        <h2 style="font-family:'Archivo'; font-weight:800; font-size:32px; margin-bottom: 32px;">Fechamento de Turno</h2>
+
+        <div class="ds-panel-glass" style="display: flex; gap: 24px; align-items: center; flex-wrap: wrap;">
+          <div style="flex: 1; min-width: 300px;">
+            <h3 style="font-family:'Archivo'; font-weight:700; font-size:24px; margin-bottom: 8px;">O turno atual fecha em 1h 15m</h3>
+            <p style="font-size: 15px; color: var(--muted-d); margin-bottom: 24px;">Todos os laudos CQ foram sincronizados. A rastreabilidade via blockchain dos lotes de polpa para exportação já está disponível.</p>
+            
+            <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+              <a href="#" style="display:inline-flex;align-items:center;gap:9px;background:var(--green);color:#0b1410;font-weight:700;font-size:15px;padding:14px 26px;border-radius:999px;text-decoration:none;transition:transform .2s;">
+                Baixar Relatório de Turno <i data-lucide="download" style="width:16px;"></i>
+              </a>
+              <a href="#" style="display:inline-flex;align-items:center;gap:9px;background:transparent;color:#F4F7F1;font-weight:600;font-size:15px;padding:14px 26px;border-radius:999px;text-decoration:none;border:1px solid rgba(255,255,255,.22);transition:border-color .2s;">
+                Exportar Rastreabilidade
+              </a>
+            </div>
+          </div>
+          
+          <!-- Small summary card -->
+          <div style="background: var(--ink); border: 1px solid var(--line-d); border-radius: 16px; padding: 24px; width: 280px; flex-shrink: 0;">
+             <div class="stat-desc" style="margin-bottom: 12px; display:flex; align-items:center;"><i data-lucide="calendar" style="width:14px; margin-right:6px;"></i>Resumo Hoje</div>
+             <div style="display:flex; justify-content:space-between; margin-bottom:8px; border-bottom:1px solid var(--line-d); padding-bottom:8px;">
+               <span style="font-size:14px; color:var(--muted-d);">Lotes Prod.</span>
+               <span style="font-family:'IBM Plex Mono'; font-weight:600;">14</span>
+             </div>
+             <div style="display:flex; justify-content:space-between; margin-bottom:8px; border-bottom:1px solid var(--line-d); padding-bottom:8px;">
+               <span style="font-size:14px; color:var(--muted-d);">Rejeições CQ</span>
+               <span style="font-family:'IBM Plex Mono'; font-weight:600; color:var(--wine);">1</span>
+             </div>
+             <div style="display:flex; justify-content:space-between;">
+               <span style="font-size:14px; color:var(--muted-d);">Envase (tb)</span>
+               <span style="font-family:'IBM Plex Mono'; font-weight:600; color:var(--green);">420</span>
+             </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    lucide.createIcons();
     
-    // Injeta header
-    document.getElementById('header-root').innerHTML = montarHeader('Campo', 'index');
-    botaoReset();
+    /* Active Nav Link Interactivity based on hash and scroll */
+    const navLinks = document.querySelectorAll('.nav-link');
     
-    // Inicia os icones lucide globais do HTML
-    updateIcons();
-    
-    // Registra Service Worker se disponível
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js').catch(err => {
-          console.error('Erro ao registrar SW', err);
-        });
+    // Add click smooth scroll
+    navLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        if(this.getAttribute('href').startsWith('#')) {
+          navLinks.forEach(l => l.classList.remove('active'));
+          this.classList.add('active');
+        }
       });
-    }
+    });
   </script>
-  
-  <script src="vendor/qrcode.min.js"></script>
-  <script type="module" src="js/campo.js"></script>
 </body>
 </html>
