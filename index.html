@@ -154,7 +154,7 @@
       style="position:absolute;right:-120px;bottom:-160px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(122,46,140,.32),transparent 65%);pointer-events:none;">
     </div>
     <div
-      style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(32px,5vw,72px);align-items:center;">
+      style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(32px,5vw,72px);align-items:center;">
       <div>
         <img src="lp-pitch/logo.png" alt="RuraLog" style="height:54px;width:auto;margin-bottom:28px;display:block;">
         <h1
@@ -252,7 +252,8 @@
               style="font-family:'Archivo';font-weight:800;font-size:32px;line-height:1.2;color:#0b1410;margin-bottom:20px;letter-spacing:-.02em;">
               Previsibilidade Logística</div>
             <p style="font-size:18px;color:#43514a;line-height:1.55;margin:0;">
-              Monitoramento da rota dos lotes em tempo real. Saiba exatamente a estimativa de chegada e o estado de conservação do açaí antes do descarregamento na fábrica.
+              Monitoramento da rota dos lotes em tempo real. Saiba exatamente a estimativa de chegada e o estado de
+              conservação do açaí antes do descarregamento na fábrica.
             </p>
           </div>
         </div>
@@ -268,7 +269,8 @@
               style="font-family:'Archivo';font-weight:800;font-size:32px;line-height:1.2;color:#0b1410;margin-bottom:20px;letter-spacing:-.02em;">
               Proteção de Margem</div>
             <p style="font-size:18px;color:#43514a;line-height:1.55;margin:0;">
-              Evite o desperdício de matéria-prima. O sistema barra lotes fermentados ou degradados no recebimento, garantindo pagamento apenas por frutos com qualidade certificada.
+              Evite o desperdício de matéria-prima. O sistema barra lotes fermentados ou degradados no recebimento,
+              garantindo pagamento apenas por frutos com qualidade certificada.
             </p>
           </div>
         </div>
@@ -284,7 +286,8 @@
               style="font-family:'Archivo';font-weight:800;font-size:32px;line-height:1.2;color:#fff;margin-bottom:20px;letter-spacing:-.02em;">
               Compliance & MAPA</div>
             <p style="font-size:18px;color:#B9CCBF;line-height:1.55;margin:0;">
-              Conformidade total e automática com as exigências de rastreabilidade (INC 02/2018) sem burocracia, reduzindo drasticamente o risco de multas fiscais ou sanitárias.
+              Conformidade total e automática com as exigências de rastreabilidade (INC 02/2018) sem burocracia,
+              reduzindo drasticamente o risco de multas fiscais ou sanitárias.
             </p>
           </div>
         </div>
@@ -309,20 +312,24 @@
       </div>
 
       <!-- Tabs: retangulares, escuras, numeradas -->
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:0;border-radius:12px 12px 0 0;overflow:hidden;">
+      <div
+        style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:0;border-radius:12px 12px 0 0;overflow:hidden;">
         <button id="btn-tab-campo" class="rl-tab-btn" onclick="rlChangeTab('tab-campo')"
           style="background:var(--green-deep);color:#fff;border:none;padding:16px 24px;min-height:86px;display:flex;flex-direction:column;justify-content:center;font-family:'Archivo';font-weight:700;font-size:17px;cursor:pointer;text-align:left;transition:background 0.25s;box-sizing:border-box;">
-          <span style="display:block;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;opacity:.8;margin-bottom:4px;">01</span>
+          <span
+            style="display:block;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;opacity:.8;margin-bottom:4px;">01</span>
           Campo
         </button>
         <button id="btn-tab-logistica" class="rl-tab-btn" onclick="rlChangeTab('tab-logistica')"
           style="background:#1a2620;color:#B9CCBF;border:none;padding:16px 24px;min-height:86px;display:flex;flex-direction:column;justify-content:center;font-family:'Archivo';font-weight:700;font-size:17px;cursor:pointer;text-align:left;transition:background 0.25s;box-sizing:border-box;">
-          <span style="display:block;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;opacity:.7;margin-bottom:4px;">02</span>
+          <span
+            style="display:block;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;opacity:.7;margin-bottom:4px;">02</span>
           Logística
         </button>
         <button id="btn-tab-industria" class="rl-tab-btn" onclick="rlChangeTab('tab-industria')"
           style="background:#1a2620;color:#B9CCBF;border:none;padding:16px 24px;min-height:86px;display:flex;flex-direction:column;justify-content:center;font-family:'Archivo';font-weight:700;font-size:17px;cursor:pointer;text-align:left;transition:background 0.25s;box-sizing:border-box;">
-          <span style="display:block;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;opacity:.7;margin-bottom:4px;">03</span>
+          <span
+            style="display:block;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;opacity:.7;margin-bottom:4px;">03</span>
           Indústria
         </button>
       </div>
@@ -331,84 +338,132 @@
       <div>
 
         <!-- Tab 1: Campo -->
-        <div id="tab-campo" class="rl-tab-panel" style="display:grid;grid-template-columns:2fr 3fr;border-radius:0 0 12px 12px;overflow:hidden;">
-          <div style="background:var(--green-deep);padding:44px 40px;display:flex;flex-direction:column;justify-content:flex-end;min-height:350px;box-sizing:border-box;">
-            <p style="font-family:'Archivo';font-weight:600;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);margin:0 0 8px;">ETAPA 01</p>
-            <h3 style="font-family:'Archivo';font-weight:800;font-size:clamp(38px,4.5vw,58px);color:#fff;margin:0 0 14px;line-height:1.0;">Campo</h3>
+        <div id="tab-campo" class="rl-tab-panel"
+          style="display:grid;grid-template-columns:2fr 3fr;border-radius:0 0 12px 12px;overflow:hidden;">
+          <div
+            style="background:var(--green-deep);padding:44px 40px;display:flex;flex-direction:column;justify-content:flex-end;min-height:350px;box-sizing:border-box;">
+            <p
+              style="font-family:'Archivo';font-weight:600;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);margin:0 0 8px;">
+              ETAPA 01</p>
+            <h3
+              style="font-family:'Archivo';font-weight:800;font-size:clamp(38px,4.5vw,58px);color:#fff;margin:0 0 14px;line-height:1.0;">
+              Campo</h3>
             <p style="font-size:18px;color:rgba(255,255,255,.8);font-weight:400;margin:0;line-height:1.55;">
               App offline-first que certifica a origem do lote e dispara o cronômetro de perecibilidade na debulha.
             </p>
           </div>
-          <div style="background:#111f18;padding:44px 48px;display:flex;flex-direction:column;justify-content:center;gap:24px;box-sizing:border-box;">
-            <p style="font-family:'Archivo';font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--green);margin:0;">BENEFÍCIOS PARA A INDÚSTRIA</p>
+          <div
+            style="background:#111f18;padding:44px 48px;display:flex;flex-direction:column;justify-content:center;gap:24px;box-sizing:border-box;">
+            <p
+              style="font-family:'Archivo';font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--green);margin:0;">
+              BENEFÍCIOS PARA A INDÚSTRIA</p>
             <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:16px;">
               <li style="display:flex;gap:12px;align-items:flex-start;">
-                <span style="width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0;margin-top:7px;"></span>
-                <span style="font-size:18px;color:#e0ece5;line-height:1.45;"><strong style="color:#fff;">Previsão de volume com 8 semanas:</strong> planejamento de capacidade sem surpresas na safra.</span>
+                <span
+                  style="width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0;margin-top:7px;"></span>
+                <span style="font-size:18px;color:#e0ece5;line-height:1.45;"><strong style="color:#fff;">Previsão de
+                    volume com 8 semanas:</strong> planejamento de capacidade sem surpresas na safra.</span>
               </li>
               <li style="display:flex;gap:12px;align-items:flex-start;">
-                <span style="width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0;margin-top:7px;"></span>
-                <span style="font-size:18px;color:#e0ece5;line-height:1.45;"><strong style="color:#fff;">Alerta de pragas antecipado:</strong> IA detecta Podridão-do-cacho antes da colheita chegar à fábrica.</span>
+                <span
+                  style="width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0;margin-top:7px;"></span>
+                <span style="font-size:18px;color:#e0ece5;line-height:1.45;"><strong style="color:#fff;">Alerta de
+                    pragas antecipado:</strong> IA detecta Podridão-do-cacho antes da colheita chegar à fábrica.</span>
               </li>
               <li style="display:flex;gap:12px;align-items:flex-start;">
-                <span style="width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0;margin-top:7px;"></span>
-                <span style="font-size:18px;color:#e0ece5;line-height:1.45;"><strong style="color:#fff;">Origem certificada:</strong> QR Code com GPS, produtor e data de debulha — auditável pelo MAPA.</span>
+                <span
+                  style="width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0;margin-top:7px;"></span>
+                <span style="font-size:18px;color:#e0ece5;line-height:1.45;"><strong style="color:#fff;">Origem
+                    certificada:</strong> QR Code com GPS, produtor e data de debulha — auditável pelo MAPA.</span>
               </li>
             </ul>
           </div>
         </div>
 
         <!-- Tab 2: Logística -->
-        <div id="tab-logistica" class="rl-tab-panel" style="display:none;grid-template-columns:2fr 3fr;border-radius:0 0 12px 12px;overflow:hidden;">
-          <div style="background:#0061bd;padding:44px 40px;display:flex;flex-direction:column;justify-content:flex-end;min-height:350px;box-sizing:border-box;">
-            <p style="font-family:'Archivo';font-weight:600;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);margin:0 0 8px;">ETAPA 02</p>
-            <h3 style="font-family:'Archivo';font-weight:800;font-size:clamp(38px,4.5vw,58px);color:#fff;margin:0 0 14px;line-height:1.0;">Logística</h3>
+        <div id="tab-logistica" class="rl-tab-panel"
+          style="display:none;grid-template-columns:2fr 3fr;border-radius:0 0 12px 12px;overflow:hidden;">
+          <div
+            style="background:#0061bd;padding:44px 40px;display:flex;flex-direction:column;justify-content:flex-end;min-height:350px;box-sizing:border-box;">
+            <p
+              style="font-family:'Archivo';font-weight:600;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);margin:0 0 8px;">
+              ETAPA 02</p>
+            <h3
+              style="font-family:'Archivo';font-weight:800;font-size:clamp(38px,4.5vw,58px);color:#fff;margin:0 0 14px;line-height:1.0;">
+              Logística</h3>
             <p style="font-size:18px;color:rgba(255,255,255,.8);font-weight:400;margin:0;line-height:1.55;">
               Semáforo de oxidação monitora cada lote em tempo real — do barco à portaria da fábrica.
             </p>
           </div>
-          <div style="background:#111f18;padding:44px 48px;display:flex;flex-direction:column;justify-content:center;gap:24px;box-sizing:border-box;">
-            <p style="font-family:'Archivo';font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#4d9fff;margin:0;">BENEFÍCIOS PARA A INDÚSTRIA</p>
+          <div
+            style="background:#111f18;padding:44px 48px;display:flex;flex-direction:column;justify-content:center;gap:24px;box-sizing:border-box;">
+            <p
+              style="font-family:'Archivo';font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#4d9fff;margin:0;">
+              BENEFÍCIOS PARA A INDÚSTRIA</p>
             <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:16px;">
               <li style="display:flex;gap:12px;align-items:flex-start;">
-                <span style="width:8px;height:8px;border-radius:50%;background:#4d9fff;flex-shrink:0;margin-top:7px;"></span>
-                <span style="font-size:18px;color:#e0ece5;line-height:1.45;"><strong style="color:#fff;">Zero surpresas na descarga:</strong> semáforo Verde/Amarelo/Vermelho prioriza lotes em risco automaticamente.</span>
+                <span
+                  style="width:8px;height:8px;border-radius:50%;background:#4d9fff;flex-shrink:0;margin-top:7px;"></span>
+                <span style="font-size:18px;color:#e0ece5;line-height:1.45;"><strong style="color:#fff;">Zero surpresas
+                    na descarga:</strong> semáforo Verde/Amarelo/Vermelho prioriza lotes em risco
+                  automaticamente.</span>
               </li>
               <li style="display:flex;gap:12px;align-items:flex-start;">
-                <span style="width:8px;height:8px;border-radius:50%;background:#4d9fff;flex-shrink:0;margin-top:7px;"></span>
-                <span style="font-size:18px;color:#e0ece5;line-height:1.45;"><strong style="color:#fff;">ETA em tempo real:</strong> fábrica sabe exatamente quando e em qual condição o lote chega.</span>
+                <span
+                  style="width:8px;height:8px;border-radius:50%;background:#4d9fff;flex-shrink:0;margin-top:7px;"></span>
+                <span style="font-size:18px;color:#e0ece5;line-height:1.45;"><strong style="color:#fff;">ETA em tempo
+                    real:</strong> fábrica sabe exatamente quando e em qual condição o lote chega.</span>
               </li>
               <li style="display:flex;gap:12px;align-items:flex-start;">
-                <span style="width:8px;height:8px;border-radius:50%;background:#4d9fff;flex-shrink:0;margin-top:7px;"></span>
-                <span style="font-size:18px;color:#e0ece5;line-height:1.45;"><strong style="color:#fff;">Custódia registrada:</strong> responsável, horário e estado do lote documentados na portaria — sem disputas.</span>
+                <span
+                  style="width:8px;height:8px;border-radius:50%;background:#4d9fff;flex-shrink:0;margin-top:7px;"></span>
+                <span style="font-size:18px;color:#e0ece5;line-height:1.45;"><strong style="color:#fff;">Custódia
+                    registrada:</strong> responsável, horário e estado do lote documentados na portaria — sem
+                  disputas.</span>
               </li>
             </ul>
           </div>
         </div>
 
         <!-- Tab 3: Indústria -->
-        <div id="tab-industria" class="rl-tab-panel" style="display:none;grid-template-columns:2fr 3fr;border-radius:0 0 12px 12px;overflow:hidden;">
-          <div style="background:#7c3a10;padding:44px 40px;display:flex;flex-direction:column;justify-content:flex-end;min-height:350px;box-sizing:border-box;">
-            <p style="font-family:'Archivo';font-weight:600;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);margin:0 0 8px;">ETAPA 03</p>
-            <h3 style="font-family:'Archivo';font-weight:800;font-size:clamp(38px,4.5vw,58px);color:#fff;margin:0 0 14px;line-height:1.0;">Indústria</h3>
+        <div id="tab-industria" class="rl-tab-panel"
+          style="display:none;grid-template-columns:2fr 3fr;border-radius:0 0 12px 12px;overflow:hidden;">
+          <div
+            style="background:#7c3a10;padding:44px 40px;display:flex;flex-direction:column;justify-content:flex-end;min-height:350px;box-sizing:border-box;">
+            <p
+              style="font-family:'Archivo';font-weight:600;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);margin:0 0 8px;">
+              ETAPA 03</p>
+            <h3
+              style="font-family:'Archivo';font-weight:800;font-size:clamp(38px,4.5vw,58px);color:#fff;margin:0 0 14px;line-height:1.0;">
+              Indústria</h3>
             <p style="font-size:18px;color:rgba(255,255,255,.8);font-weight:400;margin:0;line-height:1.55;">
               Triagem automática na recepção e conformidade MAPA gerada sem esforço manual.
             </p>
           </div>
-          <div style="background:#111f18;padding:44px 48px;display:flex;flex-direction:column;justify-content:center;gap:24px;box-sizing:border-box;">
-            <p style="font-family:'Archivo';font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--yellow);margin:0;">BENEFÍCIOS PARA A INDÚSTRIA</p>
+          <div
+            style="background:#111f18;padding:44px 48px;display:flex;flex-direction:column;justify-content:center;gap:24px;box-sizing:border-box;">
+            <p
+              style="font-family:'Archivo';font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--yellow);margin:0;">
+              BENEFÍCIOS PARA A INDÚSTRIA</p>
             <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:16px;">
               <li style="display:flex;gap:12px;align-items:flex-start;">
-                <span style="width:8px;height:8px;border-radius:50%;background:var(--yellow);flex-shrink:0;margin-top:7px;"></span>
-                <span style="font-size:18px;color:#e0ece5;line-height:1.45;"><strong style="color:#fff;">Catraca digital:</strong> bloqueia açaí degradado antes da despolpagem — fim do desperdício industrial.</span>
+                <span
+                  style="width:8px;height:8px;border-radius:50%;background:var(--yellow);flex-shrink:0;margin-top:7px;"></span>
+                <span style="font-size:18px;color:#e0ece5;line-height:1.45;"><strong style="color:#fff;">Catraca
+                    digital:</strong> bloqueia açaí degradado antes da despolpagem — fim do desperdício
+                  industrial.</span>
               </li>
               <li style="display:flex;gap:12px;align-items:flex-start;">
-                <span style="width:8px;height:8px;border-radius:50%;background:var(--yellow);flex-shrink:0;margin-top:7px;"></span>
-                <span style="font-size:18px;color:#e0ece5;line-height:1.45;"><strong style="color:#fff;">Laudos SIPEAGRO automáticos:</strong> conformidade INC 02/2018 sem digitação — sem risco de multa.</span>
+                <span
+                  style="width:8px;height:8px;border-radius:50%;background:var(--yellow);flex-shrink:0;margin-top:7px;"></span>
+                <span style="font-size:18px;color:#e0ece5;line-height:1.45;"><strong style="color:#fff;">Laudos SIPEAGRO
+                    automáticos:</strong> conformidade INC 02/2018 sem digitação — sem risco de multa.</span>
               </li>
               <li style="display:flex;gap:12px;align-items:flex-start;">
-                <span style="width:8px;height:8px;border-radius:50%;background:var(--yellow);flex-shrink:0;margin-top:7px;"></span>
-                <span style="font-size:18px;color:#e0ece5;line-height:1.45;"><strong style="color:#fff;">Rastreabilidade imutável:</strong> do produtor ao produto final — QR Code auditável por qualquer fiscal.</span>
+                <span
+                  style="width:8px;height:8px;border-radius:50%;background:var(--yellow);flex-shrink:0;margin-top:7px;"></span>
+                <span style="font-size:18px;color:#e0ece5;line-height:1.45;"><strong style="color:#fff;">Rastreabilidade
+                    imutável:</strong> do produtor ao produto final — QR Code auditável por qualquer fiscal.</span>
               </li>
             </ul>
           </div>
@@ -419,18 +474,34 @@
 
     <style>
       @keyframes rlFadeIn {
-        from { opacity: 0; transform: translateY(8px); }
-        to   { opacity: 1; transform: translateY(0); }
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
-      .rl-tab-panel { animation: rlFadeIn 0.35s ease; }
-      .rl-tab-panel[style*="display:grid"] { display: grid !important; }
+
+      .rl-tab-panel {
+        animation: rlFadeIn 0.35s ease;
+      }
+
+      .rl-tab-panel[style*="display:grid"] {
+        display: grid !important;
+      }
+
       @media (max-width: 700px) {
-        .rl-tab-panel { grid-template-columns: 1fr !important; }
+        .rl-tab-panel {
+          grid-template-columns: 1fr !important;
+        }
       }
     </style>
     <script>
       function rlChangeTab(tabId) {
-        const tabs   = ['tab-campo', 'tab-logistica', 'tab-industria'];
+        const tabs = ['tab-campo', 'tab-logistica', 'tab-industria'];
         const colors = { 'tab-campo': 'var(--green-deep)', 'tab-logistica': '#0061bd', 'tab-industria': '#7c3a10' };
 
         tabs.forEach(id => {
@@ -472,7 +543,9 @@
           <div
             style="font-family:'Archivo';font-weight:700;font-size:32px;margin-bottom:16px;color:#0b1410;line-height:1.1;">
             Alto Lucro e Baixo Custo</div>
-          <p style="font-size:20px;color:#52605a;margin:0;line-height:1.4;">A tecnologia NFC apresenta um <strong>baixíssimo custo</strong> de implementação, trazendo maior margem de lucro para a indústria e viabilidade econômica.</p>
+          <p style="font-size:20px;color:#52605a;margin:0;line-height:1.4;">A tecnologia NFC apresenta um
+            <strong>baixíssimo custo</strong> de implementação, trazendo maior margem de lucro para a indústria e
+            viabilidade econômica.</p>
         </div>
 
         <!-- Card 2 -->
@@ -484,7 +557,9 @@
           <div
             style="font-family:'Archivo';font-weight:700;font-size:32px;margin-bottom:16px;color:#0b1410;line-height:1.1;">
             Operação sem Erros</div>
-          <p style="font-size:20px;color:#52605a;margin:0;line-height:1.4;">Com facilidade extrema de utilização por aproximação, a tag <strong>evita erros humanos</strong> comuns na digitação, garantindo praticidade e otimização do tempo.</p>
+          <p style="font-size:20px;color:#52605a;margin:0;line-height:1.4;">Com facilidade extrema de utilização por
+            aproximação, a tag <strong>evita erros humanos</strong> comuns na digitação, garantindo praticidade e
+            otimização do tempo.</p>
         </div>
 
         <!-- Card 3 -->
@@ -494,10 +569,14 @@
             <span
               style="width:14px;height:14px;border-radius:50%;background:var(--wine);box-shadow:0 0 14px var(--wine);animation:rl-pulse 1.6s infinite;"></span>
             <span
-              style="font-family:'IBM Plex Mono';font-size:13px;color:#ff6db0;font-weight:600;letter-spacing:.05em;">SEGURANÇA INVIOLÁVEL</span>
+              style="font-family:'IBM Plex Mono';font-size:13px;color:#ff6db0;font-weight:600;letter-spacing:.05em;">SEGURANÇA
+              INVIOLÁVEL</span>
           </div>
-          <div style="font-family:'Archivo';font-weight:700;font-size:32px;margin-bottom:16px;line-height:1.1;">Identificador Único</div>
-          <p style="font-size:20px;color:#E2B9CE;margin:0;line-height:1.4;">Cada chip NFC possui um <strong>identificador eletrônico único de fábrica</strong> que é imutável, impossibilitando fraudes ou adulterações na origem.</p>
+          <div style="font-family:'Archivo';font-weight:700;font-size:32px;margin-bottom:16px;line-height:1.1;">
+            Identificador Único</div>
+          <p style="font-size:20px;color:#E2B9CE;margin:0;line-height:1.4;">Cada chip NFC possui um
+            <strong>identificador eletrônico único de fábrica</strong> que é imutável, impossibilitando fraudes ou
+            adulterações na origem.</p>
         </div>
 
         <!-- Card 4 -->
@@ -507,10 +586,14 @@
             <span
               style="width:14px;height:14px;border-radius:50%;background:var(--yellow);box-shadow:0 0 14px var(--yellow);animation:rl-pulse 1.6s infinite;"></span>
             <span
-              style="font-family:'IBM Plex Mono';font-size:13px;color:#ffd940;font-weight:600;letter-spacing:.05em;">DURABILIDADE EXTREMA</span>
+              style="font-family:'IBM Plex Mono';font-size:13px;color:#ffd940;font-weight:600;letter-spacing:.05em;">DURABILIDADE
+              EXTREMA</span>
           </div>
-          <div style="font-family:'Archivo';font-weight:700;font-size:32px;margin-bottom:16px;line-height:1.1;">NFC vs. QR Code</div>
-          <p style="font-size:20px;color:#B9CCBF;margin:0;line-height:1.4;">Ao contrário do QR Code, que pode ser copiado, alterado ou <strong>danificado por poeira e umidade</strong> fluvial, o NFC permanece 100% legível e intacto.</p>
+          <div style="font-family:'Archivo';font-weight:700;font-size:32px;margin-bottom:16px;line-height:1.1;">NFC vs.
+            QR Code</div>
+          <p style="font-size:20px;color:#B9CCBF;margin:0;line-height:1.4;">Ao contrário do QR Code, que pode ser
+            copiado, alterado ou <strong>danificado por poeira e umidade</strong> fluvial, o NFC permanece 100% legível
+            e intacto.</p>
         </div>
       </div>
     </div>
@@ -526,35 +609,52 @@
         style="font-family:'Archivo';font-weight:800;font-size:clamp(30px,4.2vw,52px);line-height:1.05;letter-spacing:-.02em;margin:0 0 44px;color:#0b1410;">
         Custo-Benefício: Esforço vs. Valor
       </h2>
-      <div style="overflow-x:auto; background:var(--card); border:1px solid var(--line); border-radius:24px; padding:32px; box-shadow:0 8px 24px rgba(0,0,0,.03);">
+      <div
+        style="overflow-x:auto; background:var(--card); border:1px solid var(--line); border-radius:24px; padding:32px; box-shadow:0 8px 24px rgba(0,0,0,.03);">
         <table style="width:100%; border-collapse:collapse; text-align:left; font-size:18px; min-width:600px;">
           <thead>
             <tr style="border-bottom:2px solid var(--line);">
-              <th style="padding:16px 24px; font-family:'Archivo'; font-weight:800; font-size:20px; color:var(--ink);">Fator de Comparação</th>
-              <th style="padding:16px 24px; font-family:'Archivo'; font-weight:800; font-size:20px; color:var(--green-deep); background:rgba(95,189,0,0.06); border-radius:12px 12px 0 0;">Nosso Protótipo (RuraLog)</th>
-              <th style="padding:16px 24px; font-family:'Archivo'; font-weight:800; font-size:20px; color:var(--gray);">Hardware Tradicional de Mercado</th>
+              <th style="padding:16px 24px; font-family:'Archivo'; font-weight:800; font-size:20px; color:var(--ink);">
+                Fator de Comparação</th>
+              <th
+                style="padding:16px 24px; font-family:'Archivo'; font-weight:800; font-size:20px; color:var(--green-deep); background:rgba(95,189,0,0.06); border-radius:12px 12px 0 0;">
+                Nosso Protótipo (RuraLog)</th>
+              <th style="padding:16px 24px; font-family:'Archivo'; font-weight:800; font-size:20px; color:var(--gray);">
+                Hardware Tradicional de Mercado</th>
             </tr>
           </thead>
           <tbody>
             <tr style="border-bottom:1px solid var(--line);">
               <td style="padding:20px 24px; font-weight:600; color:var(--ink);">O que custa (Investimento)</td>
-              <td style="padding:20px 24px; background:rgba(95,189,0,0.06); color:var(--green-deep); font-weight:600;">Apenas <strong>R$ 1,00 por unidade</strong> (tags NFC duráveis e reutilizáveis + smartphones comuns já existentes)</td>
-              <td style="padding:20px 24px; color:#52605a;">Altíssimo custo (embora o QR Code custe apenas <strong>R$ 0,02 por unidade</strong>, exige a compra de scanners proprietários caros e possui alta taxa de perda por umidade/desgaste)</td>
+              <td style="padding:20px 24px; background:rgba(95,189,0,0.06); color:var(--green-deep); font-weight:600;">
+                Apenas <strong>R$ 1,00 por unidade</strong> (tags NFC duráveis e reutilizáveis + smartphones comuns já
+                existentes)</td>
+              <td style="padding:20px 24px; color:#52605a;">Altíssimo custo (embora o QR Code custe apenas <strong>R$
+                  0,02 por unidade</strong>, exige a compra de scanners proprietários caros e possui alta taxa de perda
+                por umidade/desgaste)</td>
             </tr>
             <tr style="border-bottom:1px solid var(--line);">
               <td style="padding:20px 24px; font-weight:600; color:var(--ink);">O que entrega (Benefício/Valor)</td>
-              <td style="padding:20px 24px; background:rgba(95,189,0,0.06); color:var(--green-deep); font-weight:600;">Segurança imutável na origem, operação offline, previsibilidade de perdas e auto compliance (MAPA)</td>
-              <td style="padding:20px 24px; color:#52605a;">Monitoramento básico de rota sem validação imutável na origem; dependência de internet ativa</td>
+              <td style="padding:20px 24px; background:rgba(95,189,0,0.06); color:var(--green-deep); font-weight:600;">
+                Segurança imutável na origem, operação offline, previsibilidade de perdas e auto compliance (MAPA)</td>
+              <td style="padding:20px 24px; color:#52605a;">Monitoramento básico de rota sem validação imutável na
+                origem; dependência de internet ativa</td>
             </tr>
             <tr style="border-bottom:1px solid var(--line);">
               <td style="padding:20px 24px; font-weight:600; color:var(--ink);">Custo para o Produtor</td>
-              <td style="padding:20px 24px; background:rgba(95,189,0,0.06); color:var(--green-deep); font-weight:600;">Custo Zero para o produtor rural (Garante adesão imediata de 100% da cadeia)</td>
-              <td style="padding:20px 24px; color:#52605a;">Inviável (Exige que o produtor rural compre ou alugue leitores específicos)</td>
+              <td style="padding:20px 24px; background:rgba(95,189,0,0.06); color:var(--green-deep); font-weight:600;">
+                Custo Zero para o produtor rural (Garante adesão imediata de 100% da cadeia)</td>
+              <td style="padding:20px 24px; color:#52605a;">Inviável (Exige que o produtor rural compre ou alugue
+                leitores específicos)</td>
             </tr>
             <tr>
-              <td style="padding:20px 24px; font-weight:600; color:var(--ink); border-radius:0 0 0 12px;">Retorno sobre Investimento (ROI)</td>
-              <td style="padding:20px 24px; background:rgba(95,189,0,0.06); color:var(--green-deep); font-weight:700; border-radius:0 0 12px 12px;">Imediato (Se paga nos primeiros lotes salvos de oxidação/descarte)</td>
-              <td style="padding:20px 24px; color:#52605a; border-radius:0 0 12px 0;">Lento e incerto (Altos custos recorrentes de manutenção e calibração)</td>
+              <td style="padding:20px 24px; font-weight:600; color:var(--ink); border-radius:0 0 0 12px;">Retorno sobre
+                Investimento (ROI)</td>
+              <td
+                style="padding:20px 24px; background:rgba(95,189,0,0.06); color:var(--green-deep); font-weight:700; border-radius:0 0 12px 12px;">
+                Imediato (Se paga nos primeiros lotes salvos de oxidação/descarte)</td>
+              <td style="padding:20px 24px; color:#52605a; border-radius:0 0 12px 0;">Lento e incerto (Altos custos
+                recorrentes de manutenção e calibração)</td>
             </tr>
           </tbody>
         </table>
@@ -575,7 +675,8 @@
       </h2>
       <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));gap:24px;">
         <!-- Card E & S -->
-        <div style="background:var(--card);border:1px solid var(--line);border-radius:24px;padding:48px 40px;display:flex;flex-direction:column;justify-content:space-between;">
+        <div
+          style="background:var(--card);border:1px solid var(--line);border-radius:24px;padding:48px 40px;display:flex;flex-direction:column;justify-content:space-between;">
           <div>
             <div
               style="font-family:'IBM Plex Mono';font-size:15px;color:var(--green-deep);letter-spacing:.1em;margin-bottom:20px;text-transform:uppercase;font-weight:600;">
@@ -584,12 +685,14 @@
               style="font-family:'Archivo';font-weight:800;font-size:36px;color:var(--green-deep);line-height:1.1;margin-bottom:20px;">
               Sustentabilidade e Inclusão</div>
             <div style="font-family:'Archivo';font-size:20px;color:#0b1410;font-weight:500;line-height:1.45;">
-              Redução do desperdício de alimentos na rota de transporte e empoderamento econômico do extrativista local através de uma ferramenta totalmente gratuita.
+              Redução do desperdício de alimentos na rota de transporte e empoderamento econômico do extrativista local
+              através de uma ferramenta totalmente gratuita.
             </div>
           </div>
         </div>
         <!-- Card G -->
-        <div style="background:var(--card);border:1px solid var(--line);border-radius:24px;padding:48px 40px;display:flex;flex-direction:column;justify-content:space-between;">
+        <div
+          style="background:var(--card);border:1px solid var(--line);border-radius:24px;padding:48px 40px;display:flex;flex-direction:column;justify-content:space-between;">
           <div>
             <div
               style="font-family:'IBM Plex Mono';font-size:15px;color:var(--blue);letter-spacing:.1em;margin-bottom:20px;text-transform:uppercase;font-weight:600;">
@@ -598,12 +701,14 @@
               style="font-family:'Archivo';font-weight:800;font-size:36px;color:var(--blue);line-height:1.1;margin-bottom:20px;">
               Transparência e Conformidade</div>
             <div style="font-family:'Archivo';font-size:20px;color:#0b1410;font-weight:500;line-height:1.45;">
-              Cadeia de custódia transparente, segura e imutável de ponta a ponta, facilitando auditorias e gerando laudos de conformidade automáticos para órgãos reguladores.
+              Cadeia de custódia transparente, segura e imutável de ponta a ponta, facilitando auditorias e gerando
+              laudos de conformidade automáticos para órgãos reguladores.
             </div>
           </div>
         </div>
         <!-- Card Quality -->
-        <div style="background:var(--ink);border:1px solid rgba(255,255,255,0.1);border-radius:24px;padding:48px 40px;color:#F4F7F1;display:flex;flex-direction:column;justify-content:space-between;">
+        <div
+          style="background:var(--ink);border:1px solid rgba(255,255,255,0.1);border-radius:24px;padding:48px 40px;color:#F4F7F1;display:flex;flex-direction:column;justify-content:space-between;">
           <div>
             <div
               style="font-family:'IBM Plex Mono';font-size:15px;color:var(--yellow);letter-spacing:.1em;margin-bottom:20px;text-transform:uppercase;font-weight:600;">
@@ -612,7 +717,8 @@
               style="font-family:'Archivo';font-weight:800;font-size:36px;color:#fff;line-height:1.1;margin-bottom:20px;">
               Maior Qualidade dos Produtos</div>
             <div style="font-family:'Archivo';font-size:20px;color:#B9CCBF;font-weight:500;line-height:1.45;">
-              Garantia de que apenas frutos frescos e colhidos no tempo ideal entrem na fábrica, preservando as propriedades nutricionais e elevando o padrão do produto final.
+              Garantia de que apenas frutos frescos e colhidos no tempo ideal entrem na fábrica, preservando as
+              propriedades nutricionais e elevando o padrão do produto final.
             </div>
           </div>
         </div>
