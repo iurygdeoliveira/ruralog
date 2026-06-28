@@ -3,7 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RuraLog - Campo</title>
+  <title>RuraLog - O Campo</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="css/style.css">
@@ -11,53 +15,156 @@
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
-  <div id="app"></div>
+  <!-- Header global apenas para navegação/reset -->
+  <div id="header-root"></div>
+
+  <main class="rl-mobile-wrapper">
+    <div class="rl-mobile-frame">
+      <div class="rl-mobile-header">
+        O Campo <i data-lucide="sprout" class="inline-block align-middle ml-1" style="width: 20px; height: 20px;"></i>
+      </div>
+      <div class="rl-mobile-content">
+        
+        <!-- Passo 1: Onboarding -->
+        <div id="passo-1" class="rl-mobile-step active rl-card">
+          <h2 class="font-bold mb-4">Cadastro do Açaizal</h2>
+          <form id="form-onboarding">
+            <div class="rl-form-group">
+              <label class="rl-form-label">Nome do Produtor/Extrativista</label>
+              <input type="text" id="prod-nome" class="rl-input" required placeholder="Ex: João da Silva">
+            </div>
+            <div class="rl-form-group">
+              <label class="rl-form-label">Nº CAF (Obrigatório)</label>
+              <input type="text" id="prod-caf" class="rl-input" required placeholder="000.000.000-00" oninput="this.value = this.value.replace(/[^0-9.-]/g, '')">
+            </div>
+            <div class="rl-form-group">
+              <label class="rl-form-label">Município</label>
+              <select id="prod-municipio" class="rl-input" required>
+                <option value="Araguatins">Araguatins</option>
+                <option value="Esperantina">Esperantina</option>
+                <option value="Axixá do Tocantins">Axixá do Tocantins</option>
+                <option value="Augustinópolis">Augustinópolis</option>
+                <option value="Tocantinópolis">Tocantinópolis</option>
+                <option value="Palmas">Palmas</option>
+              </select>
+            </div>
+            <div class="rl-form-group">
+              <label class="rl-form-label">Nome da Propriedade/Açaizal</label>
+              <input type="text" id="prod-prop" class="rl-input" required placeholder="Sítio Boa Esperança">
+            </div>
+            <div class="rl-form-group">
+              <label class="rl-form-label">Tipo de Açaizal</label>
+              <select id="prod-tipo" class="rl-input" required>
+                <option value="nativo">Nativo (Extrativismo)</option>
+                <option value="cultivado">Cultivado</option>
+              </select>
+            </div>
+            <div class="rl-form-group">
+              <label class="rl-form-label">Geolocalização</label>
+              <button type="button" id="btn-gps" class="rl-btn rl-btn--outline" style="width: 100%">
+                <i data-lucide="map-pin"></i> Capturar localização
+              </button>
+              <div id="gps-status" style="display: none;"></div>
+            </div>
+            <button type="submit" class="rl-btn rl-btn--primario mt-4" style="width: 100%">Salvar e Avançar →</button>
+          </form>
+        </div>
+
+        <!-- Passo 2: Manejo -->
+        <div id="passo-2" class="rl-mobile-step rl-card">
+          <h2 class="font-bold mb-4">Registro de Manejo</h2>
+          <form id="form-manejo">
+            <div class="rl-form-group">
+              <label class="rl-form-label">Atividade de Manejo</label>
+              <select id="man-tipo" class="rl-input" required>
+                <option value="roçagem">Roçagem</option>
+                <option value="desbaste">Desbaste de Estipes</option>
+                <option value="monitoramento">Monitoramento</option>
+                <option value="aplicação">Aplicação</option>
+              </select>
+            </div>
+            <div class="rl-form-group">
+              <label class="rl-form-label">Descrição (Opcional)</label>
+              <input type="text" id="man-desc" class="rl-input" placeholder="Detalhes da atividade...">
+            </div>
+            <button type="submit" class="rl-btn rl-btn--primario mt-4" style="width: 100%">Registrar Manejo →</button>
+            <button type="button" class="rl-btn rl-btn--outline mt-2 btn-pular" data-target="3" style="width: 100%">Pular (Sem manejo agora)</button>
+          </form>
+        </div>
+
+        <!-- Passo 3: Fitossanitário -->
+        <div id="passo-3" class="rl-mobile-step rl-card">
+          <h2 class="font-bold mb-4">Diário Fitossanitário</h2>
+          <p class="text-gray-400 mb-4" style="font-size: 13px;">Relate a ocorrência de pragas para acionar o seguro ou a agroindústria com antecedência.</p>
+          <form id="form-fito">
+            <div class="rl-form-group">
+              <label class="rl-form-label">Praga Identificada</label>
+              <select id="fito-praga" class="rl-input" required>
+                <option value="" disabled selected>Selecione uma praga...</option>
+                <option value="Podridão-do-cacho">Podridão-do-cacho</option>
+                <option value="Broca-do-estipe">Broca-do-estipe</option>
+                <option value="Pulgão-preto">Pulgão-preto</option>
+                <option value="Lagarta-desfolhadora">Lagarta-desfolhadora</option>
+              </select>
+            </div>
+            <button type="submit" class="rl-btn rl-btn--primario mt-4" style="width: 100%; background: var(--wine); color: #fff;">Emitir Alerta</button>
+            <button type="button" class="rl-btn rl-btn--outline mt-2 btn-pular" data-target="4" style="width: 100%">Tudo limpo, pular →</button>
+          </form>
+        </div>
+
+        <!-- Passo 4: Colheita -->
+        <div id="passo-4" class="rl-mobile-step rl-card">
+          <h2 class="font-bold mb-4">Debulha & Colheita</h2>
+          <p class="text-gray-400 mb-4" style="font-size: 13px;">O açaí debulhado estraga rápido. Ao registrar, inicia-se o relógio de perecibilidade logística.</p>
+          <form id="form-colheita">
+            <div class="rl-form-group">
+              <label class="rl-form-label">Quantidade Colhida (KG)</label>
+              <input type="number" id="col-kg" class="rl-input" required min="1" placeholder="Ex: 150">
+            </div>
+            <button type="submit" class="rl-btn rl-btn--primario mt-4" style="width: 100%">Finalizar Lote →</button>
+          </form>
+        </div>
+
+        <!-- Passo 5: QR Code -->
+        <div id="passo-5" class="rl-mobile-step rl-card" style="text-align: center;">
+          <h2 class="font-bold mb-2">Lote Certificado!</h2>
+          <p class="text-mono-label" id="lote-id-display">ACAI-TO-2026-001</p>
+          <div style="margin: 20px auto; padding: 16px; background: #fff; display: inline-block; border-radius: 12px;" id="qr-container">
+            <!-- QR code goes here -->
+          </div>
+          <p class="text-gray-400 mb-4" style="font-size: 13px;">Aponte a câmera para rastrear a origem e a linha do tempo completa do açaí.</p>
+          
+          <button type="button" id="btn-copiar" class="rl-btn rl-btn--outline mb-2" style="width: 100%">
+            <i data-lucide="copy"></i> Copiar link
+          </button>
+          <a href="index.html" class="rl-btn rl-btn--primario" style="width: 100%">Novo Lote</a>
+        </div>
+
+      </div>
+    </div>
+  </main>
 
   <script type="module">
-    import { getLote } from './js/db.js';
-    import { montarHeader, botaoReset, updateIcons, fmtData } from './js/ui.js';
-
-    async function render() {
-      const app = document.getElementById('app');
-      app.innerHTML = montarHeader('Campo', 'index');
-      
-      const main = document.createElement('main');
-      main.className = 'rl-main rl-container';
-
-      try {
-        const lote = await getLote();
-        
-        main.innerHTML = `
-          <h1 class="text-2xl font-bold mb-4">Módulo de Campo</h1>
-          <div class="rl-card">
-            <h2 class="font-bold mb-2">Lote: ${lote.id}</h2>
-            <p class="text-gray-400">Produtor: ${lote.produtor.municipio}</p>
-            <p class="text-gray-400">Status: <span class="rl-badge">${lote.status}</span></p>
-            <p class="text-gray-400 mt-4">Ultima atualização: ${fmtData(lote.timeline[0]?.ts)}</p>
-          </div>
-        `;
-      } catch (err) {
-        main.innerHTML = `<div class="rl-card"><p>Erro ao carregar dados do lote.</p></div>`;
-        console.error(err);
-      }
-      
-      app.appendChild(main);
-      
-      botaoReset();
-      updateIcons();
-    }
-
-    render();
-
+    import { montarHeader, botaoReset, updateIcons } from './js/ui.js';
+    
+    // Injeta header
+    document.getElementById('header-root').innerHTML = montarHeader('Campo', 'index');
+    botaoReset();
+    
+    // Inicia os icones lucide globais do HTML
+    updateIcons();
+    
+    // Registra Service Worker se disponível
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js').then(reg => {
-          console.log('SW registrado com sucesso', reg.scope);
-        }).catch(err => {
+        navigator.serviceWorker.register('./sw.js').catch(err => {
           console.error('Erro ao registrar SW', err);
         });
       });
     }
   </script>
+  
+  <script src="vendor/qrcode.min.js"></script>
+  <script type="module" src="js/campo.js"></script>
 </body>
 </html>

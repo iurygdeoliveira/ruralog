@@ -36,7 +36,7 @@
 
 ## 4. Instruções técnicas
 
-1. **Onboarding (`RF-01`):** form com nome do produtor, município (select com cidades do TO — Araguatins, Esperantina, Axixá do Tocantins, Augustinópolis, etc.), nome do açaizal/propriedade, tipo de açaizal (nativo/cultivado). Geo: botão "Capturar localização" usando `navigator.geolocation`; se o navegador negar, demorar ou estiver sem GPS, gravar uma coordenada **fixa simulada** de Araguatins (-5.6472, -48.1247) e mostrar "Localização simulada para demo". `patchLote("ACAI-TO-2026-001", { produtor, tipoAcaizal })`.
+1. **Onboarding (`RF-01`):** form com nome do produtor, nº do CAF (Cadastro Nacional da Agricultura Familiar, obrigatório), Cooperativa/Associação (opcional), município (select com cidades do TO — Araguatins, Esperantina, Axixá do Tocantins, Augustinópolis, etc.), nome do açaizal/propriedade, tipo de açaizal (nativo/cultivado). Geo: botão "Capturar localização" usando `navigator.geolocation`; se o navegador negar, demorar ou estiver sem GPS, gravar uma coordenada **fixa simulada** de Araguatins (-5.6472, -48.1247) e mostrar "Localização simulada para demo". `patchLote("ACAI-TO-2026-001", { produtor, tipoAcaizal })`.
 2. **Manejo (`RF-02`):** lista de atividades de manejo. Tipo: select com opções "roçagem", "desbaste", "monitoramento", "aplicação". Campo de descrição livre. `patchLote(..., { manejo })` + `addEvento(id, { etapa:"manejo", ts, descricao:"Manejo registrado: " + tipo, icone:"🌿" })`.
 3. **Monitoramento Fitossanitário (`RF-03` + `RN-01`):** lista de ocorrências. Ao adicionar uma com tipo **praga específica do açaí**, disparar alerta com texto adequado:
    ```js

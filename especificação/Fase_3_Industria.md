@@ -50,11 +50,11 @@
    });
    await addEvento(id, { etapa:"recepcao_industria", ts:recepcao_ts, descricao:`Açaí recebido na agroindústria (trânsito ${transitoH}h desde debulha)`, icone:"🏭" });
    ```
-2. **CQ Recepção (`RF-08` + `RN-03`):** botões Aprovar/Reprovar + campo obs. Campos de avaliação: cor dos frutos, integridade, presença de impurezas. Reprovado → `status:"reprovado"` e o lote **para de avançar** (mostre badge vermelho "Reprovado no CQ — Açaí impróprio"). Aprovado segue.
+2. **CQ Recepção (`RF-08` + `RN-03`):** botões Aprovar, Reprovar, ou Não Conforme + campo obs. Campos de avaliação: cor dos frutos, integridade, presença de impurezas. Reprovado ou Não Conforme → `status:"reprovado"` (ou `"nao_conforme"`) e o lote **para de avançar** (mostre badge vermelho "Não Conforme/Reprovado no CQ — Açaí impróprio"). Aprovado segue.
 3. **Despolpamento simplificado (`RF-16`):**
    - Botão "Registrar branqueamento" → campo de temperatura (deve ser ≥80°C, validação obrigatória). Grava `industria.branqueamento.validado = true` e `temperatura`. Evento na timeline: "Branqueamento validado (85°C)".
    - Botão "Iniciar despolpamento" → grava `industria.producao.inicio`. Evento: "Despolpamento iniciado".
-   - Botão "Finalizar despolpamento" → grava `industria.producao.fim` e `unidades_kg`. Evento: "Polpa de açaí produzida — Xkg".
+   - Botão "Finalizar despolpamento" → grava `industria.producao.fim` e `unidades_kg`. Calcula o `fatorConversao` (`unidades_kg / peso_kg`). Se o desvio absoluto em relação a `fatorConversaoEsperado` (0.40) for > 15%, adicionar card de alerta: "Rendimento atípico — desvio >15% do padrão. Auditoria recomendada." Evento: "Polpa de açaí produzida — Xkg".
    Cada ação escreve evento na timeline.
 4. **CQ Final + Classificação MAPA (`RF-08`):** mesma mecânica antes da expedição, com campo adicional de **classificação**:
    ```js
@@ -76,8 +76,12 @@
      industria:{ ...lote.industria, expedicao_varejo_ts }
    });
    await addEvento(id, { etapa:"expedicao_varejo", ts:expedicao_varejo_ts, descricao:"Polpa de Açaí Congelada expedida para o varejo — Tipo " + classificacao, icone:"📦" });
+   // Renderizar o Romaneio Digital na tela:
+   // Exibir um .rl-card com os dados: ID do Romaneio (auto-gerado: ROM-{lote.id}-{ts}), 
+   // IDs de Origem (lote.id + lote.produtor.nome + lote.produtor.caf), Produto Final, 
+   // Classificação MAPA, Peso de Entrada, Peso de Saída, Data de Expedição.
    ```
-   A Fase 4 só deve receber o lote se `industria.cqFinal.status === "aprovado"` e `expedicao_varejo_ts` existir.
+   A Fase 4 só deve receber o lote se `industria.cqFinal.status === "aprovado"` e `expedicao_varejo_ts` existirem.
 6. **Inbox de alertas fitossanitários (`RF-09`):** liste `lote.alertas` ordenados por `ts` desc. Severidade `alta`/`critica` com destaque visual (borda vermelha). Mostre o nome da praga em destaque. Se vazio, estado vazio amigável ("Sem alertas fitossanitários — cadeia saudável").
 7. **Insight operacional simulado:** se o semáforo logístico estiver amarelo/vermelho ou existir alerta de praga, mostrar card:
    > "IA RuraLog: Lote ACAI-TO-2026-001 recebido com Xh de trânsito. Risco de perda de antocianinas. Priorizar despolpamento imediato para salvaguardar classificação como Açaí Especial Tipo A."

@@ -1,0 +1,36 @@
+1
+00:00:00,000 --> 00:00:09,240
+A inovação da Ruralog consiste principalmente na tecnologia NFC, que apresenta um baixo custo,
+
+2
+00:00:09,240 --> 00:00:12,440
+trazendo um maior lucro para a indústria.
+
+3
+00:00:12,440 --> 00:00:18,360
+Além disso, ele também apresenta uma facilidade de utilização, evitando erros humanos,
+
+4
+00:00:18,360 --> 00:00:21,840
+uma maior praticidade e otimização de tempo.
+
+5
+00:00:21,840 --> 00:00:26,840
+Além disso, ele também apresenta uma segurança, pois possui um identificador eletrônico
+
+6
+00:00:26,840 --> 00:00:29,280
+único que não pode ser alterado.
+
+7
+00:00:29,280 --> 00:00:36,000
+Além disso, apresenta uma maior durabilidade em comparação com o QR Code, pois o QR Code
+
+8
+00:00:36,000 --> 00:00:44,080
+pode ser danificado por poeira, humidade ou até mesmo copiado e alterado, a que não
+
+9
+00:00:44,080 --> 00:00:45,760
+poderia acontecer com NFC.
+

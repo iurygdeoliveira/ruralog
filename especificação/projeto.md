@@ -184,6 +184,8 @@ A cadeia do açaí no Tocantins enfrenta um paradoxo: o estado emergiu como sext
 **Could (só se sobrar tempo):** RF-13 completo, múltiplos lotes, gráficos, campo de sólidos totais real.
 **Won't (fora do MVP):** auth real, IoT real (sensores de temperatura), rastreio GPS contínuo real, RFID, blockchain/hash, multiusuário, backend, app nativo, classificação laboratorial real.
 
+*(Nota para o Pitch: A plataforma foi desenhada para ser **multi-módulo** (ex: Módulo Castanha, Módulo Cacau), o que demonstra visão de longo prazo, embora o foco da demonstração do MVP seja integralmente no Açaí).*
+
 ## Glossário
 
 - **Lote:** unidade rastreável (ex: `ACAI-TO-2026-001`) que carrega toda a trilha de dados do açaí.

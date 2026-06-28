@@ -27,19 +27,38 @@ export function montarHeader(titulo = 'Campo', ativo = 'index') {
 }
 
 export function semaforo(status) {
-  const icon = status === 'verde' ? 'check-circle-2' : status === 'amarelo' ? 'alert-triangle' : 'x-octagon';
+  // O semáforo agora utiliza o dot com pulse
   return `<span class="rl-semaforo rl-semaforo--${status}">
-            <i data-lucide="${icon}"></i>
+            <span class="rl-semaforo-dot"></span>
           </span>`;
 }
 
 export function toast(msg) {
   let toastEl = document.getElementById('rl-global-toast');
+  const mobileFrame = document.querySelector('.rl-mobile-frame');
+  const container = mobileFrame || document.body;
+  
   if (!toastEl) {
     toastEl = document.createElement('div');
     toastEl.id = 'rl-global-toast';
     toastEl.className = 'rl-toast';
-    document.body.appendChild(toastEl);
+    container.appendChild(toastEl);
+  } else if (toastEl.parentNode !== container) {
+    container.appendChild(toastEl);
+  }
+  
+  if (mobileFrame) {
+    toastEl.style.position = 'absolute';
+    toastEl.style.bottom = '20px';
+    toastEl.style.right = '20px';
+    toastEl.style.left = '20px';
+    toastEl.style.justifyContent = 'center';
+  } else {
+    toastEl.style.position = 'fixed';
+    toastEl.style.bottom = '2rem';
+    toastEl.style.right = '2rem';
+    toastEl.style.left = 'auto';
+    toastEl.style.justifyContent = 'flex-start';
   }
   
   toastEl.textContent = msg;
@@ -61,7 +80,7 @@ export function fmtData(ts) {
 export function botaoReset() {
   const btn = document.createElement('button');
   btn.className = 'rl-btn rl-btn--outline';
-  btn.innerHTML = '<i data-lucide="rotate-ccw" class="w-4 h-4"></i> Resetar Demo';
+  btn.innerHTML = '<i data-lucide="rotate-ccw" class="w-4 h-4" style="width: 16px; height: 16px;"></i> Resetar Demo';
   
   btn.addEventListener('click', async () => {
     try {

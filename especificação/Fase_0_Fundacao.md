@@ -61,6 +61,8 @@ const lote = {
     nome: "",
     municipio: "Araguatins",          // Bico do Papagaio, extremo-norte do TO
     propriedade: "",
+    caf: "",                          // Cadastro Nacional da Agricultura Familiar (obrigatório)
+    instituicao: "",                  // Cooperativa/Associação, se aplicável
     geo: { lat: -5.6472, lng: -48.1247 }  // coordenadas de Araguatins
   },
   manejo:    [],                      // [{ data, tipo, descricao }]
@@ -87,7 +89,7 @@ const lote = {
     cqRecepcao: { status: null, obs: "" },     // "aprovado"|"reprovado"|null
     cqFinal:    { status: null, obs: "", classificacao: null },  // classificacao: "A"|"B"|"C"|null
     branqueamento: { validado: false, temperatura: null },       // campo obrigatório ≥80°C
-    producao:   { inicio: null, fim: null, unidades_kg: 0 },
+    producao:   { inicio: null, fim: null, unidades_kg: 0, fatorConversao: null, fatorConversaoEsperado: 0.40 },
     produtoFinal: "Polpa de Açaí Congelada"
   },
   varejo:    {
@@ -136,7 +138,9 @@ export function gerarSnapshotPublico(lote){
     tipoAcaizal: lote.tipoAcaizal,
     produtor: {
       municipio: lote.produtor?.municipio || "",
-      propriedade: lote.produtor?.propriedade || ""
+      propriedade: lote.produtor?.propriedade || "",
+      caf: lote.produtor?.caf || "",
+      instituicao: lote.produtor?.instituicao || ""
     },
     colheita: lote.colheita,
     alertas: lote.alertas,
@@ -164,7 +168,7 @@ Regra de tamanho: manter o snapshot enxuto. Não colocar CPF, telefone, dados se
 }
 ```
 
-Componentes obrigatórios (classes reutilizáveis): `.rl-header`, `.rl-card`, `.rl-btn` / `.rl-btn--primario`, `.rl-input`, `.rl-badge`, `.rl-semaforo` (`--verde/--amarelo/--vermelho`), `.rl-timeline`, `.rl-toast`.
+Componentes obrigatórios (classes reutilizáveis): `.rl-header`, `.rl-card`, `.rl-btn` / `.rl-btn--primario`, `.rl-input`, `.rl-badge`, `.rl-badge-rastreavel` (com ícone 🔒), `.rl-semaforo` (`--verde/--amarelo/--vermelho`), `.rl-timeline`, `.rl-toast`.
 
 ### 3.4 Helpers — `js/ui.js`
 
