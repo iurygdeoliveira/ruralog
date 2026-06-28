@@ -1,0 +1,6 @@
+{
+  "files": ["lp-pitch/**/*.html"],
+  "insertBefore": "</head>",
+  "commentSyntax": "html",
+  "cspChecked": true
+}

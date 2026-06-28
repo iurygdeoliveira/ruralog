@@ -1,0 +1,12 @@
+{
+  "name": "lp-pitch",
+  "version": "1.0.0",
+  "description": "RuraLog Landing Page Pitch",
+  "scripts": {
+    "build:css": "tailwindcss -i input.css -o style.css --minify",
+    "dev": "tailwindcss -i input.css -o style.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.1"
+  }
+}
