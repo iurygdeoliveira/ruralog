@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RuraLog - Agroindústria</title>
+  
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="css/style.css">
+  
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script type="module">
+    import { getLote } from './js/db.js';
+    import { montarHeader, botaoReset, updateIcons, fmtData, semaforo } from './js/ui.js';
+
+    async function render() {
+      const app = document.getElementById('app');
+      app.innerHTML = montarHeader('Agroindústria', 'industria');
+      
+      const main = document.createElement('main');
+      main.className = 'rl-main rl-container';
+
+      try {
+        const lote = await getLote();
+        
+        main.innerHTML = `
+          <h1 class="text-2xl font-bold mb-4">Painel da Indústria</h1>
+          <div class="rl-card">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+              <div>
+                <h2 class="font-bold mb-2">Recepção de Lote: ${lote.id}</h2>
+                <p class="text-gray-400">Origem: ${lote.produtor.municipio}</p>
+                <p class="text-gray-400 mt-4">Previsão de CQ: ${fmtData(Date.now())}</p>
+              </div>
+              <div>
+                ${semaforo('verde')}
+              </div>
+            </div>
+          </div>
+        `;
+      } catch (err) {
+        main.innerHTML = `<div class="rl-card"><p>Erro ao carregar dados do lote.</p></div>`;
+        console.error(err);
+      }
+      
+      app.appendChild(main);
+      
+      botaoReset();
+      updateIcons();
+    }
+
+    render();
+  </script>
+</body>
+</html>
